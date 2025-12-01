@@ -1,6 +1,6 @@
 # El Bit
 
-Un bit es la unidad más simple de información en un sistema digital. Representa una elección entre dos posibilidades, uqe lo podemos pensar como 0 ó 1, apagado o encendido, falso o verdadero. Es la manera en que una computadora distingue entre dos estados y, a partir de esa distinción mínima, construye todo lo demás, números, texto, imágenes, sonidos y programas completos.
+Un bit es la unidad más simple de información en un sistema digital. Representa una elección entre dos posibilidades, que lo podemos pensar como 0 ó 1, apagado o encendido, falso o verdadero. Es la manera en que una computadora distingue entre dos estados y, a partir de esa distinción mínima, construye todo lo demás, números, texto, imágenes, sonidos y programas completos.
 
 ## ¿Porqué las computadoras usan bits?
 
