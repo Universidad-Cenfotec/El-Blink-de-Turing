@@ -1,18 +1,10 @@
-# El mundo contínuo no es para las máquinas
+# El Bit
 
 A nosotros, los humanos, siempre nos ha fascinado la idea de que las máquinas hagan los cálculos por nosotros. Aunque podemos aprender a hacer cuentas con precisión, siempre queda una duda, si le pido a alguien que me calcule $234 \times 358$ y lo hace muy rápido, ¿cómo sé que no se equivocó? Tengo que confiar en esa persona. En cambio, si el cálculo lo realiza una máquina cuyos mecanismos son verificables y repetibles, puedo estar mucho más seguro de que el resultado será correcto una y otra vez, sin errores.
 
 Ahora bien, antes de que existieran las computadoras como las conocemos hoy, los ingenieros intentaron construir máquinas que calcularan usando cantidades continuas. Esto tenía sentido, pues todo parecía indicar que el mundo físico es continuo. La temperatura cambia de forma suave, sin saltos; y el área de un círculo no es un número natural, sino un número real que incluso incluye un valor irracional como $\pi$. Estas máquinas buscaban imitar esa continuidad del mundo, esperando que así también pudieran calcular como lo hace la naturaleza misma.
 
-Esasa máquinas trataban de ver el mundo físico contínuo
-
-Pero había un problema:
-**eran demasiado sensibles al mundo real.**
-
-Un poco más de humedad, un pequeño cambio de temperatura, una fricción distinta en un engranaje, una vibración inesperada… y el resultado ya no era confiable.
-Todas esas máquinas analógicas tenían algo en común:
-
-> Un mínimo cambio físico podía alterar por completo el resultado.
+Esas máquinas trataban de ver el mundo físico contínuo, pero había un problema, eran demasiado sensibles al mundo real. Un poco más de humedad, un pequeño cambio de temperatura, una fricción distinta en un engranaje, una vibración inesperada… y el resultado ya no era confiable.  Un mínimo cambio físico podía alterar por completo el resultado.
 
 En otras palabras, si una máquina dependía de medidas continuas —como la presión exacta del agua o la posición exacta de una rueda— estaba condenada a ser inestable.
 El mundo físico, lleno de ruido, desgaste y variaciones, no es el mejor aliado para cálculos precisos.
