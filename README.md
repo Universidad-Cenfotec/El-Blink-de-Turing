@@ -6,7 +6,7 @@ Universidad CENFOTEC
 ## Introducción
 Hace muchos años, cuando estudiaba la maestría en ciencias de la computación en el Tecnológico de Costa Rica, en un curso el profesor nos pidió hacer una presentación basada en un capítulo de un libro llamado “The Turing Ómnibus” (Dewdney, 1993). El libro me atrapó de inmediato, y más allá de preparar la presentación terminé recorriendo cada capítulo con una mezcla de sorpresa y claridad. Explora ideas esenciales de las ciencias de la computación y presenta de forma directa los fundamentos del pensamiento computacional.
 
-Mucho después empecé a trabajar con arduinos. Más allá de los muchos proyectos de computación física que construí, siempre sentí una conexión cercana entre la computación más abstracta y estos pequeños dispositivos. En ellos se podía palpar cada concepto de manera concreta y casi tangible.
+Mucho después empecé a trabajar con arduinos. Además de los muchos proyectos de computación física que construí, siempre sentí una conexión cercana entre la computación más abstracta y estos pequeños dispositivos. En ellos se podía palpar cada concepto de manera concreta y casi tangible.
 
 Este libro que estoy escribiendo sigue esa misma línea. Parte de la inspiración del “Turing Ómnibus”, pero se construye desde la programación directa de microcontroladores, en especial el ESP32. Con estudiantes, busco proponer proyectos sencillos que encapsulan ideas profundas en computación. No busco simplificarlas en exceso, sino tratarlas con la seriedad conceptual que merecen. No lo pienso como un libro de entrada a la computación física, sino como un punto de partida para pensar con computadoras a un nivel más fundamental.
 
