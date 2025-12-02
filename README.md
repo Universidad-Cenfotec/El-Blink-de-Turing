@@ -33,7 +33,7 @@ Para trabajar de forma sencilla con el ESP32 utilizo una placa llamada [IdeaBoar
 17. Computación evolutiva básica
 18. Protocolos como algoritmos sociales
 19. Límites computacionales prácticos
-20. Universalidad 
+20. Universalidad
 
 ## Referencias
 
