@@ -14,7 +14,7 @@ Son veinte exploraciones que buscan explicar conceptos de computación. Cada cap
 Para trabajar de forma sencilla con el ESP32 utilizo una placa llamada [IdeaBoard](https://github.com/CRCibernetica/circuitpython-ideaboard/wiki), desarrollada en Costa Rica por Bentley Born, pionero del movimiento maker en el país. Los conceptos funcionan en cualquier microcontrolador y los códigos pueden traducirse sin mayor problema a otros lenguajes como C o C++ con ayuda de IA.
 
 ## Capítulos
-1. El bit y computación discreta
+1. [El bit y computación discreta](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap1.%20Bits)
 2. Máquinas de estados en el mundo físico
 3. el reloj en la computación
 4. Sensar es computar
