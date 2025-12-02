@@ -33,8 +33,6 @@ En PWM el pin se enciende y apaga muy rápido. Si está encendido la mitad del t
 
 Cuando el micro lee el mundo, parte de un voltaje continuo y lo recorta en niveles, convirtiéndolo en patrones de bits. Cuando actúa sobre el mundo, toma patrones de bits y los transforma en pulsos rápidos que parecen continuos. Por eso, en la vida de un microcontrolador, un bit no es solamente un número pequeño. Es el puente entre la lógica interna del sistema y el mundo físico que lo rodea.
 
-Va, hagámoslo como tutorial completo, pero sin ponerse barroco 🙂
-
 ---
 
 ## 1. Qué vas a construir en el IdeaBoard
@@ -46,8 +44,6 @@ Vas a usar tres cosas
 * El NeoPixel integrado de la IdeaBoard, que cambia de color según un bit interno
 
 La idea central es que el microcontrolador toma algo continuo, lo pasa a un número discreto, lo convierte en una decisión binaria, y esa decisión se ve como un color en el LED RGB.
-
----
 
 ## 2. Teoría detrás del proyecto
 
@@ -97,10 +93,6 @@ Entonces
 * El umbral lo reduce a un bit
 * El NeoPixel nos enseña ese bit como color
 
-Ese es el ciclo completo que querés que el estudiante entienda.
-
----
-
 ## 3. Montaje físico
 
 ### Materiales
@@ -119,17 +111,11 @@ En el código usaremos `board.IO33` como entrada analógica, igual que en el eje
 
 El NeoPixel ya está cableado en la placa, no tenés que conectar nada para el LED.
 
----
-
 ## 4. Código completo
 
 El código bit.py va en `code.py` en la IdeaBoard.
 
----
-
 ## 5. Explicación línea a línea
-
-Voy línea por línea, agrupando donde tiene sentido pedagógico.
 
 ```python
 import time
@@ -260,8 +246,6 @@ El bit ya no es una idea abstracta, es algo que ves cambiar cuando girás el pot
 * Hacemos una pausa de 0.05 segundos.
 * Evitamos saturar la salida serial y damos tiempo a que el ojo perciba el cambio de color.
 * Sin esta pausa todo pasaría demasiado rápido y el monitor serial sería difícil de leer.
-
----
 
 ## 6. Preguntas y variaciones para trabajar en clase
 
