@@ -1,4 +1,5 @@
-# El-Blink-de-Turing: 20 exploraciones de computación con microcontroladores
+# El-Blink-de-Turing
+## 20 exploraciones de computación con microcontroladores
 
 Tomás de Camino Bec, Ph.D.  
 Universidad CENFOTEC
