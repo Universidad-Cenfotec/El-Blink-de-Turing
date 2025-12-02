@@ -1,6 +1,7 @@
 # El-Blink-de-Turing: 20 exploraciones de computación con microcontroladores
 
-Tomás de Camino Bec, Ph.D.
+Tomás de Camino Bec, Ph.D.  
+Universidad CENFOTEC
 
 ## Introducción
 Hace muchos años, cuando estudiaba la maestría en ciencias de la computación en el Tecnológico de Costa Rica, en un curso el profesor nos pidió hacer una presentación basada en un capítulo de un libro llamado “The Turing Ómnibus” (Dewdney, 1993). El libro me atrapó de inmediato, y más allá de preparar la presentación terminé recorriendo cada capítulo con una mezcla de sorpresa y claridad. Explora ideas esenciales de las ciencias de la computación y presenta de forma directa los fundamentos del pensamiento computacional.
@@ -34,6 +35,11 @@ Para trabajar de forma sencilla con el ESP32 utilizo una placa llamada [IdeaBoar
 18. Protocolos como algoritmos sociales
 19. Límites computacionales prácticos
 20. Universalidad
+
+## ¿Porqué en GitHub?
+
+La idea de este documento es que sea compartido en todos lados y que pueda evolucionar con la computación misma.
+
 
 ## Referencias
 
