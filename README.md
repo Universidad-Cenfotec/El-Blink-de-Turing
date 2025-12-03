@@ -44,3 +44,4 @@ La idea de este documento es que sea compartido en todos lados y que pueda evolu
 ## Referencias
 
 - A. K. Dewdney, The Turing Omnibus: 66 Excursions in Computer Science. New York, NY, USA: W. H. Freeman, 1993.
+- J. von Neumann, The Computer and the Brain. New Haven, CT, USA: Yale Univ. Press, 1958.
