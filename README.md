@@ -35,7 +35,7 @@ Para trabajar de forma sencilla con el ESP32 utilizo una placa llamada [IdeaBoar
 18. Protocolos como algoritmos sociales
 19. Límites computacionales prácticos
 20. Universalidad
-21. Sistemas Inteligente
+21. [Sistemas Inteligente](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap.%2021%20Sistemas%20Inteligentes)
 
 ## ¿Porqué en GitHub?
 
