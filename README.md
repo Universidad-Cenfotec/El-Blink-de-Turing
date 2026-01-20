@@ -14,7 +14,7 @@ Son veinte exploraciones que buscan explicar conceptos de computación. Cada cap
 
 Para trabajar de forma sencilla con el ESP32 utilizo una placa llamada [IdeaBoard](https://github.com/CRCibernetica/circuitpython-ideaboard/wiki), desarrollada en Costa Rica por Bentley Born, pionero del movimiento maker en el país. Los conceptos funcionan en cualquier microcontrolador y los códigos pueden traducirse sin mayor problema a otros lenguajes como C o C++ con ayuda de IA.
 
-En esta aventura del libro además me acompañan estudiantes universitarias, que son coautoras del libro, que han construido y puesto a prueba la gran mayoría de ejemplos, además de creat los tutoriales y material adicional.
+En esta aventura del libro me acompañan también estudiantes universitarias, coautoras del texto, quienes han construido y probado la gran mayoría de los ejemplos, además de crear los tutoriales y el material adicional.
 
 ## Capítulos
 1. [El bit y computación discreta](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap1.%20Bits)
