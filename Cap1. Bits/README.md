@@ -1,6 +1,5 @@
 # El Bit
 
-![Texto alternativo](image library/Mujer escribiendo bits.png)
 
 
 
