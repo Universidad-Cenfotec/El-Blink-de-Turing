@@ -1,267 +1,57 @@
-# El Bit
+# EL Bit y lo Discreto 
 
-Un bit no es solo un número, es una separación de cosas. Es el acto más pequeño posible de separar el mundo en dos estados diferentes. Antes de que existieran las computadoras, esa distinción ya estaba ahí, cada vez que algo podía ser o no ser, estar o no estar, ocurrir o no ocurrir, ser verdadero o falso. La computación digital simplemente tomó esa idea elemental y la convirtió en la base de todo nuesro mudo tecnológico.
+Hoy en día, cuando hablamos de computadoras, casi siempre se nos habla del **bit**. Las computadoras digitales fundamentan todas sus operaciones internas en esta unidad mínima de información y en operaciones lógicas realizadas sobre conjuntos de bits. En esencia, eso es todo lo que hacen. No hay nada “más profundo” ocurriendo dentro de la máquina: solo bits, lógica y tiempo.
 
-Decimos que un bit puede ser 0 o 1, apagado o encendido, falso o verdadero. Lo importante no es el símbolo, sino la diferencia. Un bit existe cuando un sistema puede reconocer, sin ambigüedad, que se encuentra en uno de dos estados posibles. A partir de esa diferencia mínima se construye todo lo demás, números, texto, imágenes, sonidos y programas completos.
+El bit apareció como una solución práctica para construir una computadora que, en lugar de ser mecánica (basada en engranajes), pudiera ser **eléctrica**. De ahí el nombre *computadora digital*: trabaja con dígitos, con estados discretos. Hacia mediados de los años cuarenta, alrededor de 1945, cuando se buscaba convertir el flujo continuo de electricidad en información confiable, se tomó una decisión crucial: dividir el voltaje en dos regiones. Un voltaje alto representaría el “1” y un voltaje bajo representaría el “0”. Con esta decisión, la electricidad dejó de ser solo energía y pasó a ser portadora de significado lógico: verdadero o falso.
 
-## ¿Por qué las computadoras usan bits?
+Ya desde antes se sabía que toda la matemática podía expresarse en términos lógicos. Si en una máquina eléctrica era posible representar el 1 y el 0, y además construir dispositivos que combinaran esos estados de manera sistemática, entonces esa máquina podría hacer matemáticas. Aquí aparecen los **transistores**: dispositivos electrónicos que funcionan como interruptores controlados. Un transistor puede permitir o bloquear el paso de corriente dependiendo de su entrada, lo que lo convierte en un realizador físico de decisiones lógicas. Combinando muchos transistores se pueden implementar operaciones como AND, OR o NOT, y a partir de ellas, toda la aritmética.
 
-A los humanos siempre nos ha atraído la idea de delegar el cálculo en máquinas. Podemos aprender a hacer cuentas con cuidado y precisión, pero incluso así siempre queda una duda. Si le pido a alguien que calcule $234 \times 358$ y lo hace muy rápido, no tengo una forma inmediata de saber si está bien. Debo confiar en esa persona. Incluso recuerdo esos programas de televisión donde tiene a alguien que puede calcular rápido, al final es una calculadora que lo verifica, pues podría decir cualquier número que ninguna persona normal podría verificarlo. Una máquina, en cambio, no inspira confianza por intuición, sino por estructura. Si conozco cómo funciona, si sus pasos son claros y repetibles, puedo confiar en el resultado no porque “sepa”, sino porque sigue reglas que no cambian.
+## Antes del bit
 
-Ese deseo de confianza llevó a una pregunta más profunda, qué significa realmente calcular. Se entendió que cualquier cálculo puede describirse como una secuencia finita de pasos, aplicados sobre símbolos bien definidos, siguiendo reglas precisas. No se necesita continuidad para calcular; se necesita estructura.
+Sin embargo, las primeras computadoras no trabajaban con 0 y 1. Trabajaban con **engranajes**. Los engranajes son, en el fondo, dispositivos matemáticos: permiten sumar, restar, multiplicar y dividir. Cuando un engranaje gira cierto número de dientes y hace girar a otro, está realizando una transformación cuantitativa muy precisa.
 
-Aquí aparece una diferencia clave entre conjuntos de números. Los números naturales avanzan a saltos, uno tras otro. Son discretos y manejables. Los números reales, en cambio, son infinitamente densos. Entre dos números reales siempre hay otro más. Esa riqueza infinita es perfecta para la matemática, pero imposible de capturar por completo en una máquina física. Ningún sistema real puede almacenar infinitos decimales ni operar con precisión infinita. Esta limitación no es un defecto de las computadoras, sino una característica del mundo físico.
+Un ejemplo cotidiano de esto es una bicicleta. El sistema de platos y piñones multiplica o reduce el esfuerzo según la relación de engranajes. Cambiar de marcha es, literalmente, cambiar un factor de multiplicación. Ahí no hay números escritos, pero sí hay aritmética materializada.
 
-Por eso la computación se apoya en lo discreto. Los sistemas discretos permiten estados claros, repetibles y verificables. Un sistema que solo debe distinguir entre dos posibilidades puede tolerar ruido, imperfecciones y variaciones del entorno sin perder significado. Esa estabilidad es la base de la computación real.
+Estas operaciones fundamentales no solo permiten hacer aritmética, sino también álgebra y, en última instancia, lógica. Ada Lovelace lo entendió con una claridad extraordinaria para su época. Al trabajar con la máquina de Babbage, se dio cuenta de que una máquina que manipula símbolos según reglas podía ir mucho más allá de calcular números. Podía manipular ideas formales.
 
-Incluso los números que solemos pensar como continuos, dentro de una computadora aparecen como una secuencia finita de casillas, cada una con solo dos posibilidades. En la práctica, lo continuo se representa como una aproximación construida paso a paso. Por grandes o pequeños que parezcan esos números, nunca son infinitos ni arbitrariamente precisos. Siempre están hechos de un número limitado de bits.
+Por ejemplo, una operación lógica AND puede construirse a partir de multiplicación en un sistema binario: si representamos verdadero como 1 y falso como 0, entonces
+$1 \times 1 = 1$ (verdadero AND verdadero es verdadero)
+$1 \times 0 = 0$
+$0 \times 1 = 0$
+$0 \times 0 = 0$
+Aquí, una operación aritmética simple está implementando una operación lógica.
 
-Cuando esta idea se traslada al mundo físico, la electrónica se vuelve una aliada natural. Un circuito no necesita medir un voltaje exacto. Solo necesita saber si está por encima o por debajo de un umbral. Esa decisión es robusta. No depende de la perfección, sino de la diferencia. En ese gesto simple, un fenómeno eléctrico continuo se convierte en un símbolo. Y ese símbolo es el bit.
+Las computadoras mecánicas, desde la máquina de Anticitera, pasando por los dispositivos de Pascal, Newton y Leibniz, hasta los diseños de Babbage, funcionaban todas bajo el mismo principio: **cómputo en pasos discretos**. Una manivela que gira una vuelta completa ejecuta un paso de cómputo. Cada ciclo produce un resultado parcial, y la secuencia de ciclos produce el cálculo completo. El tiempo está explícitamente ligado al cómputo.
 
-Con bits bien definidos se puede construir memoria. Con memoria, se puede construir una arquitectura donde datos e instrucciones conviven y se transforman mutuamente. Esa arquitectura no solo calcula; procesa información de forma estable y repetible. En ese punto, la computación deja de ser solo aritmética y se convierte en un sistema general para manipular símbolos.
+Fue en este contexto que George Boole dio un salto conceptual decisivo. Boole fue el primero en ver con claridad que la lógica podía tratarse como una forma de álgebra. Lo que hoy llamamos **álgebra booleana** nació de su intento por matematizar el pensamiento. La lógica, entendida como una formalización del razonamiento, podía operar con reglas tan estrictas como las de la aritmética.
 
-El uso del binario no es una moda ni una convención cultural. Es una consecuencia directa de cómo funcionan la lógica, la física y la necesidad de confiabilidad. A una computadora no le interesa medir con exactitud infinita. Le interesa distinguir estados sin ambigüedad. Dos estados bien separados son suficientes para construir sistemas enormes, escalables y verificables. A partir de decisiones simples se pueden encadenar millones de operaciones sin que los errores se acumulen de forma incontrolable.
+Boole se dio cuenta además de algo fundamental: sus “variables” no representaban números, sino **clases**. Una variable podía representar el conjunto de cosas que cumplen cierta propiedad. Al operar con esas variables, las operaciones algebraicas dejaban de ser numéricas y pasaban a representar operaciones lógicas. Esto tenía consecuencias profundas: evitaba las ambigüedades del lenguaje natural, permitía operar con reglas mecánicas y separaba el contenido semántico (de qué se habla) de la forma del razonamiento (cómo se razona).
 
-## El bit en los microcontroladores
+Un ejemplo claro aparece si pensamos en aritmética modular. En un sistema módulo 2, solo existen dos valores posibles: 0 y 1. La suma y multiplicación en este sistema no describen cantidades, sino relaciones lógicas. La suma módulo 2 se comporta como un XOR lógico, y la multiplicación como un AND. Así, un sistema algebraico extremadamente simple puede capturar toda la lógica proposicional.
 
-En un microcontrolador, el bit tiene una vida doble. Por un lado, es el material con el que se realiza la computación interna. Por otro, es el lenguaje con el que la máquina se comunica con el mundo exterior. Esta doble naturaleza explica por qué un microcontrolador puede, al mismo tiempo, ejecutar lógica compleja y controlar objetos físicos.
+Cuando Boole desarrolló estas ideas, las computadoras no existían. Sin embargo, su trabajo estableció un puente crucial entre aritmética, álgebra y lógica. Ese puente hacía plausible la idea de construir una máquina que **mecanizara el razonamiento**, no solo el cálculo numérico. La lógica dejaba de ser una actividad exclusivamente mental y pasaba a ser algo implementable físicamente.
 
-Internamente, todo ocurre en forma de bits que se combinan, se comparan y se almacenan. Puertas lógicas, registros y memorias trabajan únicamente con estados discretos. Pero el mundo externo no siempre habla ese idioma. La luz, la temperatura, el sonido o la posición cambian de forma continua. Para interactuar con ese mundo, el microcontrolador necesita traducir.
+Las computadoras mecánicas calculaban **magnitudes**, no decisiones lógicas explícitas. Dependían de cinemática, precisión geométrica y tolerancias mecánicas muy estrictas. El paso del engranaje a la electricidad ocurrió porque la mecánica tenía límites físicos insalvables. Los sistemas mecánicos transmiten información como movimiento, acumulan error por fricción y desgaste, requieren alineación perfecta y tienen inercia. Cada operación cuesta energía y tiempo.
 
-Ahí aparece el conversor analógico-digital, el ADC. Un sensor entrega un voltaje que varía suavemente. El ADC toma ese valor y lo transforma en un número entero. No captura la continuidad completa, sino una versión discretizada de ella. Ese número es un conjunto de bits que representa una aproximación del fenómeno físico.
+A partir de cierto tamaño y velocidad, estos sistemas se vuelven inestables. La electricidad, en cambio, permite transmitir estado sin mover materia macroscópica. Un **relé** (un interruptor electromecánico controlado eléctricamente) o un **tubo de vacío** (un dispositivo electrónico previo al transistor que controla el flujo de electrones en el vacío) puede cambiar de estado mucho más rápido que cualquier mecanismo. Mientras la mecánica apuesta por precisión geométrica, la electricidad apuesta por repetibilidad de estado.
 
-El proceso inverso ocurre cuando el microcontrolador quiere actuar sobre el mundo. Aunque solo puede generar estados digitales, puede organizarlos en el tiempo para producir efectos que parecen continuos. Con PWM, el micro enciende y apaga un pin muy rápido. El promedio de esos encendidos y apagados es interpretado por un LED como brillo, o por un motor como velocidad. Lo continuo emerge, otra vez, a partir de decisiones discretas.
+El paso final fue establecer la relación entre **circuitos eléctricos y lógica**. Aquí entra Claude Shannon, quien demostró que los circuitos eléctricos podían analizarse y diseñarse utilizando álgebra booleana. Con esto, la computadora pasó a entenderse como una **máquina de estados discretos**. Manipulando voltajes, podía almacenar, transformar y transmitir estados.
 
-En este ir y venir, el bit deja de ser una abstracción matemática y se convierte en un puente. Es el punto donde la lógica interna del sistema toca el mundo físico. No es solo un 0 o un 1. Es una frontera, una decisión y una forma de hacer que lo real sea computable.
+La electricidad sí se utilizó de forma continua en otros contextos: amplificadores, radios, control industrial y computadoras analógicas para resolver ecuaciones diferenciales. Pero ese enfoque no escalaba para cómputo general. El problema central era el ruido. En un sistema continuo, cada valor importa y cada perturbación altera el resultado. El error se propaga y se amplifica. El ruido eléctrico no es accidental: es térmico, electromagnético e inevitable.
 
+Para cálculos largos y encadenados, esto es fatal. En cambio, al dividir el voltaje en franjas que representan 0 y 1, se pueden establecer umbrales claros. Mientras el voltaje esté “suficientemente alto” o “suficientemente bajo”, el sistema funciona correctamente. Esto convierte un medio continuo en un sistema lógico robusto, capaz de regenerar señales y corregir errores.
 
----
+No se aprovechó la continuidad eléctrica para cómputo general porque:
 
-## 1. Qué vas a construir en el IdeaBoard
+* el ruido la vuelve inestable,
+* no permite regeneración confiable,
+* no escala en complejidad,
+* ata el significado al soporte físico.
 
-Vas a usar tres cosas
+Los estados discretos no fueron una renuncia, sino una **estrategia de supervivencia**: hacer posible el cálculo largo en un mundo físico imperfecto.
 
-* Un potenciómetro, que da un valor “continuo”
-* El ADC del ESP32 en la IdeaBoard, que convierte ese valor en un número
-* El NeoPixel integrado de la IdeaBoard, que cambia de color según un bit interno
+Todo esto desemboca en el **bit**. El término proviene de *binary digit*, dígito binario. El bit es, literalmente, una decisión mínima entre dos estados posibles. Internamente, mediante transistores, la electricidad se maneja como bits de información. Estos bits están profundamente ligados al tiempo. En cada unidad de tiempo se almacenan estados y se realizan operaciones sobre ellos.
 
-La idea central es que el microcontrolador toma algo continuo, lo pasa a un número discreto, lo convierte en una decisión binaria, y esa decisión se ve como un color en el LED RGB.
+Los bits pueden capturar tanto lo numérico como lo simbólico. La percepción del mundo puede transformarse en voltajes y luego en bits. Cuando una computadora recibe una señal eléctrica por una de sus entradas, la convierte en listas de bits. Con 8 bits se pueden representar 256 valores distintos. Con 16 bits, 65 536 valores. Con 32 bits, más de cuatro mil millones. Con muy pocos bits se pueden representar números suficientemente grandes como para realizar toda la matemática práctica que conocemos. No hace falta representar infinitos para que la computación sea poderosa.
 
-## 2. Teoría detrás del proyecto
-
-### 2.1 El potenciómetro y el mundo continuo
-
-Cuando girás un potenciómetro, la resistencia cambia de forma suave.
-Eso produce un voltaje que también cambia de forma continua entre 0 V y 3.3 V.
-
-En el mundo físico no hay “saltos” perfectos, todo se mueve con pequeñas variaciones.
-Ese es el mundo continuo.
-
-### 2.2 El ADC y el paso al mundo discreto
-
-El ESP32 no trabaja con voltajes “infinitamente precisos”.
-En la IdeaBoard, la función `AnalogIn` de la librería convierte el voltaje del pin en un número entero entre 0 y 65535, es decir un valor de 16 bits ([GitHub][1])
-
-Ese número es una versión cuantizada del voltaje real.
-Sigue cambiando, pero ahora solo puede tomar uno de 65536 valores posibles.
-Ya no es continuo, es discreto.
-
-### 2.3 El umbral y el nacimiento del bit
-
-Luego hacemos algo todavía más radical.
-Definimos un umbral, por ejemplo 30000.
-
-Si el valor del ADC es mayor que ese umbral, el micro decide que el “estado” es uno.
-Si es menor o igual, decide que el estado es cero.
-
-En ese momento aparece el bit
-
-* Antes teníamos un rango entero de posibles valores
-* Ahora tenemos solo dos posibilidades: abajo de la frontera o arriba de la frontera
-
-El bit es esa decisión mínima.
-
-### 2.4 El NeoPixel como “pantalla del bit”
-
-La IdeaBoard trae un NeoPixel integrado que se controla con la propiedad `ib.pixel` de la librería ([GitHub][1])
-
-* Si el bit interno vale 0, mostramos un color, por ejemplo azul
-* Si el bit interno vale 1, mostramos otro color, por ejemplo rojo
-
-Entonces
-
-* El potenciómetro vive en el mundo continuo
-* El ADC lo traduce a un número discreto
-* El umbral lo reduce a un bit
-* El NeoPixel nos enseña ese bit como color
-
-## 3. Montaje físico
-
-### Materiales
-
-* IdeaBoard con CircuitPython y librería `ideaboard` instalada
-* 1 potenciómetro (10 kΩ funciona bien)
-* 3 cables jumper
-
-### Conexiones
-
-* Patita 1 del potenciómetro a 3V3 de la IdeaBoard
-* Patita 3 del potenciómetro a GND
-* Patita central del potenciómetro a un pin analógico, por ejemplo `IO33`
-
-En el código usaremos `board.IO33` como entrada analógica, igual que en el ejemplo de la wiki ([GitHub][1])
-
-El NeoPixel ya está cableado en la placa, no tenés que conectar nada para el LED.
-
-## 4. Código completo
-
-El código bit.py va en `code.py` en la IdeaBoard.
-
-## 5. Explicación línea a línea
-
-```python
-import time
-import board
-from ideaboard import IdeaBoard
-```
-
-* `import time`
-  Importa el módulo de tiempo, lo usamos para poner pausas entre lecturas.
-* `import board`
-  Importa los nombres de pines de la placa, por ejemplo `board.IO33`.
-* `from ideaboard import IdeaBoard`
-  Importa la clase `IdeaBoard` de la librería oficial, que simplifica el uso del NeoPixel, entradas analógicas, motores y otros elementos ([GitHub][1])
-
-```python
-ib = IdeaBoard()
-```
-
-* Crea una instancia llamada `ib`.
-  Este objeto representa a la IdeaBoard y nos da acceso a métodos y propiedades especiales, como `ib.pixel`, `ib.brightness` y `ib.AnalogIn`.
-
-```python
-pot = ib.AnalogIn(board.IO33)
-```
-
-* `ib.AnalogIn(...)` crea una entrada analógica usando el pin que le indiquemos.
-* `board.IO33` es el pin donde conectamos la patita central del potenciómetro.
-* El objeto `pot` tiene una propiedad `value` que da un número entero de 0 a 65535, que representa el voltaje leído en ese pin.
-
-Aquí ya tenés el paso de continuo a discreto
-
-* El voltaje del potenciómetro es continuo
-* `pot.value` lo convierte en un número entero gestionable por el microcontrolador
-
-```python
-ib.brightness = 0.2
-```
-
-* Ajusta el brillo global del NeoPixel.
-* El valor va de 0.0 a 1.0, donde 0 apaga el LED y 1 es el brillo máximo.
-* Usamos 0.2 para que se vea bien sin ser molesto.
-
-```python
-AZUL = (0, 0, 255)
-ROJO = (255, 0, 0)
-```
-
-* Definimos dos colores como tuplas RGB.
-* `AZUL` significa sin rojo, sin verde y azul al máximo.
-* `ROJO` significa rojo al máximo, sin verde ni azul.
-* Estas constantes hacen el código más legible que usar números sueltos.
-
-```python
-UMBRAL = 30000
-```
-
-* Aquí definimos el umbral que separa las dos regiones.
-* El ADC puede devolver valores entre 0 y 65535.
-* Con 30000 elegimos un punto aproximadamente a la mitad del rango.
-* Todo lo que esté por encima se interpretará como “región alta”.
-* Todo lo que esté por debajo o igual como “región baja”.
-
-En este punto, el umbral es el que crea el bit.
-Sin este número, el valor seguiría siendo un dato analógico.
-
-```python
-while True:
-```
-
-* Iniciamos un bucle infinito.
-* El microcontrolador va a leer el potenciómetro y actualizar el NeoPixel una y otra vez.
-
-```python
-    valor = pot.value          # entero entre 0 y 65535
-```
-
-* Leemos el valor actual del ADC en `pot.value`.
-* `valor` es un número entero que ya representa el voltaje de forma cuantizada.
-* Este número sigue recordando el origen analógico, pero ahora vive en el mundo discreto de los enteros.
-
-```python
-    print("ADC =", valor)
-```
-
-* Mostramos el valor leído en el puerto serial.
-* Esto sirve para que el estudiante vea cómo cambia al mover el potenciómetro y entienda que no hay saltos mágicos, sino una progresión de números.
-
-```python
-    if valor > UMBRAL:
-        bit = 1
-        ib.pixel = ROJO        # cuando el bit es 1 el NeoPixel se pone rojo
-    else:
-        bit = 0
-        ib.pixel = AZUL        # cuando el bit es 0 el NeoPixel se pone azul
-```
-
-Este bloque es el corazón conceptual del programa.
-
-* La condición `if valor > UMBRAL` compara el valor analógico cuantizado con el umbral.
-* Si el valor está por encima, decidimos que el bit vale 1.
-
-  * Guardamos `bit = 1` para tener ese estado como información interna.
-  * Cambiamos el NeoPixel a rojo con `ib.pixel = ROJO`.
-* Si el valor no supera el umbral, caemos en el `else`.
-
-  * Guardamos `bit = 0`.
-  * Cambiamos el NeoPixel a azul con `ib.pixel = AZUL`.
-
-Aquí pasa algo muy importante
-
-* Un rango continuo de valores se agrupa en solo dos categorías.
-* El mundo del potenciómetro se reduce a una decisión binaria en el microcontrolador.
-* Esa decisión se convierte en un símbolo visible: rojo o azul.
-
-El bit ya no es una idea abstracta, es algo que ves cambiar cuando girás el potenciómetro.
-
-```python
-    print("bit =", bit)
-```
-
-* Imprimimos el bit interno para ver en consola cuándo cambia de 0 a 1.
-* Esto ayuda al estudiante a relacionar el valor numérico del ADC con el cambio de estado lógico.
-
-```python
-    time.sleep(0.05)
-```
-
-* Hacemos una pausa de 0.05 segundos.
-* Evitamos saturar la salida serial y damos tiempo a que el ojo perciba el cambio de color.
-* Sin esta pausa todo pasaría demasiado rápido y el monitor serial sería difícil de leer.
-
-## 6. Preguntas y variaciones para trabajar en clase
-
-Algunas preguntas que podés hacer a estudiantes
-
-* ¿Qué pasaría si el ADC solo tuviera 8 bits en lugar de 16?
-* ¿Qué ocurre si movés el potenciómetro muy cerca del umbral, ves parpadeos?
-* ¿Cómo cambia el comportamiento si movemos el umbral a 10000 o a 50000?
-* ¿Podés elegir otros colores para el bit 0 y el bit 1?
-* ¿Cómo escribirías un código que muestre tres regiones con tres colores, en lugar de solo dos?
-
-Variaciones sencillas
-
-* Que el brillo del NeoPixel cambie según la distancia al umbral.
-* Que el color sea rojo cuando `bit = 1` y verde cuando `bit = 0`, pero que el azul indique una “zona de incertidumbre” cerca del umbral.
-* Que el valor del ADC también se envíe por serie a otra placa para mostrar cómo ese bit se puede comunicar.
-
+La computación digital no nace de la abundancia, sino de la restricción. Y es precisamente esa restricción la que la hace posible.
