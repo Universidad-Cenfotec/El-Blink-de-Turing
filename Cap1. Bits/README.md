@@ -32,7 +32,7 @@ Este paso fue decisivo. Al introducir umbrales, el sistema se volvió robusto al
 
 Con esto, la computadora pasó a entenderse como una máquina de estados discretos que evolucionan en el tiempo. La arquitectura propuesta por von Neumann consolidó esta visión al organizar la computadora como un sistema secuencial gobernado por estados, instrucciones y memoria. Cada estado está representado por voltajes, pero interpretado como decisiones. De esta convergencia entre engranajes, lógica y electricidad emerge el bit.
 
-# Aparece el Bit
+## Aparece el Bit
 
 El bit, abreviatura de binary digit, es la unidad mínima de información en este nuevo paradigma. No representa una cantidad, sino una distinción. Un antes y un después. Un sí o un no. Internamente, mediante transistores, la computadora almacena y transforma estos bits en unidades de tiempo bien definidas.
 
@@ -44,7 +44,7 @@ Aquí tienes una **lista corta de lecturas indispensables**, pensada específica
 
 ---
 
-## Lecturas Sugeridas
+# Lecturas Sugeridas
 
 **[1]** A. A. Lovelace, “Notes by the Translator,” in *Sketch of the Analytical Engine Invented by Charles Babbage*, London, UK, 1843.
 **Por qué leerlo**
@@ -65,8 +65,6 @@ Introduce la arquitectura de programa almacenado. Permite entender por qué dato
 **[5]** M. Davis, *The Universal Computer: The Road from Leibniz to Turing*. New York, NY, USA: W. W. Norton & Company, 2000.
 **Por qué leerlo**
 Da una visión integrada desde engranajes, lógica y matemática hasta computación moderna, ideal para estudiantes que necesitan contexto amplio.
-
----
 
 ### Recomendación pedagógica
 
