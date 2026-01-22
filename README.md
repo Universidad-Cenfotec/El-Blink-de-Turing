@@ -14,7 +14,7 @@ Son veinte exploraciones que buscan explicar conceptos de computación. Cada cap
 
 Para trabajar de forma sencilla con el ESP32 utilizo una placa llamada [IdeaBoard](https://github.com/CRCibernetica/circuitpython-ideaboard/wiki), desarrollada en Costa Rica por Bentley Born, pionero del movimiento maker en el país. Los conceptos funcionan en cualquier microcontrolador y los códigos pueden traducirse sin mayor problema a otros lenguajes como C o C++ con ayuda de IA.
 
-En esta aventura del libro me acompañan también estudiantes universitarias, coautoras del texto, quienes han construido y probado la gran mayoría de los ejemplos, además de crear los tutoriales y el material adicional.
+Aunque escribo este libro en primera persona, en esta aventura me acompañan estudiantes universitarias que son coautoras del texto. Han construido y probado la gran mayoría de los ejemplos, y también han creado los tutoriales y el material adicional. Escribo en primera persona, pero pensando en un trabajo colectivo. Tal vez hacerlo así sea una forma de rebeldía, porque en ciencias se espera una escritura impersonal, y eso nunca me ha convencido.
 
 ## Mitos sobre la computadora y computación
 
@@ -22,7 +22,7 @@ En este libro no seguimos las recetas habituales ni los discursos tradicionales 
 
 La razón principal es que la computación moderna se enseñó y se difundió **a través de una narrativa técnica simplificada**, no como una historia epistemológica. En ese proceso se consolidaron varios **mitos fundacionales** que, aunque útiles para la ingeniería, oscurecen la naturaleza real de la computación como fenómeno discreto, temporal y procedimental.
 
-A continuación, sintetizo los mitos más influyentes y por qué persisten.
+A continuación, sintetizo los mitos que pienso son los más influyentes y por qué persisten.
 
 ### 1. El mito del bit como origen
 
