@@ -39,3 +39,41 @@ El bit, abreviatura de binary digit, es la unidad mínima de información en est
 A partir de bits se construyen números, símbolos, imágenes y sonidos. Ocho bits permiten representar 256 valores distintos. Dieciséis bits, 65 536. Con pocos bits se pueden representar números suficientemente grandes para toda la matemática práctica que conocemos. La potencia de la computación digital no proviene de la continuidad ni de la precisión infinita, sino de la combinación disciplinada de decisiones simples.
 
 La computación digital no nace de la abundancia, sino de la restricción. De aceptar un mundo físico imperfecto y diseñar sistemas que sobrevivan a él. El bit no es el origen de la computación, es la construcción del mundo desde su representación.
+
+Aquí tienes una **lista corta de lecturas indispensables**, pensada específicamente para **estudiantes**, no como erudición histórica sino como **soporte conceptual directo** para entender de dónde viene la computación discreta y por qué el bit existe. He priorizado textos legibles, fundacionales y con alto valor formativo.
+
+---
+
+## Lecturas Sugeridas
+
+**[1]** A. A. Lovelace, “Notes by the Translator,” in *Sketch of the Analytical Engine Invented by Charles Babbage*, London, UK, 1843.
+**Por qué leerlo**
+Es el primer texto donde aparece claramente la idea de programa. Permite entender que la computación no nace con la electrónica, sino con la noción de manipulación simbólica.
+
+**[2]** G. Boole, *An Investigation of the Laws of Thought*. London, UK: Walton and Maberly, 1854.
+**Por qué leerlo**
+Es la raíz lógica de toda la computación digital. No es necesario leerlo completo, pero sí comprender la idea central de lógica como álgebra.
+
+**[3]** C. E. Shannon, “A Symbolic Analysis of Relay and Switching Circuits,” *Trans. AIEE*, vol. 57, pp. 713–723, 1938.
+**Por qué leerlo**
+Es el texto que conecta directamente lógica booleana con circuitos físicos. Aquí nace la computadora digital como posibilidad técnica real.
+
+**[4]** J. von Neumann, “First Draft of a Report on the EDVAC,” 1945.
+**Por qué leerlo**
+Introduce la arquitectura de programa almacenado. Permite entender por qué datos y programas son lo mismo dentro de la computadora.
+
+**[5]** M. Davis, *The Universal Computer: The Road from Leibniz to Turing*. New York, NY, USA: W. W. Norton & Company, 2000.
+**Por qué leerlo**
+Da una visión integrada desde engranajes, lógica y matemática hasta computación moderna, ideal para estudiantes que necesitan contexto amplio.
+
+---
+
+### Recomendación pedagógica
+
+Para estudiantes, **no es necesario leerlos completos ni en orden histórico**. Una ruta sugerida sería:
+
+1. Lovelace (idea de programa)
+2. Boole (lógica como cálculo)
+3. Shannon (lógica como circuito)
+4. von Neumann (organización de la máquina)
+
