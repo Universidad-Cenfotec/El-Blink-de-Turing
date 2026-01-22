@@ -47,7 +47,7 @@ Yo soy fan extremo de Turing, pero Turing lo convirtieron en un punto cero casi 
 
 #### 6. El mito de la neutralidad temporal
 
-Hay un mito muy profundo, y es que el tiempo es un detalle de implementación. En realidad, el tiempo **es constitutivo del cálculo**.
+Hay un mito muy profundo, y es que el tiempo es un detalle de construcción de la computadora. En realidad, el tiempo **es constitutivo del cálculo**.
 Un programa no es solo qué hace, sino **cuándo y en qué orden lo hace**, también cuanto tarda en hacerlo. Esta idea choca con la forma tradicional de enseñar matemática y lógica, que elimina el tiempo para ganar elegancia (vanal) formal.
 
 #### Por qué estos mitos se mantienen
