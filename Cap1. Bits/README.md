@@ -1,3 +1,5 @@
+# El Bit
+
 Hoy en día, cuando hablamos de computadoras, casi siempre se nos habla del bit. Parece una respuesta obvia, casi automática. Las computadoras digitales funcionan con bits, y toda su operación interna se reduce a manipular esas unidades mínimas mediante reglas lógicas. Sin embargo, comenzar por el bit suele ocultar algo importante: el bit no fue el punto de partida, fue el resultado de un largo proceso de pensamiento y de limitaciones físicas muy concretas.
 
 Antes de que existieran los bits, las computadoras eran máquinas mecánicas. Computar significaba mover piezas. Engranajes, ejes, levas y manivelas eran los elementos fundamentales del cálculo. Un engranaje no es solo un objeto físico: es una operación matemática hecha materia. Dos engranajes acoplados implementan una relación de multiplicación; una serie de engranajes puede sumar, restar o dividir. El ejemplo cotidiano de una bicicleta lo ilustra bien. Cambiar de marcha es cambiar un factor de multiplicación entre el pedaleo y el movimiento de la rueda. Allí no hay números escritos, pero hay aritmética ocurriendo.
