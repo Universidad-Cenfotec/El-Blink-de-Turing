@@ -1,45 +1,39 @@
 # El Bit
 
+Un bit no es, en esencia, un número. Es una distinción. Es el acto más pequeño posible de separar el mundo en dos estados diferentes. Antes de que existieran las computadoras, esa distinción ya estaba ahí, cada vez que algo podía ser o no ser, estar o no estar, ocurrir o no ocurrir. La computación digital simplemente tomó esa idea elemental y la convirtió en el cimiento de todo un universo técnico.
 
+Decimos que un bit puede ser 0 o 1, apagado o encendido, falso o verdadero, pero esas palabras son solo metáforas. Lo importante no es el símbolo, sino la diferencia. Un bit existe cuando un sistema puede reconocer, sin ambigüedad, que se encuentra en uno de dos estados posibles. A partir de esa diferencia mínima se construye todo lo demás: números, texto, imágenes, sonidos y programas completos.
 
+## ¿Por qué las computadoras usan bits?
 
-Un bit es la unidad más simple de información en un sistema digital. Representa una elección entre dos posibilidades, que lo podemos pensar como 0 ó 1, apagado o encendido, falso o verdadero. Es la manera en que una computadora distingue entre dos estados y, a partir de esa distinción mínima, construye todo lo demás, números, texto, imágenes, sonidos y programas completos.
+A los humanos siempre nos ha atraído la idea de delegar el cálculo en máquinas. Podemos aprender a hacer cuentas con cuidado y precisión, pero incluso así siempre queda una duda. Si le pido a alguien que calcule $234 \times 358$ y lo hace muy rápido, no tengo una forma inmediata de saber si está bien. Debo confiar en esa persona. Una máquina, en cambio, no inspira confianza por intuición, sino por estructura. Si conozco cómo funciona, si sus pasos son claros y repetibles, puedo confiar en el resultado no porque “sepa”, sino porque sigue reglas que no cambian.
 
+Ese deseo de confianza llevó a una pregunta más profunda: qué significa realmente calcular. La respuesta no vino del mundo continuo, sino del mundo de los símbolos. Se entendió que cualquier cálculo puede describirse como una secuencia finita de pasos, aplicados sobre símbolos bien definidos, siguiendo reglas precisas. No se necesita continuidad para calcular; se necesita estructura.
 
-## ¿Porqué las computadoras usan bits?
+Aquí aparece una diferencia clave entre conjuntos de números. Los números naturales avanzan a saltos, uno tras otro. Son discretos y manejables. Los números reales, en cambio, son infinitamente densos. Entre dos números reales siempre hay otro más. Esa riqueza infinita es perfecta para la matemática, pero imposible de capturar por completo en una máquina física. Ningún sistema real puede almacenar infinitos decimales ni operar con precisión infinita. Esta limitación no es un defecto de las computadoras, sino una característica del mundo físico.
 
-A nosotros, los humanos, siempre nos ha fascinado la idea de que máquinas hagan los cálculos por nosotros. Aunque podemos aprender a hacer cuentas con precisión, siempre queda una duda, si le pido a alguien que me calcule $234 \times 358$ y lo hace muy rápido, ¿cómo sé que no se equivocó? Tengo que confiar en esa persona. En cambio, si el cálculo lo realiza una máquina cuyos mecanismos son verificables y repetibles, puedo estar mucho más seguro de que el resultado será correcto una y otra vez, sin errores.
+Por eso la computación se apoya en lo discreto. Los sistemas discretos permiten estados claros, repetibles y verificables. Un sistema que solo debe distinguir entre dos posibilidades puede tolerar ruido, imperfecciones y variaciones del entorno sin perder significado. Esa estabilidad es la base de la computación real.
 
-La idea de pensar el cómputo como algo discreto surgió al entender que cualquier cálculo puede describirse mediante símbolos y reglas finitas, sin depender de magnitudes continuas. En la matemática, los números naturales forman un conjunto discreto y manejable, mientras que los números reales son infinítamente densos (simepre puedo encontrar un número en medio de dos reales) y no pueden representarse completamente en una máquina física. Esta diferencia llevó a reconocer que los sistemas discretos, basados en estados claros como 0 y 1, son los únicos que permiten representar, almacenar y procesar información de manera estable, reproducible y computable. Por eso la computación moderna descansa en lo discreto y no en lo continuo.
+Incluso los números que solemos pensar como continuos, dentro de una computadora aparecen como una secuencia finita de casillas, cada una con solo dos posibilidades. En la práctica, lo continuo se representa como una aproximación construida paso a paso. Por grandes o pequeños que parezcan esos números, nunca son infinitos ni arbitrariamente precisos. Siempre están hechos de un número limitado de bits.
 
-Incluso los números que solemos pensar como continuos, dentro de una computadora aparecen como una secuencia de “casillas” con solo dos posibilidades cada una. Esto significa que, en la práctica, los números continuos se construyen a partir de pasos discretos y finitos. Por grandes o pequeños que parezcan, nunca pueden ser infinitos, ni tampoco arbitrariamente precisos, sino aproximaciones formadas por un número limitado de bits.
+Cuando esta idea se traslada al mundo físico, la electrónica se vuelve una aliada natural. Un circuito no necesita medir un voltaje exacto. Solo necesita saber si está por encima o por debajo de un umbral. Esa decisión es robusta. No depende de la perfección, sino de la diferencia. En ese gesto simple, un fenómeno eléctrico continuo se convierte en un símbolo. Y ese símbolo es el bit.
 
-Cuando entendemos que la computación necesita símbolos discretos, aparece la pregunta de cómo llevarlos al mundo físico. La electrónica resulta ser una opción natural, porque un circuito puede distinguir con facilidad entre un nivel de voltaje alto y uno bajo, sin necesidad de medir cantidades exactas. Basta con que un estado esté por encima o por debajo de un umbral para considerarlo distinto, lo que vuelve al sistema estable y confiable incluso si hay ruido o variaciones en el ambiente. En ese gesto simple, un fenómeno eléctrico pasa a representar un símbolo, y el símbolo se convierte en la base de la computación digital, el bit.
+Con bits bien definidos se puede construir memoria. Con memoria, se puede construir una arquitectura donde datos e instrucciones conviven y se transforman mutuamente. Esa arquitectura no solo calcula; procesa información de forma estable y repetible. En ese punto, la computación deja de ser solo aritmética y se convierte en un sistema general para manipular símbolos.
 
-Con un bit bien definido se puede construir una memoria, y con muchas memorias se puede construir una arquitectura completa donde las instrucciones y los datos comparten el mismo espacio. La gracia es que esta arquitectura no solo calcula; también puede imitar funciones elementales de un cerebro, en el sentido de procesar señales discretas con estructuras repetibles y confiables. En ese cruce entre estabilidad física y lógica formal aparece la esencia de la computación digital (ver von Neuman 1958).
+El uso del binario no es una moda ni una convención cultural. Es una consecuencia directa de cómo funcionan la lógica, la física y la necesidad de confiabilidad. A una computadora no le interesa medir con exactitud infinita. Le interesa distinguir estados sin ambigüedad. Dos estados bien separados son suficientes para construir sistemas enormes, escalables y verificables. A partir de decisiones simples se pueden encadenar millones de operaciones sin que los errores se acumulen de forma incontrolable.
 
-## El Bit en los microcontroladores
+## El bit en los microcontroladores
 
-Cuando pensamos en un bit, solemos imaginarlo como un 0 o un 1. Pero dentro de un microcontrolador, los bits no son solo valores almacenados. Son el material con el cual la máquina piensa y también la forma en que se comunica con el mundo. Un bit es parte de dos procesos distintos, por un lado, la computación interna hecha de circuitos lógicos, y por otro, el envío y la recepción de información digital a través de sus pines. Esta doble vida del bit explica por qué un microcontrolador puede tomar decisiones complejas, pero también mover motores, leer sensores o controlar luces.
+En un microcontrolador, el bit tiene una vida doble. Por un lado, es el material con el que se realiza la computación interna. Por otro, es el lenguaje con el que la máquina se comunica con el mundo exterior. Esta doble naturaleza explica por qué un microcontrolador puede, al mismo tiempo, ejecutar lógica compleja y controlar objetos físicos.
 
-Aunque el microcontrolador piense en binario, el mundo a su alrededor no siempre lo es. Para comunicarse con sensores, motores y otros dispositivos, necesita interpretar señales y convertirlas en información útil. Aquí aparecen dos elementos importantes: el ADC y el PWM.
+Internamente, todo ocurre en forma de bits que se combinan, se comparan y se almacenan. Puertas lógicas, registros y memorias trabajan únicamente con estados discretos. Pero el mundo externo no siempre habla ese idioma. La luz, la temperatura, el sonido o la posición cambian de forma continua. Para interactuar con ese mundo, el microcontrolador necesita traducir.
 
-### ADC: cómo el micro convierte lo continuo en bits
+Ahí aparece el conversor analógico-digital, el ADC. Un sensor entrega un voltaje que varía suavemente. El ADC toma ese valor y lo transforma en un número entero. No captura la continuidad completa, sino una versión discretizada de ella. Ese número es un conjunto de bits que representa una aproximación del fenómeno físico.
 
-Muchos sensores no entregan un 0 o un 1, sino un valor continuo. La luz en un LDR, la posición de un potenciómetro o la temperatura en un termistor producen voltajes que cambian suavemente. El microcontrolador usa un conversor analógico-digital, el ADC, para traducir ese voltaje en un número discreto.
+El proceso inverso ocurre cuando el microcontrolador quiere actuar sobre el mundo. Aunque solo puede generar estados digitales, puede organizarlos en el tiempo para producir efectos que parecen continuos. Con PWM, el micro enciende y apaga un pin muy rápido. El promedio de esos encendidos y apagados es interpretado por un LED como brillo, o por un motor como velocidad. Lo continuo emerge, otra vez, a partir de decisiones discretas.
 
-Por ejemplo, si su ADC es de 12 bits, puede representar el voltaje en 4096 niveles distintos. No mide el voltaje con precisión infinita: lo cuantiza, lo convierte en un grupo de bits que se aproximan al valor real.
-Así, un potenciómetro en una posición determinada no se lee como “0.74 voltios exactos”, sino como un número cercano, tal vez 1950. Ese número no deja de ser un conjunto de bits, otro patrón que el micro puede procesar.
+En este ir y venir, el bit deja de ser una abstracción matemática y se convierte en un puente. Es el punto donde la lógica interna del sistema toca el mundo físico. No es solo un 0 o un 1. Es una frontera, una decisión y una forma de hacer que lo real sea computable.
 
-### PWM: cómo el micro convierte bits en un comportamiento “analógico”
-
-El caso contrario ocurre cuando el microcontrolador quiere producir una señal que parezca continua, como controlar la intensidad de un LED o la velocidad de un motor. Aunque el micro solo puede generar 0 o 1, puede combinar esos estados a gran velocidad para crear lo que vemos como un valor intermedio. Esto se llama modulación por ancho de pulso, o PWM.
-
-En PWM el pin se enciende y apaga muy rápido. Si está encendido la mitad del tiempo, el LED parece brillar a mitad de fuerza. Si está encendido un 80 por ciento del tiempo, el motor se mueve más rápido. El truco está en que el micro solo genera bits, pero los usa de tal forma que nuestro ojo o el motor interpretan un promedio. De nuevo, un comportamiento continuo nace de decisiones discretas.
-
-##  De Bits al mundo cintinuo
-
-Cuando el micro lee el mundo, parte de un voltaje continuo y lo recorta en niveles, convirtiéndolo en patrones de bits. Cuando actúa sobre el mundo, toma patrones de bits y los transforma en pulsos rápidos que parecen continuos. Por eso, en la vida de un microcontrolador, un bit no es solamente un número pequeño. Es el puente entre la lógica interna del sistema y el mundo físico que lo rodea.
 
 ---
 
