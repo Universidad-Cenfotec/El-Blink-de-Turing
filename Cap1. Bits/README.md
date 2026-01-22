@@ -1,6 +1,6 @@
 # EL Bit y lo Discreto 
 
-Hoy en día, cuando hablamos de computadoras, casi siempre se nos habla del **bit**. Las computadoras digitales fundamentan todas sus operaciones internas en esta unidad mínima de información y en operaciones lógicas realizadas sobre conjuntos de bits. En esencia, eso es todo lo que hacen. No hay nada “más profundo” ocurriendo dentro de la máquina: solo bits, lógica y tiempo.
+Hoy en día, cuando hablamos de computadoras, casi siempre se nos habla del **bit**. Las computadoras digitales fundamentan todas sus operaciones internas en esta unidad mínima de información y en operaciones lógicas realizadas sobre conjuntos de bits. En esencia, eso es todo lo que hacen. No hay nada “más profundo” ocurriendo dentro de la máquina, solo bits, lógica y tiempo.
 
 El bit apareció como una solución práctica para construir una computadora que, en lugar de ser mecánica (basada en engranajes), pudiera ser **eléctrica**. De ahí el nombre *computadora digital*: trabaja con dígitos, con estados discretos. Hacia mediados de los años cuarenta, alrededor de 1945, cuando se buscaba convertir el flujo continuo de electricidad en información confiable, se tomó una decisión crucial: dividir el voltaje en dos regiones. Un voltaje alto representaría el “1” y un voltaje bajo representaría el “0”. Con esta decisión, la electricidad dejó de ser solo energía y pasó a ser portadora de significado lógico: verdadero o falso.
 
