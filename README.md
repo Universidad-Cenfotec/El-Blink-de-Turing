@@ -65,8 +65,11 @@ un dispositivo para convertir intuiciones discretas en procesos ejecutables en e
 ### ¿Porqué Python?
 
 En este libro utilizamos Python, más específicamente CircuitPython, que es un dialecto de Python diseñado para microcontroladores. En lo personal, Python no es un lenguaje que me apasione. Sin embargo, desde el punto de vista pedagógico, es probablemente el mejor lenguaje disponible hoy. Su sintaxis es simple, legible y cercana al lenguaje natural, lo que permite asociar con facilidad ideas matemáticas y conceptos fundamentales de la computación con el código mismo. Esto hace posible aprender a computar primero, y a programar después; la sintaxis pasa a un segundo plano y deja de ser una barrera inicial.
+
 Por esa razón, en este libro no se enseña a programar como un ejercicio de memorización de reglas sintácticas. Aquí se aprende a programar estableciendo una relación directa entre lo que se desea hacer, la intención, el código que expresa esa intención y una acción física concreta en un microcontrolador. El programa no es un texto abstracto que corre en una pantalla, sino algo que ocurre en el mundo: un LED que enciende, un sensor que mide, un motor que se mueve. Esa conexión inmediata entre pensamiento, código y acción es lo que hace al microcontrolador un punto de partida ideal para aprender computación.
+
 Además, los programas en CircuitPython tienden a ser cortos y directos. Las funciones complejas no están dispersas en el código principal, sino encapsuladas en librerías. Esto tiene dos efectos importantes. Por un lado, permite que alguien pueda programar cosas interesantes sin necesidad de comprender toda la complejidad subyacente desde el inicio. Por otro, deja abierta la puerta para que, más adelante, quien tenga curiosidad pueda explorar esas librerías y descubrir cómo está construida esa complejidad. La abstracción no oculta, sino que ordena.
+
 Sé que este enfoque funciona porque no es solo una idea teórica. Lo he puesto en práctica durante años, particularmente en el torneo de Sumobot, donde este mismo modelo permitió que, para el 2025, más de 2000 estudiantes aprendieran a programar. No empezaron escribiendo código por escribir código, sino entendiendo que programar es una forma de pensar, de expresar intención y de hacer que algo ocurra en el mundo físico. Ese es el espíritu que recorre todo este libro.
 
 ## Capítulos
