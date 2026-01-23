@@ -72,6 +72,18 @@ Además, los programas en CircuitPython tienden a ser cortos y directos. Las fun
 
 Sé que este enfoque funciona porque no es solo una idea teórica. Lo he puesto en práctica durante años, particularmente en el torneo de Sumobot, donde este mismo modelo permitió que, para el 2025, más de 2000 estudiantes aprendieran a programar. No empezaron escribiendo código por escribir código, sino entendiendo que programar es una forma de pensar, de expresar intención y de hacer que algo ocurra en el mundo físico. Ese es el espíritu que recorre todo este libro.
 
+## ¿Cómo leer este libro?
+
+Hoy en día ya no es necesario que un libro intente contener toda la información posible. Un libro, incluso uno técnico, es un punto de partida, un disparador de ideas, un relato. Es una conversación abierta entre quienes escriben y quienes leen.
+
+A lo largo de los capítulos se mencionan nombres, situaciones y objetos sin detenerse siempre en el detalle. Esa no es una omisión, sino una invitación. Los detalles pueden y deben ser completados por el lector o la lectora, explorando, buscando, preguntando y dialogando con la inteligencia artificial. Lo leído aquí puede verificarse, contrastarse y ampliarse con la IA, que se convierte en un acompañante natural del proceso de lectura.
+
+Cuando un libro de este tipo intenta ser exhaustivo, cuando explica cada paso y cada matiz, suele perder el hilo narrativo. Se transforma en un libro de texto. Y los libros de texto, por lo general, no están hechos para leerse, sino para consultarse.
+
+Este libro aspira a otra cosa. Quiere ser leído. Quiere provocar curiosidad, generar preguntas y abrir caminos, más que cerrarlos con respuestas definitivas.
+
+---
+
 ## Capítulos
 1. [El bit](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap1.%20Bits)
 2. El loop infinito
