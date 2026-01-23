@@ -86,7 +86,7 @@ Este libro aspira a otra cosa. Quiere ser leído. Quiere provocar curiosidad, ge
 
 # Capítulos
 1. [El bit](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap1.%20Bits)
-2. El loop infinito
+2. El Reloj
 3. Máquinas de estados en el mundo físico
 4. el reloj en la computación
 5. Sensar es computar
