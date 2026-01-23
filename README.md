@@ -72,7 +72,7 @@ Además, los programas en CircuitPython tienden a ser cortos y directos. Las fun
 
 Sé que este enfoque funciona porque no es solo una idea teórica. Lo he puesto en práctica durante años, particularmente en el torneo de Sumobot, donde este mismo modelo permitió que, para el 2025, más de 2000 estudiantes aprendieran a programar. No empezaron escribiendo código por escribir código, sino entendiendo que programar es una forma de pensar, de expresar intención y de hacer que algo ocurra en el mundo físico. Ese es el espíritu que recorre todo este libro.
 
-## ¿Cómo leer este libro?
+### ¿Cómo leer este libro?
 
 Hoy en día ya no es necesario que un libro intente contener toda la información posible. Un libro, incluso uno técnico, es un punto de partida, un disparador de ideas, un relato. Es una conversación abierta entre quienes escriben y quienes leen.
 
