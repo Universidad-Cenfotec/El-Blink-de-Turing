@@ -84,7 +84,7 @@ Este libro aspira a otra cosa. Quiere ser leído. Quiere provocar curiosidad, ge
 
 ---
 
-## Capítulos
+# Capítulos
 1. [El bit](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap1.%20Bits)
 2. El loop infinito
 3. Máquinas de estados en el mundo físico
