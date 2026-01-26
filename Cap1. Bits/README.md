@@ -117,3 +117,185 @@ Para estudiantes, **no es necesario leerlos completos ni en orden histórico**. 
 3. Shannon (lógica como circuito)
 4. von Neumann (organización de la máquina)
 
+
+# Posible ejemplo
+
+### Qué hace el programa
+
+* Corre un lazo de control a frecuencia fija, por ejemplo 200 Hz
+* Lee un potenciómetro por ADC
+* Filtra la lectura con promedio móvil, para domar ruido y mostrar el mundo continuo volviéndose estable al discretizarse
+* Convierte parte del rango del potenciómetro en una decisión booleana con histéresis, para evitar parpadeos por ruido alrededor del umbral
+* Usa un botón digital para alternar modos, con antirrebote
+* Controla un motor por PWM con rampa suave, evitando saltos bruscos
+* Usa el NeoPixel como osciloscopio pedagógico del estado interno
+
+## Código
+
+Cópialo como `code.py`
+
+```python
+import time
+import board
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+
+# Entradas
+pot = ib.AnalogIn(board.IO33)          # Potenciómetro o entrada analógica
+btn = ib.DigitalIn(board.IO27, ib.UP)  # Botón, asume pull-up interno
+
+# Parámetros de tiempo
+HZ = 200
+DT = 1.0 / HZ
+
+# Promedio móvil para ADC
+WINDOW = 16
+adc_buf = [0] * WINDOW
+adc_sum = 0
+adc_i = 0
+
+# Histéresis para umbral lógico desde ADC
+TH_HIGH = 42000
+TH_LOW  = 38000
+logic_state = False
+
+# Antirrebote botón
+debounced = True
+last_raw = True
+last_change = time.monotonic()
+DEBOUNCE_S = 0.03
+
+# Máquina de estados
+MODE_MANUAL = 0
+MODE_PULSE  = 1
+mode = MODE_MANUAL
+
+# Control PWM para motor
+current_throttle = 0.0
+target_throttle = 0.0
+SLEW_PER_SEC = 1.5  # rapidez máxima de cambio de throttle por segundo
+
+# Pulso en modo PULSE
+pulse_phase = 0.0
+PULSE_HZ = 0.5  # pulso lento para que se note, puedes subirlo
+
+def clamp(x, a, b):
+    if x < a:
+        return a
+    if x > b:
+        return b
+    return x
+
+def adc_filtered():
+    global adc_sum, adc_i
+    raw = pot.value  # 0..65535
+
+    adc_sum -= adc_buf[adc_i]
+    adc_buf[adc_i] = raw
+    adc_sum += raw
+
+    adc_i += 1
+    if adc_i >= WINDOW:
+        adc_i = 0
+
+    return adc_sum // WINDOW
+
+def update_logic_from_adc(v):
+    global logic_state
+    if logic_state:
+        if v < TH_LOW:
+            logic_state = False
+    else:
+        if v > TH_HIGH:
+            logic_state = True
+    return logic_state
+
+def read_button_debounced():
+    global debounced, last_raw, last_change
+    raw = btn.value  # con pull-up, False es presionado
+
+    now = time.monotonic()
+    if raw != last_raw:
+        last_raw = raw
+        last_change = now
+
+    if (now - last_change) >= DEBOUNCE_S:
+        debounced = raw
+
+    return debounced
+
+def toggle_mode():
+    global mode
+    if mode == MODE_MANUAL:
+        mode = MODE_PULSE
+    else:
+        mode = MODE_MANUAL
+
+# Reloj discreto, lazo a pasos fijos
+next_t = time.monotonic()
+prev_btn = True
+
+while True:
+    now = time.monotonic()
+    if now < next_t:
+        time.sleep(0.0005)
+        continue
+
+    # Asegura paso discreto, si hay atraso se recupera sin acelerar de golpe
+    while now >= next_t:
+        next_t += DT
+
+    # Lecturas
+    v = adc_filtered()
+    b = read_button_debounced()
+
+    # Evento de borde, botón soltado a presionado
+    if prev_btn and (not b):
+        toggle_mode()
+    prev_btn = b
+
+    # Umbral lógico derivado de lo analógico
+    bit_from_world = update_logic_from_adc(v)
+
+    # Selección de objetivo según modo
+    if mode == MODE_MANUAL:
+        # Pot controla velocidad, 0..65535 a -1..1
+        target_throttle = (v / 65535.0) * 2.0 - 1.0
+    else:
+        # Un pulso que depende del reloj interno
+        pulse_phase += (2.0 * 3.14159265) * (PULSE_HZ * DT)
+        if pulse_phase > (2.0 * 3.14159265):
+            pulse_phase -= (2.0 * 3.14159265)
+
+        # Pulso binario hecho con tiempo, discreto en decisiones
+        target_throttle = 0.8 if (pulse_phase < 3.14159265) else -0.8
+
+    # Rampa suave, control discreto
+    max_step = SLEW_PER_SEC * DT
+    diff = target_throttle - current_throttle
+    diff = clamp(diff, -max_step, max_step)
+    current_throttle += diff
+
+    # PWM a motor, internamente son conmutaciones
+    ib.motor_1.throttle = current_throttle
+
+    # NeoPixel como visualización de estado interno
+    # Verde cuando bit_from_world True
+    # Rojo cuando False
+    # Azul indica modo PULSE
+    if mode == MODE_PULSE:
+        ib.pixel = (0, 0, 30) if bit_from_world else (30, 0, 30)
+    else:
+        ib.pixel = (0, 30, 0) if bit_from_world else (30, 0, 0)
+```
+
+## Cómo leer este ejemplo con las ideas del capítulo
+
+* El reloj no es adorno, es el mecanismo que convierte la ejecución en una secuencia de pasos
+* El ADC convierte un fenómeno continuo en números discretos, además lo hace en instantes discretos
+* La histéresis muestra algo crucial, no basta un umbral, hay que diseñar robustez contra ruido
+* El PWM muestra continuidad emergente, no hay voltaje fino, hay tiempo repartido entre 0 y 1
+* La máquina de estados muestra que el comportamiento del sistema es una coreografía de decisiones
+
+
