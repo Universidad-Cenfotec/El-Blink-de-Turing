@@ -57,3 +57,111 @@ Este modelo es comparable al del lenguaje. El código se ejecuta línea por lín
 En resumen, en el ESP32 y la IdeaBoard el reloj define el ritmo de ejecución, el `while True` define la estructura fundamental del programa, la computación es cíclica y no terminal, los sensores y actuadores existen como procesos en el tiempo y no como valores estáticos.
 
 Entender el reloj y el bucle infinito es entender cómo opera un sistema embebido en la práctica.
+
+# Sugerencia de Ejemplo
+
+### Simulación de reloj interno con corrección y multitarea cooperativa
+
+En este proyecto el reloj no solo cuenta ciclos, sino que **coordina varias tareas** y además **se corrige a sí mismo**. La idea es que el sistema tenga un tiempo lógico propio construido sobre ciclos, pero que intente mantenerse estable a pesar de variaciones en carga de trabajo.
+
+El principio es simple. El `while True` sigue siendo el único motor. No hay interrupciones ni hilos. Todo ocurre en secuencia. El reloj interno se basa en contar ciclos, pero el sistema mide cuánto tardó realmente cada ciclo y ajusta el siguiente.
+
+El reloj deja de ser un simple contador y se convierte en **un regulador del ritmo del sistema**.
+
+Conceptos que se aprenden con este proyecto
+
+* El tiempo del programa no es exacto, se construye
+* El trabajo dentro del ciclo afecta el paso del tiempo
+* El reloj puede estabilizarse sin hardware externo
+* Varias tareas pueden coexistir sincronizadas por ciclos
+
+---
+
+### Idea general del sistema
+
+* Se define un período objetivo de ciclo, por ejemplo 20 ms
+* Cada vuelta del ciclo mide cuánto tiempo real tomó
+* El sistema duerme solo el tiempo necesario para completar el período
+* El reloj interno avanza cuando se completa un ciclo “válido”
+* Varias tareas usan ese reloj lógico, no `time.time()`
+
+---
+
+### Ejemplo de código en CircuitPython
+
+```python
+import time
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+
+periodo_objetivo = 0.02   # 20 ms por ciclo
+ciclos_por_segundo = int(1 / periodo_objetivo)
+
+ciclo = 0
+segundo = 0
+minuto = 0
+
+ultimo_tick = time.monotonic()
+
+while True:
+    inicio = time.monotonic()
+
+    # tarea 1, leer sensor
+    valor = ib.AnalogIn(board.IO33).value
+
+    # tarea 2, actualizar LED cada segundo lógico
+    if segundo % 2 == 0:
+        ib.pixel = (0, 10, 0)
+    else:
+        ib.pixel = (0, 0, 0)
+
+    # avanzar reloj lógico
+    ciclo += 1
+    if ciclo >= ciclos_por_segundo:
+        ciclo = 0
+        segundo += 1
+
+        if segundo >= 60:
+            segundo = 0
+            minuto += 1
+
+        print(minuto, segundo)
+
+    # corrección temporal
+    duracion = time.monotonic() - inicio
+    espera = periodo_objetivo - duracion
+
+    if espera > 0:
+        time.sleep(espera)
+```
+
+---
+
+### Qué hace este ejemplo diferente
+
+El reloj ya no depende solo de un `sleep` fijo. El sistema **mide cuánto tardó realmente** cada vuelta del ciclo y se ajusta. Si una iteración fue pesada, el siguiente ciclo duerme menos. Si fue liviana, duerme más.
+
+El tiempo lógico se desacopla parcialmente del tiempo físico, pero sin perder estabilidad. Esto es exactamente lo que hacen muchos sistemas embebidos reales.
+
+---
+
+### Variaciones avanzadas para exploración
+
+* Agregar una tarea pesada cada cierto número de ciclos y observar la corrección
+* Mostrar en consola la duración real de cada ciclo
+* Cambiar dinámicamente el período objetivo
+* Usar el reloj lógico para controlar un servo o motor
+* Comparar este reloj con `time.time()` y medir deriva
+
+---
+
+### Por qué este proyecto es clave para el tema del reloj
+
+Este ejemplo muestra algo fundamental.
+El reloj no es solo un oscilador.
+Es una **decisión de diseño**.
+
+El ESP32 permite construir nociones de tiempo distintas usando el mismo hardware. El `while True` sigue siendo el corazón del sistema, pero el significado de cada vuelta cambia según cómo se administre el ritmo.
+
+
