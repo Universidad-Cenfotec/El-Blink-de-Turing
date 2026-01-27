@@ -79,7 +79,6 @@ ib = IdeaBoard()
 COLOR_ENCENDIDO = (0, 0, 255) # Azul
 COLOR_APAGADO   = (0, 0, 0)   # Negro
 
-# Velocidad de "manivela" temporal (Ciclo completo)
 DURACION_CICLO  = 0.02 
 
 while True:
