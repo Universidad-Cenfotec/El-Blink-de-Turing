@@ -103,7 +103,7 @@ while True:
     # Al repetirlo 50 veces por segundo, tu ojo integra la luz.
 ```
 
-##Ejemplo 3: Fabricando un Bit (Del Espacio a la Lógica)
+## Ejemplo 3: Fabricando un Bit (Del Espacio a la Lógica)
 
 Aquí utilizo uns sensor ultrasónico para ilustrar cómo se fabrica un bit.
 
