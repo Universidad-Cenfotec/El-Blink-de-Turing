@@ -59,7 +59,7 @@ while True:
 
 
 
-##Ejemplo 2: La Manivela del Tiempo (PWM Manual)
+## Ejemplo 2: La Manivela del Tiempo (PWM Manual)
 
 Con este código ilustro la "ilusión de continuidad". El microcontrolador no sabe generar "medio voltaje" o "media luz"; solo sabe encender o apagar.
 
