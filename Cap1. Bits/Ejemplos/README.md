@@ -56,3 +56,48 @@ while True:
         ib.pixel = (50, 0, 0)   # Rojo
 
     time.sleep(0.01)
+
+
+
+##Ejemplo 2: La Manivela del Tiempo (PWM Manual)
+
+Con este código ilustro la "ilusión de continuidad". El microcontrolador no sabe generar "medio voltaje" o "media luz"; solo sabe encender o apagar.
+
+Aquí alterno manualmente esos dos estados tan rápido que tu ojo percibe un cambio de brillo suave. Con este ejemplo te demuestro que, en computación, la intensidad es, en realidad, una gestión del tiempo.
+
+
+**Código:** `02_pwm_manual.py`
+ ```python
+import time
+import math
+from ideaboard import IdeaBoard
+
+# Inicialización
+ib = IdeaBoard()
+
+COLOR_ENCENDIDO = (0, 0, 255) # Azul
+COLOR_APAGADO   = (0, 0, 0)   # Negro
+
+# Velocidad de "manivela" temporal (Ciclo completo)
+DURACION_CICLO  = 0.02 
+
+while True:
+    # Efecto de respiración
+    now = time.monotonic()
+    intensidad = (1 + math.sin(now * 3)) / 2 
+
+    #Calculo el reparto del tiempo (PWM)
+    tiempo_on  = DURACION_CICLO * intensidad
+    tiempo_off = DURACION_CICLO - tiempo_on
+    
+    # Pasos discretos:
+    
+    # Paso A: Encendido
+    ib.pixel = COLOR_ENCENDIDO
+    time.sleep(tiempo_on)
+    
+    # Paso B: Apagado
+    ib.pixel = COLOR_APAGADO
+    time.sleep(tiempo_off)
+    
+    # Al repetirlo 50 veces por segundo, tu ojo integra la luz.
