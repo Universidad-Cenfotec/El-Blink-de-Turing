@@ -112,7 +112,7 @@ El universo físico es continuo: una distancia puede ser 10 cm, 10.1 cm o 10.001
 En este código, obligo a esa realidad continua a dividirse en dos únicos estados. Al trazar una línea imaginaria (el umbral), decido que todo lo que está de un lado es "0" y todo lo que está del otro es "1". Así es como la computación proyecta su orden binario sobre el espacio físico.
 
 
-**Código:** 03_bit_espacial.py
+**Código:** 03_bit_Ultrasónico.py
 
  ```python
 import board
@@ -158,3 +158,48 @@ while True:
 
     time.sleep(0.1)
 ```
+
+## Ejemplo 4: Anatomía de una Decisión (ADC y Umbrales)
+
+Como hemos visto, muchas veces se enseña la computación como si los sensores 'entregaran' ceros y unos. Esa es una simplificación peligrosa: la realidad física nunca es binaria. Usaremos los cuatro sensores infrarrojos no para distinguir si estamos sobre blanco o negro, sino para observar lo que realmente ven los sensores: voltajes.
+
+El microcontrolador traduce estos voltajes mediante el ADC en un valor crudo (0-65535), describiendo el "cuánto" pero ignorando el "qué". El bit nace después, cuando impongo un criterio sobre esa medición. Al definir un umbral arbitrario (3500), transformo una medición física en un juicio lógico. Este código expone esa disección, mostrando lado a lado la realidad continua y la decisión digital.
+
+
+**Código:** 04_bit_Infrarrojos.py
+
+ ```python
+import board
+from time import sleep
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+
+# Configuración: Sensores Analógicos (Lectura del ADC)
+sensores = [
+    ib.AnalogIn(board.IO36), 
+    ib.AnalogIn(board.IO39), 
+    ib.AnalogIn(board.IO34), 
+    ib.AnalogIn(board.IO35)  
+]
+
+UMBRAL = 3500
+
+while True:
+    print("--- Realidad (ADC) vs. Lógica (Bit) ---")
+    
+    for i, sen in enumerate(sensores, start=1):
+ 
+        lectura_adc = sen.value
+        
+        # El bit nace de una decisión, no directamente del sensor.
+        if lectura_adc > UMBRAL:
+            bit = 1 
+        else:
+            bit = 0 
+            
+        # Comparativa visual
+        print(f"Sensor {i}: {lectura_adc:<5}  |  Bit: {bit}")
+
+    print("")
+    sleep(0.5)
