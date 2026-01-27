@@ -55,7 +55,7 @@ while True:
     else:
         ib.pixel = (50, 0, 0)   # Rojo
 
-    time.sleep(0.01)
+    time.sleep(0.01)```
 
 
 
