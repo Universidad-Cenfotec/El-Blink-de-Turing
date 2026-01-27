@@ -101,3 +101,60 @@ while True:
     time.sleep(tiempo_off)
     
     # Al repetirlo 50 veces por segundo, tu ojo integra la luz.
+```
+
+##Ejemplo 3: Fabricando un Bit (Del Espacio a la Lógica)
+
+Aquí utilizo uns sensor ultrasónico para ilustrar cómo se fabrica un bit.
+
+El universo físico es continuo: una distancia puede ser 10 cm, 10.1 cm o 10.001 cm. Pero a la lógica binaria no le sirven los matices infinitos, necesita certezas absolutas.
+
+En este código, obligo a esa realidad continua a dividirse en dos únicos estados. Al trazar una línea imaginaria (el umbral), decido que todo lo que está de un lado es "0" y todo lo que está del otro es "1". Así es como la computación proyecta su orden binario sobre el espacio físico.
+
+
+**Código:** 03_bit_espacial.py
+
+ ```python
+import board
+import time
+from ideaboard import IdeaBoard
+from hcsr04 import HCSR04
+
+ib = IdeaBoard()
+sonar = HCSR04(board.IO26, board.IO25)
+
+# Umbrales (histéresis)
+UMBRAL_ON  = 15.0  # cm → pasa a 1
+UMBRAL_OFF = 18.0  # cm → vuelve a 0
+
+# Estado lógico inicial
+bit_presencia = 0  # 0 o 1 (bit explícito)
+
+
+while True:
+    try:
+        distancia = sonar.dist_cm()
+
+        # Ignorar lecturas inválidas
+        if distancia < 0:
+            continue
+
+        # Fabricación del bit (con memoria)
+        if bit_presencia == 0 and distancia < UMBRAL_ON:
+            bit_presencia = 1
+        elif bit_presencia == 1 and distancia > UMBRAL_OFF:
+            bit_presencia = 0
+
+        #Respuesta digital
+        if bit_presencia == 1:
+            ib.pixel = (255, 255, 255)  # Estado lógico 1
+        else:
+            ib.pixel = (0, 0, 0)        # Estado lógico 0
+
+        print(f"Distancia: {distancia:5.1f} cm → Bit: {bit_presencia}")
+
+    except RuntimeError:
+        pass
+
+    time.sleep(0.1)
+```
