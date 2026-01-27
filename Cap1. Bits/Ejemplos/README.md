@@ -26,7 +26,6 @@ ib = IdeaBoard()
 pot = ib.AnalogIn(board.IO33)
 
 # Configuración de umbrales (zona de seguridad)
-# No basta un límite; necesitamos un techo para subir y un piso para bajar.
 UMBRAL_ALTO = 45000
 UMBRAL_BAJO = 20000
 
@@ -38,13 +37,13 @@ while True:
     # Lógica con memoria (histéresis)
     if estado_activo:
         # Si la decisión actual es 1, resistimos apagar.
-        # Solo cambiamos si la señal cae por debajo del piso.
+        # Solo cambiamos si la señal cae por debajo del umbral establecido.
         if lectura_cruda < UMBRAL_BAJO:
             estado_activo = False
             print("Decisión: 0 (Apagado)")
     else:
         # Si la decisión actual es 0, resistimos encender.
-        # Solo cambiamos si la señal supera el techo.
+        # Solo cambiamos si la señal supera el umbral establecido.
         if lectura_cruda > UMBRAL_ALTO:
             estado_activo = True
             print("Decisión: 1 (Encendido)")
