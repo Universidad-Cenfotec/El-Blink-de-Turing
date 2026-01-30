@@ -91,9 +91,13 @@ Conceptos que se aprenden con este proyecto
 
 ```python
 import time
+import board
 from ideaboard import IdeaBoard
 
 ib = IdeaBoard()
+
+# Definición estandarizada del ADC externo (pin seguro)
+pot = ib.AnalogIn(board.IO33)
 
 periodo_objetivo = 0.02   # 20 ms por ciclo
 ciclos_por_segundo = int(1 / periodo_objetivo)
@@ -102,13 +106,11 @@ ciclo = 0
 segundo = 0
 minuto = 0
 
-ultimo_tick = time.monotonic()
-
 while True:
     inicio = time.monotonic()
 
-    # tarea 1, leer sensor
-    valor = ib.AnalogIn(board.IO33).value
+    # tarea 1, leer sensor externo
+    valor = pot.value
 
     # tarea 2, actualizar LED cada segundo lógico
     if segundo % 2 == 0:
@@ -126,7 +128,7 @@ while True:
             segundo = 0
             minuto += 1
 
-        print(minuto, segundo)
+        print(minuto, segundo, "ADC:", valor)
 
     # corrección temporal
     duracion = time.monotonic() - inicio
@@ -134,6 +136,7 @@ while True:
 
     if espera > 0:
         time.sleep(espera)
+
 ```
 
 ---
