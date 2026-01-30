@@ -88,25 +88,24 @@ Este libro aspira a otra cosa. Quiere ser leído. Quiere provocar curiosidad, ge
 1. [El bit](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap1.%20Bits)
 2. [El Reloj](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%202.EL%20Reloj/README.md)
 3. Máquinas de estados en el mundo físico
-4. el reloj en la computación
-5. Sensar es computar
-6. Actuar: del algoritmo al efecto físico
-7. Algoritmos clásicos en hardware
-8. La máquina de Turing en un microcontrolador
-9. Aleatoriedad y simulación
-10. Programación reactiva
-11. Computación distribuida mínima
-12. Cibernética y retroalimentación
-13. El sensor como oráculo
-14. Computación analógica–digital
-15. Aprendizaje mínimo en microcontroladores
-16. Robots como agentes computacionales
-17. Estigmergia digital
-18. Computación evolutiva básica
-19. Protocolos como algoritmos sociales
-20. Límites computacionales prácticos
-21. Universalidad
-22. [Sistemas Inteligentes](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap.%2021%20Sistemas%20Inteligentes)
+4. Sensar es computar
+5. Actuar: del algoritmo al efecto físico
+6. Algoritmos clásicos en hardware
+7. La máquina de Turing en un microcontrolador
+8. Aleatoriedad y simulación
+9. Programación reactiva
+10. Computación distribuida mínima
+11. Cibernética y retroalimentación
+12. El sensor como oráculo
+13. Computación analógica–digital
+14. Aprendizaje mínimo en microcontroladores
+15. Robots como agentes computacionales
+16. Estigmergia digital
+17. Computación evolutiva básica
+18. Protocolos como algoritmos sociales
+19. Límites computacionales prácticos
+20. Universalidad
+21. [Sistemas Inteligentes](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap.%2021%20Sistemas%20Inteligentes)
 
 ## ¿Porqué en GitHub?
 
