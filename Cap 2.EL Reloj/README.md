@@ -18,7 +18,7 @@ Esta idea conecta de manera natural con el lenguaje.
 
 El lenguaje es, inevitablemente, temporal. Una frase no existe completa desde el inicio; se construye palabra por palabra. Una palabra, carácter por carácter. Leer y escuchar son actos secuenciales. No podemos pronunciar dos palabras exactamente al mismo tiempo; siempre hay un antes y un después. El sentido emerge de esa secuencia.
 
-Lo mismo ocurre con la inteligencia artificial generativa. Un modelo de lenguaje no “tiene” la respuesta completa y luego la imprime. La respuesta se genera token por token. palabra por palabra, en una progresión temporal estricta. Cada palabra depende de las anteriores. Sin embargo, detrás de esa generación secuencial hay algo que no es temporal en el mismo sentido, la atención. La atención opera como una estructura global, una relación entre elementos que no necesita recorrerlos en orden para establecer conexiones. Es una forma de simultaneidad conceptual sobre una ejecución necesariamente secuencial.
+Lo mismo ocurre con la inteligencia artificial generativa. Un modelo de lenguaje no “tiene” la respuesta completa y luego la imprime. La respuesta se genera token por token, palabra por palabra, en una progresión temporal estricta. Cada palabra depende de las anteriores. Sin embargo, detrás de esa generación secuencial hay algo que no es temporal en el mismo sentido, la atención. La atención opera como una estructura global, una relación entre elementos que no necesita recorrerlos en orden para establecer conexiones. Es una forma de simultaneidad conceptual sobre una ejecución necesariamente secuencial.
 
 Nuestra mente funciona de manera parecida.
 
