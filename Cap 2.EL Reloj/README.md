@@ -96,7 +96,7 @@ from ideaboard import IdeaBoard
 
 ib = IdeaBoard()
 
-# Definición estandarizada del ADC externo (pin seguro)
+# Sensor
 pot = ib.AnalogIn(board.IO33)
 
 periodo_objetivo = 0.02   # 20 ms por ciclo
@@ -109,7 +109,7 @@ minuto = 0
 while True:
     inicio = time.monotonic()
 
-    # tarea 1, leer sensor externo
+    # tarea 1, leer sensor 
     valor = pot.value
 
     # tarea 2, actualizar LED cada segundo lógico
