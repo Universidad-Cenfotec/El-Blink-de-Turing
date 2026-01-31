@@ -61,7 +61,9 @@ Así, las máquinas de estados funcionan como un puente natural que conectan sit
 Quiero ahora detenerme en una idea que, aunque parece abstracta, es fundamental para entender la relación entre computación y matemáticas. La idea de que **un número no es solo algo que existe**, sino algo que **se puede construir**.
 
 <img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig3.png?raw=true" width="400">
+
 El autómata de la figura es un buen punto de partida. Este autómata reconoce —o, si se quiere, computa— los múltiplos de 3 escritos en binario. Tiene tres estados: $q_0$, $q_1$ y $q_2$. Intuitivamente, cada estado representa el **residuo módulo 3** del número que se ha leído hasta ese momento.
+
 
 Cuando el autómata se encuentra en el estado $q_0$, el número leído hasta ahora es divisible entre 3. Si está en $q_1$, el residuo es 1; si está en $q_2$, el residuo es 2. El estado inicial, y también estado de aceptación, es $q_0$.
 
@@ -69,9 +71,7 @@ Lo interesante no es solo que el autómata “verifique” si un número es múl
 
 Dicho de otra forma: el número existe, para el autómata, **solo en la medida en que puede ser construido y representado como un proceso**.
 
----
-
-### El número como proceso, no como objeto
+## El número como proceso, no como objeto
 
 Esta forma de pensar está muy alineada con el **intuicionismo matemático**. Desde esta perspectiva, un objeto matemático no existe simplemente porque podamos definirlo de manera abstracta, sino porque podemos **construirlo efectivamente**. No basta con afirmar que “existe un número con cierta propiedad”; es necesario mostrar cómo se llega a él.
 
@@ -79,9 +79,7 @@ En este sentido, el autómata no está trabajando con un número “ya dado”. 
 
 Si el autómata termina en $q_0$, el múltiplo de 3 **existe computacionalmente**, porque ha sido construido paso a paso y su divisibilidad está encarnada en el estado final alcanzado. No hay una verificación posterior; el proceso mismo es la prueba.
 
----
-
-### Computación como matemática encarnada
+## Computación como matemática encarnada
 
 Desde esta mirada, la computación no es solo una herramienta para calcular resultados matemáticos. Es una forma de **hacer matemática**. Una matemática donde los objetos no flotan en un espacio platónico, sino que existen en tanto pueden ser ejecutados, recorridos, transitados.
 
@@ -89,9 +87,7 @@ Una máquina de estados, entonces, no solo reconoce lenguajes o procesa entradas
 
 Este autómata no “sabe” qué es el número 12 en abstracto. Pero sabe construir el 12 como una secuencia de bits y, al hacerlo, sabe que termina en un estado que representa divisibilidad por 3. Para la máquina, eso es todo lo que significa que 12 sea múltiplo de 3.
 
----
-
-### Cuando existir es poder ejecutarse
+## Cuando existir es poder ejecutarse
 
 Desde esta perspectiva, decir que “un número existe” en computación es decir que **existe una máquina que lo construye**, o al menos un proceso finito que lo representa. La matemática se vuelve operacional, y la noción de existencia se vuelve inseparable de la noción de ejecución.
 
