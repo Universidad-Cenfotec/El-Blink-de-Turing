@@ -4,7 +4,7 @@ Imagine que acabas de aprobar el examen práctico de licencia de conducir. El si
 
 Una vez que entrego los papeles en la ventanilla 1, me dan un nuevo documento y me indican que pase a la ventanilla 2, donde me toman la fotografía y registran mi firma. Finalmente, me piden que me siente en la sala de espera; allí me llamarán por mi nombre para pasar a la ventanilla 3 y recoger el documento final.
 
-<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig1.jpeg?raw=true" width="600">
+<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig1.jpeg?raw=true" width="400">
 
 
 Cada una de estas ventanillas requiere que yo tenga cierta información y representa un **estado** en el que me encuentro dentro del proceso. Además, cada ventanilla —cada estado— solo puede ocurrir si antes estuve en un estado anterior y tengo la información necesaria. Hay también un **estado inicial**, donde comienza todo el proceso.
