@@ -42,14 +42,17 @@ Ahora que entiendo el funcionamiento del semáforo, la forma más sencilla de vi
 
 El doble círculo en el estado 0 indica que se trata del **estado inicial**, es decir, el punto donde arranca todo el proceso. Con este esquema ya tengo todo lo necesario para **programar** mi máquina de estados.
 
-Excelente conexión. Esto calza **perfectamente** con el espíritu de *Blink de Turing* y con una lectura **constructiva** de la computación. Te propongo un texto que:
+Muy buen párrafo de transición; la idea está clarísima, solo necesitaba **orden conceptual** y un poco más de continuidad entre lo cotidiano, lo computacional y lo matemático. Mantengo **primera persona**, tono reflexivo, y lo extiendo lo justo para que el salto hacia números e intuicionismo se sienta natural.
 
-* Parte **explícitamente del autómata**
-* Explica **cómo “construye” los múltiplos de 3**
-* Conecta eso con **intuicionismo / constructivismo**
-* Mantiene un tono **personal y reflexivo**, no excesivamente formal
+Noten cómo, tanto en el ejemplo de las ventanillas como en el del semáforo, lo que estoy intentando hacer es **describir situaciones y eventos del mundo real de manera formal y repetible**. No se trata solo de contar una historia, sino de capturarla de tal forma que pueda convertirse en un procedimiento automático, en algo que una máquina pueda ejecutar sin ambigüedad.
 
-Puedes usarlo como sección del capítulo o como transición conceptual.
+Cuando describo las ventanillas como estados, o los colores del semáforo como transiciones gobernadas por el tiempo, estoy imponiendo una estructura precisa sobre fenómenos cotidianos. Esa estructura permite que el proceso se repita siempre de la misma manera y, más importante aún, que pueda ser implementado como un programa de computadora. En ese momento, la situación deja de ser solo una experiencia humana y se transforma en un **objeto computacional**.
+
+Esta idea es mucho más profunda de lo que parece a primera vista. Está en el corazón de la computación, pero también en el corazón de las matemáticas mismas. Formalizar un proceso no es solo una cuestión técnica; es una forma de afirmar que entendemos ese proceso lo suficiente como para **reconstruirlo**, paso a paso, sin depender de intuiciones externas.
+
+Desde esta perspectiva, no es descabellado pensar que un objeto matemático existe en la medida en que puede ser construido. Para muchos de nosotros, una matemática que no puede, al menos en principio, ser llevada a una computadora, resulta sospechosa. No porque la computadora sea el juez último de la verdad, sino porque la computación nos obliga a ser explícitos, constructivos y rigurosos.
+
+Así, las máquinas de estados funcionan como un puente natural que conectan situaciones del mundo real con procesos computables, y esos procesos, a su vez, con una visión de las matemáticas donde **existir es poder construirse**.
 
 ---
 
