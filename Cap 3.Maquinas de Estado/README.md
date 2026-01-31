@@ -9,7 +9,9 @@ Una vez que entrego los papeles en la ventanilla 1, me dan un nuevo documento y 
 
 Cada una de estas ventanillas requiere que yo tenga cierta información y representa un **estado** en el que me encuentro dentro del proceso. Además, cada ventanilla —cada estado— solo puede ocurrir si antes estuve en un estado anterior y tengo la información necesaria. Hay también un **estado inicial**, donde comienza todo el proceso.
 
-Visto de forma general, este procedimiento puede representarse de manera esquemática.
+Visto de forma general, este procedimiento puede representarse de manera esquemática,
+
+<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig2.jpeg?raw=true" width="400">
 
 A cada círculo lo llamo **nodo**, y representa un estado (una ventanilla, en este caso). Cada línea indica cómo se pasa de un nodo —o estado— a otro. Así, cuando llego a la oficina con los papeles del examen de manejo, comienzo en el estado 1. La flecha que sale del estado 1 y regresa al mismo estado se denomina *loop*, e indica que me mantengo en ese estado, simplemente esperando mi turno.
 
