@@ -64,8 +64,16 @@ Quiero ahora detenerme en una idea que, aunque parece abstracta, es fundamental 
 
 El autómata de la figura es un buen punto de partida. Este autómata reconoce —o, si se quiere, computa— los múltiplos de 3 escritos en binario. Tiene tres estados: $q_0$, $q_1$ y $q_2$. Intuitivamente, cada estado representa el **residuo módulo 3** del número que se ha leído hasta ese momento.
 
+Este autómata puede entenderse como una **máquina para construir números binarios paso a paso**. El estado $q_0$ es el punto de partida y también el estado de aceptación: solo cuando el recorrido termina en $q_0$ considero que el número construido está completo y es un múltiplo de 3.
 
-Cuando el autómata se encuentra en el estado $q_0$, el número leído hasta ahora es divisible entre 3. Si está en $q_1$, el residuo es 1; si está en $q_2$, el residuo es 2. El estado inicial, y también estado de aceptación, es $q_0$.
+Desde $q_0$ puedo generar un 0 y permanecer en el mismo estado, lo que corresponde a construir el número binario `0`, que es divisible entre 3. Alternativamente, desde $q_0$ puedo generar un 1 y pasar al estado $q_1$, indicando que he comenzado a construir un número cuyo residuo módulo 3 es 1.
+
+Una vez en $q_1$, puedo generar otro 1 y regresar a $q_0$, construyendo así el número binario `11`, que corresponde a 3 en decimal. Al volver a $q_0$, el autómata llega a un estado de aceptación, y el número queda completo: se trata de un múltiplo de 3. También desde $q_1$ puedo generar un 0 y pasar al estado $q_2$, extendiendo el número construido con un nuevo bit y cambiando su residuo.
+
+Desde $q_2$, el proceso continúa de manera análoga: cada transición agrega un nuevo bit al número binario, y el estado actual refleja en todo momento el residuo módulo 3 del número parcial que se ha construido hasta ese instante. El autómata puede seguir generando bits indefinidamente, pero **solo cuando el recorrido vuelve a $q_0$ el número se considera terminado**.
+
+Visto así, el autómata no se limita a reconocer números que ya existen, sino que **los construye activamente**. Cada número múltiplo de 3 existe, para esta máquina, únicamente como el resultado de un recorrido que comienza en $q_0$, avanza bit a bit siguiendo las reglas del autómata, y finalmente regresa a $q_0$. En este sentido, el número no es un objeto estático, sino un proceso que se realiza en el tiempo.
+
 
 Lo interesante no es solo que el autómata “verifique” si un número es múltiplo de 3, sino **cómo lo hace**. El número no se evalúa al final como un objeto completo; se va **construyendo bit a bit**, y cada bit provoca una transición de estado. En cada paso, el autómata mantiene toda la información relevante del número leído hasta ahora únicamente en su estado actual.
 
