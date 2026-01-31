@@ -11,7 +11,7 @@ Cada una de estas ventanillas requiere que yo tenga cierta información y repres
 
 Visto de forma general, este procedimiento puede representarse de manera esquemática,
 
-<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig2.jpeg?raw=true" width="400">
+<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig2.jpg?raw=true" width="400">
 
 A cada círculo lo llamo **nodo**, y representa un estado (una ventanilla, en este caso). Cada línea indica cómo se pasa de un nodo —o estado— a otro. Así, cuando llego a la oficina con los papeles del examen de manejo, comienzo en el estado 1. La flecha que sale del estado 1 y regresa al mismo estado se denomina *loop*, e indica que me mantengo en ese estado, simplemente esperando mi turno.
 
