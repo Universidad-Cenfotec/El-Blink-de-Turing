@@ -144,6 +144,10 @@ while True:
 ```
 
 ## Reflexiones para el lector
+
+- La multitarea emerge como un efecto de la velocidad del reloj, no como una ejecución simultánea real.
+El sistema sostiene un único presente secuencial que, al acelerarse, se vuelve indistinguible de la simultaneidad.
+ 
 - La verdad del cronómetro: Notarás que el tiempo "Entre ciclos" no es exactamente 0.01. Siempre es un poco más, porque el tiempo que el ESP32 tarda en calcular la velocidad y mover los motores también suma.
 
 - El tiempo es historia: Mientras que la velocidad sube y baja de forma cíclica, el "Tiempo Total" siempre avanza. Es la flecha del tiempo sobre un proceso repetitivo.
