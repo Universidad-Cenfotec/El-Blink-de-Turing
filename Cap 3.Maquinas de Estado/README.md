@@ -9,7 +9,7 @@ Una vez que entrego los papeles en la ventanilla 1, te dan un nuevo documento y 
 <img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig1.jpeg?raw=true" width="400">
 
 
-Cada una de estas ventanillas requiere que uno tenga cierta información y representa un fase, o me dicho **estado** en el que te encuentras dentro del proceso. Además, cada ventanilla (cada estado) solo puede ocurrir si antes estuviste en un estado anterior y se tiene la información necesaria para pasar a otraventanilla (estado). Hay también un **estado inicial**, donde comienza todo el proceso.
+Cada una de estas ventanillas requiere que uno tenga cierta información y representa un fase, o me dicho **estado** en el que te encuentras dentro del proceso. Además, cada ventanilla (cada estado) solo puede ocurrir si antes estuviste en un estado anterior y se tiene la información necesaria para pasar a otra ventanilla (estado). Hay también un **estado inicial**, donde comienza todo el proceso.
 
 Visto de forma general, este procedimiento puede representarse de manera esquemática,
 
