@@ -47,7 +47,7 @@ En este código busco demostrar que lo que percibo como una intensidad estática
 
 ### Código: 02_latido_logico.py
 
-´´´ python
+``` python
 
 import time
 import board
@@ -79,4 +79,4 @@ while True:
     # La pausa sincroniza el ritmo digital con nuestra percepción
     time.sleep(0.005)
 
-´´´
+```
