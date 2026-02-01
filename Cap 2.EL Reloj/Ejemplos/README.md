@@ -5,6 +5,7 @@ He escrito estos scripts para materializar la idea del tiempo como una construcc
 # Ejemplo 1: Multitarea por intercalado temporal
 Aquí demostramos que la simultaneidad es una ilusión creada por la velocidad del reloj. Dos procesos con ritmos distintos conviven en el mismo while True. No ocurren a la vez, pero ocurren tan cerca uno del otro que para nosotros son un solo comportamiento complejo.
 
+##Código: 01_intercalado.py 
 ```python
 import time
 import board
