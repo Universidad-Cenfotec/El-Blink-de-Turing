@@ -13,6 +13,7 @@ Aquí demostramos que la simultaneidad es una ilusión creada por la velocidad d
     
     while True:
         #El ciclo corre a alta velocidad para permitir fluidez
+        
         #Tarea A: Destello rápido cada 5 ciclos
         if ciclo % 5 == 0:
             #Una acción breve que no detiene el flujo
