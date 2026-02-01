@@ -23,26 +23,20 @@ Todo este proceso, que usualmente se percibe como tedioso, lo estoy representand
 
 Una **máquina de estados (ME)** es un sistema que puede encontrarse en cualquiera de un conjunto de estados y que cambia de estado dependiendo de la información que recibe y del estado en el que se encuentra en ese momento. Las máquinas de estados se utilizan para describir y manipular, de manera matemática y computacional, procesos del mundo real.
 
-Un ejemplo clásico es el semáforo.
+Un ejemplo clásico, el semáforo.
 
-Un semáforo puede estar en verde, amarillo o rojo. El sistema inicia en verde, se mantiene así por un tiempo, luego pasa a amarillo, donde parpadea —encendiéndose y apagándose— un número determinado de veces, y finalmente pasa a rojo. Después, el ciclo se repite.
+Un semáforo puede estar en verde, amarillo o rojo. El sistema inicia en rojo, se mantiene así por un tiempo, luego pasa a verde, se mantiene, y luego pasa a amarillo donde parpadea —encendiéndose y apagándose— un número determinado de veces, y finalmente pasa a rojo nuevamente. Después, el ciclo se repite.
+
+Vámoslo en el siguiente diagrama,
+<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig3.png?raw=true" width="400">
 
 Las reglas de su funcionamiento pueden describirse de la siguiente manera:
 
-* Si está en verde (estado 0), se mantiene en verde durante 3 segundos y luego pasa a amarillo encendido (estado 1).
-* Si está en amarillo encendido (estado 1), espera 1 segundo y pasa a amarillo apagado (estado 2).
-* Si está en amarillo apagado (estado 2), espera 1 segundo y vuelve al estado 1.
-* Los estados 1 y 2 se repiten exactamente 5 veces; al finalizar la quinta repetición, el sistema pasa a rojo (estado 3).
-* Si está en rojo (estado 3), espera 3 segundos y vuelve al estado 0 (verde).
+* Si está en rojo (estado S1), espera 20 segundos y luego va al estado S2 (verde).
+* Si está en verde (estado S2), se mantiene en verde durante 15 segundos y luego pasa a amarillo encendido (estado S3).
+* Si está en amarillo encendido (estado S3), espera 15 segundos quedanto intermitente, debido a una función intenra que hace que parpadee, y pasa a rojo (S1) luego de 5 segundos
 
-En este modelo utilizo cuatro estados: uno para cada color, considerando el amarillo encendido y apagado como estados distintos para producir el efecto de parpadeo.
-
-Ahora que entiendo el funcionamiento del semáforo, la forma más sencilla de visualizar una máquina de estados es mediante un esquema de nodos y flechas.
-
-
-El doble círculo en el estado 0 indica que se trata del **estado inicial**, es decir, el punto donde arranca todo el proceso. Con este esquema ya tengo todo lo necesario para **programar** mi máquina de estados.
-
-Muy buen párrafo de transición; la idea está clarísima, solo necesitaba **orden conceptual** y un poco más de continuidad entre lo cotidiano, lo computacional y lo matemático. Mantengo **primera persona**, tono reflexivo, y lo extiendo lo justo para que el salto hacia números e intuicionismo se sienta natural.
+En este modelo utilizo 3 estados uno para cada color, y podríamos iniciar o terminar el ciclo en cualquiera de los estados.
 
 Noten cómo, tanto en el ejemplo de las ventanillas como en el del semáforo, lo que estoy intentando hacer es **describir situaciones y eventos del mundo real de manera formal y repetible**. No se trata solo de contar una historia, sino de capturarla de tal forma que pueda convertirse en un procedimiento automático, en algo que una máquina pueda ejecutar sin ambigüedad.
 
@@ -53,6 +47,36 @@ Esta idea es mucho más profunda de lo que parece a primera vista. Está en el c
 Desde esta perspectiva, no es descabellado pensar que un objeto matemático existe en la medida en que puede ser construido. Para muchos de nosotros, una matemática que no puede, al menos en principio, ser llevada a una computadora, resulta sospechosa. No porque la computadora sea el juez último de la verdad, sino porque la computación nos obliga a ser explícitos, constructivos y rigurosos.
 
 Así, las máquinas de estados funcionan como un puente natural que conectan situaciones del mundo real con procesos computables, y esos procesos, a su vez, con una visión de las matemáticas donde **existir es poder construirse**.
+
+---
+## Autómatas en un microcontrolador
+
+## Autómatas en microcontroladores
+
+Cuando trabajo con microcontroladores, las máquinas de estados dejan de ser una herramienta conceptual elegante y se convierten en **una necesidad práctica**. Un microcontrolador no ejecuta programas como lo hace una computadora de escritorio; no hay un inicio, un cálculo largo y un final. Un microcontrolador está, esencialmente, **siempre avanzando**.
+
+Su lógica fundamental es un ciclo infinito, que consiste en leer entradas, actualizar estados internos, actuar sobre el mundo físico y volver a empezar. Ese “moverse constantemente hacia adelante” hace que el modelo de programación secuencial tradicional resulte incómodo y, en muchos casos, peligroso. Bloquear el programa esperando algo —un tiempo, un sensor, una respuesta— suele ser una mala idea.
+
+Aquí es donde las máquinas de estados encajan de forma natural.
+
+Un autómata modela exactamente este tipo de comportamiento. El sistema **siempre está en algún estado**, y en cada iteración del ciclo principal evalúa qué debe hacer según ese estado y según lo que está ocurriendo en el entorno, de esa manera en realidad no espera sino que **reacciona**.
+
+En un microcontrolador, un estado como en el ejemplo del semáforo, no es solo algo abstracto, sino que puede ser algo concreto como:
+
+* un motor encendido o apagado
+* un LED parpadeando o fijo
+* un robot avanzando, girando o detenido
+* un sensor siendo leído o ignorado
+
+Cada estado define qué acciones se ejecutan y qué eventos pueden provocar una transición. El programa completo se convierte entonces en una descripción clara del comportamiento del sistema a lo largo del tiempo.
+
+Además, las máquinas de estados permiten manejar el tiempo sin bloquear la ejecución. En lugar de “esperar 3 segundos”, el sistema entra en un estado que recuerda cuándo comenzó y verifica, en cada iteración, si ya transcurrió el tiempo necesario. El microcontrolador sigue vivo, atento a otros eventos, mientras el tiempo pasa.
+
+Esta forma de programar es especialmente poderosa porque coincide con la naturaleza física del hardware. El mundo no se detiene mientras un microcontrolador piensa. Los sensores cambian, los botones se presionan, los motores siguen girando. Las máquinas de estados permiten que el software habite ese mismo ritmo continuo.
+
+Por eso, cuando programo microcontroladores, no pienso primero en funciones o en algoritmos, sino en **estados y transiciones**. Pienso en qué modos puede tener el sistema, cómo pasa de uno a otro y bajo qué condiciones. El código se vuelve entonces una traducción directa de esa estructura.
+
+En este contexto, programar es diseñar un autómata que vive en el mundo físico. Un autómata que avanza paso a paso, ciclo tras ciclo, exactamente igual que el microcontrolador que lo ejecuta.
 
 ---
 
