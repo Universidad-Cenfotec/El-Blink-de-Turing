@@ -81,3 +81,71 @@ while True:
     time.sleep(0.005)
 
 ```
+
+## Ejemplo 3: El pulso y la historia (Cronometrando el ciclo)
+
+En este código busco enfrentar la teoría con la práctica. No solo le pido al microcontrolador que espere un tiempo determinado, sino que utilizo un cronómetro interno para medir la duración exacta de cada latido y el tiempo total que el sistema lleva existiendo.
+
+Al observar los motores acelerar, puedo ver en la consola la relación directa entre el tiempo entre ciclos (mi resolución) y el tiempo total transcurrido (mi historia). Si el tiempo entre ciclos varía, mi percepción del movimiento también lo hará.
+
+
+### Código: 03cronometro_reloj.py
+
+``` python
+import time
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+
+# Registro del inicio
+tiempo_inicio_global = time.monotonic()
+tiempo_ultimo_ciclo = time.monotonic()
+
+velocidad = 0.0
+incremento_por_ciclo = 0.005
+direccion = 1
+
+while True:
+    # Captura de marcas temporales
+    ahora = time.monotonic()
+    duracion_ciclo = ahora - tiempo_ultimo_ciclo
+    tiempo_total = ahora - tiempo_inicio_global
+    
+    # Control de hardware
+    ib.motor_1.throttle = velocidad
+    ib.motor_2.throttle = velocidad
+    
+    # Indicador visual de velocidad
+    brillo = int(abs(velocidad) * 255)
+    ib.pixel = (0, 0, brillo)
+    
+    # Monitoreo del reloj
+    print(f"Total: {tiempo_total:.2f}s | Entre ciclos: {duracion_ciclo:.4f}s | Velocidad: {velocidad:.3f}")
+    
+    # Evolución del estado según el ciclo
+    velocidad = velocidad + (incremento_por_ciclo * direccion)
+    
+    # Gestión de límites y dirección
+    if velocidad >= 1.0:
+        velocidad = 1.0
+        direccion = -1
+        print("--- Desacelerando ---")
+        
+    if velocidad <= -1.0:
+        velocidad = -1.0
+        direccion = 1
+        print("--- Acelerando ---")
+    
+    # Actualización para el próximo pulso
+    tiempo_ultimo_ciclo = ahora
+    
+    # Definición del ritmo base
+    time.sleep(0.01)
+```
+
+## Reflexiones para el lector
+La verdad del cronómetro: Notarás que el tiempo "Entre ciclos" no es exactamente 0.01. Siempre es un poco más, porque el tiempo que el ESP32 tarda en calcular la velocidad y mover los motores también suma.
+
+El tiempo es historia: Mientras que la velocidad sube y baja de forma cíclica, el "Tiempo Total" siempre avanza. Es la flecha del tiempo sobre un proceso repetitivo.
+
+Inercia y frecuencia: Si cambias el time.sleep a un valor más alto, verás cómo la duración del ciclo aumenta y el movimiento de los motores se siente menos fluido.
