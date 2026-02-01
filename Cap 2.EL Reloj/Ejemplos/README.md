@@ -2,7 +2,7 @@
 
 He escrito estos scripts para materializar la idea del tiempo como una construcción y no solo como una medida técnica. A través de ellos, exploro cómo sostengo un presente continuo mediante el ciclo infinito, demostrando que la computación es, esencialmente, mi gestión de una secuencia de pulsos. Para mí, el reloj no es un accesorio; es la condición de posibilidad para que el sistema exista y actúe sobre el mundo físico.
 
-# Multitarea por intercalado temporal
+# Ejemplo 1: Multitarea por intercalado temporal
 Aquí demostramos que la simultaneidad es una ilusión creada por la velocidad del reloj. Dos procesos con ritmos distintos conviven en el mismo while True. No ocurren a la vez, pero ocurren tan cerca uno del otro que para nosotros son un solo comportamiento complejo.
 
 ```python
