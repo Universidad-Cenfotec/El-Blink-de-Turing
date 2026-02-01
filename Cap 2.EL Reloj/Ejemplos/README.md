@@ -45,7 +45,8 @@ while True:
 
 En este código busco demostrar que lo que percibo como una intensidad estática es en realidad un flujo constante de cambios. Nada en mi programa permanece quieto. La luz del LED RGB "respira" porque obligo a un contador a avanzar y retroceder en sincronía con el reloj interno. Al agregar mensajes en la consola, hago visible el pulso numérico que sostiene la ilusión del brillo, transformando un fenómeno visual en una evidencia matemática. 
 
-### Código: 02_latido_logico.py
+
+### Código:  02_latido_logico.py
 
 ``` python
 
