@@ -84,7 +84,7 @@ En este contexto, programar es diseñar un autómata que vive en el mundo físic
 
 Quiero ahora detenerme en una idea que, aunque parece abstracta, es fundamental para entender la relación entre computación y matemáticas. La idea de que **un número no es solo algo que existe**, sino algo que **se puede construir**.
 
-<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig3.png?raw=true" width="400">
+<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig4.png?raw=true" width="400">
 
 El autómata de la figura es un buen punto de partida. Este autómata reconoce —o, si se quiere, computa— los múltiplos de 3 escritos en binario. Tiene tres estados: $q_0$, $q_1$ y $q_2$. Intuitivamente, cada estado representa el **residuo módulo 3** del número que se ha leído hasta ese momento.
 
