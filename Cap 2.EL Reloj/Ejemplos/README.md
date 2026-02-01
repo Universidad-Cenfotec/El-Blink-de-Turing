@@ -145,7 +145,7 @@ while True:
 
 ## Reflexiones para el lector
 
-- La multitarea emerge como un efecto de la velocidad del reloj, no como una ejecución simultánea real.
+- Multitarea por intercalado temporal: La multitarea emerge como un efecto de la velocidad del reloj, no como una ejecución simultánea real.
 El sistema sostiene un único presente secuencial que, al acelerarse, se vuelve indistinguible de la simultaneidad.
  
 - La verdad del cronómetro: Notarás que el tiempo "Entre ciclos" no es exactamente 0.01. Siempre es un poco más, porque el tiempo que el ESP32 tarda en calcular la velocidad y mover los motores también suma.
