@@ -41,3 +41,42 @@ while True:
 
 ```
 
+## Ejemplo 1: La luz como proceso (Latido lógico)
+
+En este código busco demostrar que lo que percibo como una intensidad estática es en realidad un flujo constante de cambios. Nada en mi programa permanece quieto. La luz del LED RGB "respira" porque obligo a un contador a avanzar y retroceder en sincronía con el reloj interno. Al agregar mensajes en la consola, hago visible el pulso numérico que sostiene la ilusión del brillo, transformando un fenómeno visual en una evidencia matemática. 
+
+### Código: 02_latido_logico.py
+
+´´´ python
+
+import time
+import board
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+
+paso = 0
+direccion = 1
+
+while True:
+    # La intensidad es el resultado de un contador en movimiento
+    ib.pixel = (0, paso, 0)
+    
+    # Hacemos visible el interior del flujo temporal
+    print("Pulso lógico actual", paso)
+    
+    paso = paso + direccion
+    
+    # El tiempo lógico rebota al llegar a los límites físicos
+    if paso >= 255:
+        direccion = -1
+        print("Límite superior alcanzado, invirtiendo dirección")
+    
+    if paso <= 0:
+        direccion = 1
+        print("Límite inferior alcanzado, iniciando ascenso")
+    
+    # La pausa sincroniza el ritmo digital con nuestra percepción
+    time.sleep(0.005)
+
+´´´
