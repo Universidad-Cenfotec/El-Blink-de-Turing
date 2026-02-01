@@ -3,6 +3,8 @@
 # Multitarea por intercalado temporal
 Aquí demostramos que la simultaneidad es una ilusión creada por la velocidad del reloj. Dos procesos con ritmos distintos conviven en el mismo while True. No ocurren a la vez, pero ocurren tan cerca uno del otro que para nosotros son un solo comportamiento complejo.
 
+```python
+
     import time
     import board
     from ideaboard import IdeaBoard
@@ -30,4 +32,6 @@ Aquí demostramos que la simultaneidad es una ilusión creada por la velocidad d
         ciclo = ciclo + 1
     
         # Un pequeño respiro para dar estabilidad al hardware
-        time.sleep(0.01)
+        time.sleep(0.01
+
+```
