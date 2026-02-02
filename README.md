@@ -88,7 +88,7 @@ Este libro aspira a otra cosa. Quiere ser leído. Quiere provocar curiosidad, ge
 1. [El bit](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap1.%20Bits)
 2. [El Reloj](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%202.EL%20Reloj/README.md)
 3. [Máquinas de estados en el mundo físico](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap%203.Maquinas%20de%20Estado)
-4. Sensar es computar
+4. [Sensar es computar](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap%204.Sensar)
 5. Actuar: del algoritmo al efecto físico
 6. Algoritmos clásicos en hardware
 7. La máquina de Turing en un microcontrolador
