@@ -44,13 +44,11 @@ Cuando describo las ventanillas como estados, o los colores del semáforo como t
 
 Esta idea es mucho más profunda de lo que parece a primera vista. Está en el corazón de la computación, pero también en el corazón de las matemáticas mismas. Formalizar un proceso no es solo una cuestión técnica; es una forma de afirmar que entendemos ese proceso lo suficiente como para **reconstruirlo**, paso a paso, sin depender de intuiciones externas.
 
-Desde esta perspectiva, no es descabellado pensar que un objeto matemático existe en la medida en que puede ser construido. Para muchos de nosotros, una matemática que no puede, al menos en principio, ser llevada a una computadora, resulta sospechosa. No porque la computadora sea el juez último de la verdad, sino porque la computación nos obliga a ser explícitos, constructivos y rigurosos.
+Desde esta perspectiva, no es descabellado pensar que cualqueir operación matemática existe en la medida en que puede ser construido. Para muchos de nosotros, una matemática que no puede, al menos en principio, ser llevada a una computadora, resulta sospechosa. No porque la computadora sea el juez último de la verdad, sino porque la computación nos obliga a ser explícitos, constructivos y rigurosos.
 
 Así, las máquinas de estados funcionan como un puente natural que conectan situaciones del mundo real con procesos computables, y esos procesos, a su vez, con una visión de las matemáticas donde **existir es poder construirse**.
 
 ---
-## Autómatas en un microcontrolador
-
 ## Autómatas en microcontroladores
 
 Cuando trabajo con microcontroladores, las máquinas de estados dejan de ser una herramienta conceptual elegante y se convierten en **una necesidad práctica**. Un microcontrolador no ejecuta programas como lo hace una computadora de escritorio; no hay un inicio, un cálculo largo y un final. Un microcontrolador está, esencialmente, **siempre avanzando**.
@@ -82,7 +80,11 @@ En este contexto, programar es diseñar un autómata que vive en el mundo físic
 
 ## Máquinas de estado, números y construcción
 
-Quiero ahora detenerme en una idea que, aunque parece abstracta, es fundamental para entender la relación entre computación y matemáticas. La idea de que **un número no es solo algo que existe**, sino algo que **se puede construir**.
+Quiero ahora detenerme en una idea que, aunque puede parecer abstracta, es central para entender la relación profunda entre computación y matemáticas. Las máquinas de estados no son solo una herramienta de modelado, constituyen un modelo de computación. Aquello que puede representarse mediante una máquina de estados, desde una máquina simple hasta lo que se conoce como Máquinas de Turing es, precisamente por eso, computable.
+
+Desde aquí se abre una idea aún más fuerte. Podemos pensar que un número no es algo que simplemente existe, sino algo que puede construirse. La existencia deja de ser una afirmación estática y pasa a depender de un proceso. Si somos capaces de diseñar una máquina de estados que, paso a paso, construya números con ciertas características, entonces esos números existen en un sentido computacional y operativo.
+
+En esta visión, no afirmamos la existencia de un número porque lo enunciamos, sino porque podemos describir un procedimiento que lo genera. La máquina no verifica propiedades al final; las encarna en su estructura. Construir números y reconocer sus propiedades se vuelve, así, un mismo acto.
 
 <img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig4.png?raw=true" width="400">
 
@@ -103,13 +105,6 @@ Lo interesante no es solo que el autómata “verifique” si un número es múl
 
 Dicho de otra forma: el número existe, para el autómata, **solo en la medida en que puede ser construido y representado como un proceso**.
 
-## El número como proceso, no como objeto
-
-Esta forma de pensar está muy alineada con el **intuicionismo matemático**. Desde esta perspectiva, un objeto matemático no existe simplemente porque podamos definirlo de manera abstracta, sino porque podemos **construirlo efectivamente**. No basta con afirmar que “existe un número con cierta propiedad”; es necesario mostrar cómo se llega a él.
-
-En este sentido, el autómata no está trabajando con un número “ya dado”. El número emerge del recorrido por los estados. Cada transición es un paso constructivo, y el estado final no es una evaluación externa, sino el resultado natural del proceso de construcción.
-
-Si el autómata termina en $q_0$, el múltiplo de 3 **existe computacionalmente**, porque ha sido construido paso a paso y su divisibilidad está encarnada en el estado final alcanzado. No hay una verificación posterior; el proceso mismo es la prueba.
 
 ## Computación como matemática encarnada
 
@@ -125,6 +120,20 @@ Desde esta perspectiva, decir que “un número existe” en computación es dec
 
 Este es uno de los puntos donde las máquinas de estado dejan de ser un simple recurso técnico y se convierten en una **puerta conceptual**: nos obligan a pensar los objetos matemáticos no como cosas estáticas, sino como **fenómenos dinámicos**, que existen en el tiempo, en el recorrido, en la transición.
 
+---
+
+# Posibles Ejemplos
+
+* Semáforo con LEDs (verde, amarillo intermitente, rojo)
+* Botón con estados: reposo, presionado, liberado
+* Control de motor: detenido, acelerando, velocidad constante, frenando
+* Robot móvil: esperando, avanzando, girando, evitando obstáculo
+* Lectura de sensor ultrasónico: midiendo, fuera de rango, obstáculo detectado
+* Servo: posición inicial, moviéndose, posición alcanzada
+* LED RGB: apagado, color fijo, transición de color, parpadeo
+* Sistema de alarma: armado, desarmado, alerta
+* Contador binario con LEDs
+* Juego simple: inicio, jugando, victoria, reinicio
 
 
 
