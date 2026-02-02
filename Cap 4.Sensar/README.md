@@ -53,6 +53,22 @@ Así, el microcontrolador no intenta capturar la continuidad del mundo. Construy
 Sensar es computar porque medir el entorno de forma repetida convierte al mundo en un proceso computacional. Cada lectura de un sensor, tomada en un ciclo de ejecución, es una muestra del estado del entorno en un instante particular. Al encadenar esas muestras, el microcontrolador no solo obtiene valores, sino que construye una secuencia que describe el cambio. El mundo físico se vuelve accesible a la computación no como una entidad continua, sino como una serie de estados discretos observados en el tiempo. De esta manera, leer sensores en un ciclo infinito no es simplemente adquirir datos, sino transformar el comportamiento del entorno en algo que puede ser procesado, decidido y actuado por un sistema computacional.
 
 
+# Ideas de Ejemplos
 
+- Sensor analógico leído en cada ciclo y construcción explícita de una serie temporal
+- Comparación entre lectura actual y lectura anterior para detectar cambio
+- Identificación de estados estables a partir de lecturas repetidas
+- Detección de transiciones como eventos emergentes en el tiempo
+- Máquina de estados gobernada por rangos de un sensor continuo
+- Sensor como reloj implícito del sistema
+- Uso de un botón para avanzar manualmente el tiempo computacional
+- Construcción de memoria mínima a partir de lecturas pasadas
+- Decisión basada en tendencia y no en valor instantáneo
+- Separación entre muestreo y acción dentro del ciclo principal
+- Control simple por realimentación sin modelo explícito
+- Observación de ruido y estabilidad en lecturas reales
+- Umbrales como mecanismo de discretización del mundo continuo
+- Registro del comportamiento del entorno durante un intervalo finito
+- Sensor como generador de narrativa temporal del sistema
 
 
