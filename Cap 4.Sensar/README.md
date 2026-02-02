@@ -34,3 +34,19 @@ Así, un sensor no describe directamente un fenómeno. Describe una serie de est
 
 Desde esta perspectiva, computar con sensores no consiste en obtener valores correctos, sino en **construir una historia** del sistema a partir de mediciones discretas. Una historia hecha de instantes, donde cada lectura es simple, pero donde el conjunto permite comprender el comportamiento del sistema en el tiempo.
 
+Perfecto. A continuación tienes **tres secciones independientes**, cada una desarrollando uno de esos puntos, manteniendo el tono sobrio, sin repetir ideas previas y sin usar dos puntos.
+
+## Evento frente a señal continua
+
+El mundo físico es continuo, pero los microcontroladores operan de forma discreta. No observan un fenómeno sin interrupciones. Lo muestrean. Cada lectura es un instante separado del siguiente por un intervalo de tiempo.
+
+A partir de esta discretización surge una distinción importante. A veces interesa el valor de una señal en todo momento. Otras veces interesa únicamente cuando algo cambia. Cuando aparece o desaparece una condición. Cuando ocurre un evento.
+
+Muchos sistemas basados en microcontroladores no reaccionan a valores absolutos, sino a cambios. Un botón que pasa de no presionado a presionado. Un sensor que supera un umbral. Un estado que deja de ser estable. El sistema no sigue la señal. Detecta eventos.
+
+Esta forma de operar reduce la complejidad y enfoca la computación en lo relevante. El tiempo no se mide de manera explícita. Se manifiesta como una secuencia de eventos detectados a partir de lecturas discretas.
+
+Así, el microcontrolador no intenta capturar la continuidad del mundo. Construye una descripción operativa del cambio, suficiente para actuar. Esa descripción no es una copia del fenómeno físico. Es una versión computable del comportamiento del sistema.
+
+
+
