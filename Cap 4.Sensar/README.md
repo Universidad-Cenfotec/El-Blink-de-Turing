@@ -48,5 +48,11 @@ Esta forma de operar reduce la complejidad y enfoca la computación en lo releva
 
 Así, el microcontrolador no intenta capturar la continuidad del mundo. Construye una descripción operativa del cambio, suficiente para actuar. Esa descripción no es una copia del fenómeno físico. Es una versión computable del comportamiento del sistema.
 
+## Sensar es computar
+
+Sensar es computar porque medir el entorno de forma repetida convierte al mundo en un proceso computacional. Cada lectura de un sensor, tomada en un ciclo de ejecución, es una muestra del estado del entorno en un instante particular. Al encadenar esas muestras, el microcontrolador no solo obtiene valores, sino que construye una secuencia que describe el cambio. El mundo físico se vuelve accesible a la computación no como una entidad continua, sino como una serie de estados discretos observados en el tiempo. De esta manera, leer sensores en un ciclo infinito no es simplemente adquirir datos, sino transformar el comportamiento del entorno en algo que puede ser procesado, decidido y actuado por un sistema computacional.
+
+
+
 
 
