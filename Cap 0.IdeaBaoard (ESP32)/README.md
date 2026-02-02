@@ -112,10 +112,6 @@ sensor = ib.AnalogIn(board.IO33)
 print(sensor.value)  # 0 – 65535
 ```
 
-Esto refuerza una idea clave del libro:
-
-> *sensar es convertir el mundo en números en el tiempo*.
-
 ---
 
 ### 4.4 Salidas analógicas (DAC)
