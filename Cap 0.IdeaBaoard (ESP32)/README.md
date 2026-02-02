@@ -13,6 +13,7 @@ La **IdeaBoard** es una placa educativa basada en **ESP32**, diseñada para redu
   * Salidas PWM
   * I2C, SPI
   * DAC
+  * Sensores táctiles
 
 ---
 
