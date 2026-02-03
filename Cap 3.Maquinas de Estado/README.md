@@ -121,6 +121,54 @@ Desde esta perspectiva, decir que “un número existe” en computación es dec
 Este es uno de los puntos donde las máquinas de estado dejan de ser un simple recurso técnico y se convierten en una **puerta conceptual**: nos obligan a pensar los objetos matemáticos no como cosas estáticas, sino como **fenómenos dinámicos**, que existen en el tiempo, en el recorrido, en la transición.
 
 ---
+## Un ejemplo sencillo de uso de máquinas de estado
+
+Supongamos que queremos implementar un blink. Un blink es un programa que enciende y apaga un LED de forma intermitente, produciendo un patrón repetitivo en el tiempo.  Podemos hacerlo con o sin máquina de estados.
+
+### Lógica del código sin máquina de estados
+
+El código `blink.py`, es un programa de blink normal. La lógica es una **secuencia fija** que se repite indefinidamente:
+
+1. Ejecutar el comportamiento A (por ejemplo, poner LED en rojo).
+2. Esperar un tiempo (para que el comportamiento sea perceptible).
+3. Ejecutar el comportamiento B (por ejemplo, poner LED en azul).
+4. Esperar un tiempo.
+5. Volver al paso 1.
+
+Características lógicas:
+
+* El “estado” **no existe como dato**, está **implícito** en “en qué parte de la secuencia voy”.
+* La transición entre A y B ocurre **porque el programa llega al siguiente bloque**, no porque haya una decisión explícita.
+* La única “memoria” es el **punto del flujo de ejecución**.
+
+
+### Lógica del código con máquina de estados
+
+El código `StateMachine.py` contiene el código de una máquiande estados general, y en `blink_SM.py` un blink usando una máquina de estados. La lógica se organiza como **(estado actual → ejecutar acción → decidir siguiente estado)**, repetida indefinidamente:
+
+1. Consultar el estado actual `S`.
+2. Ejecutar la acción asociada a `S`.
+3. Determinar el siguiente estado `S'` (normalmente la función del estado lo retorna).
+4. Actualizar el estado actual: `S = S'`.
+5. Volver al paso 1.
+
+Características lógicas:
+
+* El estado **sí existe como dato** (variable interna).
+* La transición es **explícita**: se calcula `S'` y se asigna.
+* El ciclo principal puede quedar constante (solo “dar un paso”), y la variación ocurre en la tabla/diccionario de acciones.
+
+### Tabla comparativa
+
+| Sin máquina de estados                    | Con máquina de estados                                        |
+| ----------------------------------------- | ------------------------------------------------------------- |
+| Repite una secuencia fija A → B → A → B…  | Repite pasos “leer estado → ejecutar → cambiar estado”        |
+| El “estado” está implícito en el flujo    | El “estado” está explícito en una variable                    |
+| Transición por llegar al siguiente bloque | Transición por calcular y asignar el siguiente estado         |
+| Memoria = posición en el código           | Memoria = valor del estado                                    |
+| El `while True` contiene toda la lógica   | El `while True` solo ejecuta `step()` (la lógica vive afuera) |
+
+---
 
 # Posibles Ejemplos
 
