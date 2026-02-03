@@ -7,6 +7,8 @@ Este es el ejemplo fundamental. El tiempo fluye de manera continua e imparable, 
 
 Aquí, la Máquina de Estados actúa como un organizador temporal. Sin ella, tendría que paralizar el procesador con un comando sleep para generar una espera. Con ella, cambio la estrategia: puedo "vigilar" el tiempo activamente. El Estado es quien mira el reloj por mí y decide cuándo es el momento exacto de cerrar una etapa y abrir la siguiente.
 
+### Código: 01_semaforo_temporal.py
+
 ```python
 
 import time
@@ -75,6 +77,7 @@ Si el estado es MODO_ALARMA, la regla es matemática (parpadear rápido).
 
 El botón funciona como un selector que me permite saltar de un reglamento a otro.
 
+### Código: 02_selector_contexto.py
 
 ```python
 import time
@@ -156,6 +159,7 @@ La realidad: El robot reduce la velocidad poco a poco (Proceso gradual).
 
 El estado protege a la mecánica de mis decisiones bruscas.
 
+### Código: 03_cinetica_motor.py
 
 ```python
 
