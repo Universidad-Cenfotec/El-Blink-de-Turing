@@ -15,7 +15,7 @@ def estado_q0():
     return Q1
 
 def estado_q1():
-    ib.pixel = (0, 0, 0)  # azul
+    ib.pixel = (0, 0, 0)  # apagado
     time.sleep(1)
     return Q0
 
