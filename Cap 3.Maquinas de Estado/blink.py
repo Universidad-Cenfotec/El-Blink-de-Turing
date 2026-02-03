@@ -7,5 +7,6 @@ while True:
     ib.pixel = (255, 0, 0)   # rojo
     time.sleep(0.5)
 
-    ib.pixel = (0, 0, 255)   # azul
+    ib.pixel = (0, 0, 0)   # apagado
     time.sleep(0.5)
+
