@@ -121,7 +121,7 @@ Desde esta perspectiva, decir que “un número existe” en computación es dec
 Este es uno de los puntos donde las máquinas de estado dejan de ser un simple recurso técnico y se convierten en una **puerta conceptual**: nos obligan a pensar los objetos matemáticos no como cosas estáticas, sino como **fenómenos dinámicos**, que existen en el tiempo, en el recorrido, en la transición.
 
 ---
-## Un ejemplo sencillo de uso de máquinas de estado
+## El ejemplo más simple: un "blink"
 
 Supongamos que queremos implementar un blink. Un blink es un programa que enciende y apaga un LED de forma intermitente, produciendo un patrón repetitivo en el tiempo.  Podemos hacerlo con o sin máquina de estados.
 
