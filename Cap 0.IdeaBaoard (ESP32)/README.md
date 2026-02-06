@@ -196,9 +196,9 @@ Esto habilita sensores complejos, pantallas, memorias, etc.
 | Pin  | Touch |
 | ---- | ----- |
 | IO4  | Sí    |
-| IO2  | Sí    |
-| IO15 | Sí    |
-| IO13 | Sí    |
+| IO27  | Sí    |
+| IO32 | Sí    |
+| IO33 | Sí    |
 
 Permite interacción **sin botones físicos**, algo pedagógicamente potente.
 
