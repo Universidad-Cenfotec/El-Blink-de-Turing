@@ -1,4 +1,5 @@
 ```python
+
 import time
 import random
 
@@ -18,4 +19,5 @@ while True:
             
     estado_anterior = estado_actual
     time.sleep(0.1)
+
 ```
