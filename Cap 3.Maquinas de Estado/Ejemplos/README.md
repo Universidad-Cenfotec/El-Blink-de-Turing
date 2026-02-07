@@ -290,4 +290,70 @@ class StateMachine:
         self.current_state = next_state
 ```
 
-## 
+## Ejemplo 1 Adaptado: El Semáforo Modular
+
+En la versión anterior, verificábamos el tiempo dentro del bucle principal. Ahora, cada función de estado es responsable de su propio cronómetro simplificando el código. Lo importante aquí es el valor de retorno: si el tiempo no ha pasado, la función retorna su mismo nombre (se queda ahí); si el tiempo pasó, retorna el nombre del siguiente estado.
+
+
+ ### Código: 01_semaforo_sm.py
+ 
+``` python
+import time
+from ideaboard import IdeaBoard
+from StateMachine import StateMachine
+
+ib = IdeaBoard()
+
+Estados
+SIGA = "siga"
+ATENCION = "atencion"
+PARE = "pare"
+
+# Variables globales para el manejo del tiempo
+ultimo_cambio = time.monotonic()
+
+# Funciones de cada Estado
+def estado_siga():
+    global ultimo_cambio
+    ib.pixel = (0, 255, 0)  # Verde
+    
+    # Lógica de transición
+    if time.monotonic() - ultimo_cambio > 3.0:
+        print("Cambio a ATENCION")
+        ultimo_cambio = time.monotonic()
+        return ATENCION  # Transición
+    return SIGA          # Mantener estado
+
+def estado_atencion():
+    global ultimo_cambio
+    ib.pixel = (255, 100, 0) # Amarillo
+    
+    if time.monotonic() - ultimo_cambio > 1.0:
+        print("Cambio a PARE")
+        ultimo_cambio = time.monotonic()
+        return PARE
+    return ATENCION
+
+def estado_pare():
+    global ultimo_cambio
+    ib.pixel = (255, 0, 0)   # Rojo
+    
+    if time.monotonic() - ultimo_cambio > 3.0:
+        print("Reinicio a SIGA")
+        ultimo_cambio = time.monotonic()
+        return SIGA
+    return PARE
+
+# Configuración de la Máquina
+sm = StateMachine(initial_state=SIGA)
+sm.add_state(SIGA, estado_siga)
+sm.add_state(ATENCION, estado_atencion)
+sm.add_state(PARE, estado_pare)
+
+# 4. Loop Principal
+while True:
+    sm.step()
+    time.sleep(0.01)
+
+```
+
