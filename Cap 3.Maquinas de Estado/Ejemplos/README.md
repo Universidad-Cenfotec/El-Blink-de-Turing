@@ -241,3 +241,30 @@ while True:
 ## Importante:
 
 Con este ejemplo he logrado desacoplar la decisión de la ejecución. La Máquina de Estados recibe mi orden instantánea, pero la administra para que el mundo físico la asimile a su propio ritmo. Es la diferencia entre ser un dictador que grita órdenes y un conductor que gestiona el movimiento.
+
+# Implementación Formal: Uso de la Librería StateMachine
+
+### La Librería: StateMachine.py
+
+```python
+
+class StateMachine:
+    def __init__(self, initial_state):
+        self.current_state = initial_state
+        self.state_actions = {}
+
+    def add_state(self, state, action):
+        """
+        Asocia un nombre de estado con una función.
+        La función debe retornar el nombre del siguiente estado.
+        """
+        self.state_actions[state] = action
+
+    def step(self):
+        """
+        Ejecuta la lógica del estado actual y actualiza el estado.
+        """
+        if self.current_state in self.state_actions:
+            next_state = self.state_actions[self.current_state]()
+            self.current_state = next_state
+```
