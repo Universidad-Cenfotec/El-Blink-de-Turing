@@ -509,4 +509,4 @@ while True:
 
 ## Conclusión: El Poder de los Estados
 
-Al finalizar, comprendí la verdadera naturaleza de una Máquina de Estados: es la estructura que impone orden sobre el tiempo y las entradas físicas. Pasé de tener un bucle reactivo a definir un sistema determinista basado en Estados (comportamientos fijos) y Transiciones (reglas de cambio). Esta metodología me permitió controlar procesos complejos —como tiempos de espera o inercia— asegurando que el microcontrolador siempre sepa exactamente en qué etapa se encuentra y qué debe ocurrir para avanzar a la siguiente.
+Al finalizar, comprendí la verdadera naturaleza de una Máquina de Estados: es la estructura que impone orden sobre el tiempo y las entradas físicas. Pasé de tener un bucle reactivo a definir un sistema determinista basado en Estados (comportamientos fijos) y Transiciones (reglas de cambio). Esta metodología me permitió controlar procesos complejos, como tiempos de espera o inercia, asegurando que el microcontrolador siempre sepa exactamente en qué etapa se encuentra y qué debe ocurrir para avanzar a la siguiente.
