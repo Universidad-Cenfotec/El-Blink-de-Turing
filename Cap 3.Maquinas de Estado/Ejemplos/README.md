@@ -244,13 +244,11 @@ Con este ejemplo he logrado desacoplar la decisión de la ejecución. La Máquin
 
 # Implementación Formal: Uso de la Librería StateMachine
 
-Hasta ahora, hemos construido nuestras máquinas de estado utilizando una larga cadena de bloques if y elif dentro de un ciclo infinito. Esta técnica es válida y muy visual para empezar, pero tiene un defecto fundamental: mezcla la gestión del sistema con la lógica del comportamiento.
+Hasta ahora, he construido mis máquinas de estado utilizando una larga cadena de bloques if y elif dentro de un ciclo infinito. Reconozco que esta técnica es válida y visual para empezar, pero noto que tiene un defecto fundamental: mezcla la gestión del sistema con la lógica del comportamiento.
 
-A medida que nuestro sistema crece (imagina un robot con 10 o 20 estados distintos), ese bloque if/elif se convierte en una torre inestable. Si quieres cambiar algo en el estado 15, corres el riesgo de romper accidentalmente el estado 3. El código se vuelve difícil de leer, difícil de mantener y propenso a errores humanos.
+A medida que mi sistema crece (imagino un robot con 10 o 20 estados distintos), ese bloque if/elif se convierte en una torre inestable. Si quiero cambiar algo en el estado 15, corro el riesgo de romper accidentalmente el estado 3. Mi código se vuelve difícil de leer, de mantener y propenso a errores.
 
-Para solucionar esto, cambiaremos la estrategia hacia un diseño modular. La filosofía es simple: Divide y vencerás.
-
-En lugar de tener toda la lógica amontonada en el ciclo principal, aislaremos cada estado en su propia función independiente.
+Para solucionar esto, cambiaré mi estrategia hacia un diseño modular bajo la filosofía de "Divide y vencerás". En lugar de tener toda la lógica amontonada en el ciclo principal, aislaré cada estado en su propia función independiente.
 
 
 ### La Librería: StateMachine.py
@@ -292,7 +290,7 @@ class StateMachine:
 
 ## Ejemplo 1 Adaptado: El Semáforo Modular
 
-En la versión anterior, verificábamos el tiempo dentro del bucle principal. Ahora, cada función de estado es responsable de su propio cronómetro simplificando el código. Lo importante aquí es el valor de retorno: si el tiempo no ha pasado, la función retorna su mismo nombre (se queda ahí); si el tiempo pasó, retorna el nombre del siguiente estado.
+En la versión anterior, verificába el tiempo dentro del bucle principal. Ahora, busco que cada función de estado es responsable de su propio cronómetro simplificando el código. Lo importante aquí es el valor de retorno: si el tiempo no ha pasado, la función retorna su mismo nombre (se queda ahí); si el tiempo pasó, retorna el nombre del siguiente estado.
 
 
  ### Código: 01_semaforo_sm.py
@@ -357,3 +355,158 @@ while True:
 
 ```
 
+## Ejemplo 2 Adaptado: Modos de Operación
+Con este ejemplo demuestro se pueden cómo manejar entradas externas (el botón) dentro de las funciones de estado. Cada modo es tiene una lógica independiente. El estado estado_alarma contiene su propia lógica de parpadeo, totalmente aislada de la luz fija.
+
+### Código: 02_contexto_sm.py
+
+``` python
+import time
+import board
+import keypad
+from ideaboard import IdeaBoard
+from StateMachine import StateMachine
+
+ib = IdeaBoard()
+keys = keypad.Keys((board.IO0,), value_when_pressed=False, pull=True)
+
+# Nombres de Estados
+OFF = "off"
+LUZ_FIJA = "fija"
+ALARMA = "alarma"
+
+# Funciones de Estado
+def estado_off():
+    ib.pixel = (0, 0, 0)
+    
+    # Verificar si se presiona el botón para salir
+    evento = keys.events.get()
+    if evento and evento.pressed:
+        return LUZ_FIJA
+    return OFF
+
+def estado_luz_fija():
+    ib.pixel = (0, 255, 0)
+    
+    evento = keys.events.get()
+    if evento and evento.pressed:
+        return ALARMA
+    return LUZ_FIJA
+
+def estado_alarma():
+    # Lógica interna del estado (parpadeo)
+    if int(time.monotonic() * 5) % 2 == 0:
+        ib.pixel = (255, 0, 0)
+    else:
+        ib.pixel = (0, 0, 0)
+        
+    evento = keys.events.get()
+    if evento and evento.pressed:
+        return OFF
+    return ALARMA
+
+# Configuración
+sm = StateMachine(initial_state=OFF)
+sm.add_state(OFF, estado_off)
+sm.add_state(LUZ_FIJA, estado_luz_fija)
+sm.add_state(ALARMA, estado_alarma)
+
+while True:
+    sm.step()
+    time.sleep(0.01)
+```
+
+## Ejemplo 3 Adaptado: Física e Inercia
+Con este es el ejemplo quiero demostrar la separación más potente de responsabilidades.
+
+La Máquina de Estados (Cerebro): Decide qué queremos hacer (acelerar, frenar). Define la velocidad_objetivo.
+
+El Loop Principal (Cuerpo): Ejecuta la física. Ajusta gradualmente la velocidad_actual para alcanzar el objetivo.
+
+Al usar la librería, busco encapsular las decisiones. El loop principal no toma decisiones, solo obedece las leyes de la física.
+
+## Código: 03_inercia_sm.py
+
+```python
+import time
+import board
+import keypad
+from ideaboard import IdeaBoard
+from StateMachine import StateMachine
+
+ib = IdeaBoard()
+keys = keypad.Keys((board.IO0,), value_when_pressed=False, pull=True)
+
+# Nombres de Estados
+DETENIDO = "detenido"
+ACELERANDO = "acelerando"
+FRENANDO = "frenando"
+
+# Variables de Estado (Intención vs Realidad)
+velocidad_actual = 0.0
+velocidad_objetivo = 0.0  # La máquina controla esto
+
+# Constantes Físicas
+TASA_ACC = 0.05
+TASA_FRENO = 0.10
+
+# Funciones de Estado (El Cerebro)
+def cerebro_detenido():
+    global velocidad_objetivo
+    velocidad_objetivo = 0.0
+    
+    evento = keys.events.get()
+    if evento and evento.pressed:
+        return ACELERANDO
+    return DETENIDO
+
+def cerebro_acelerando():
+    global velocidad_objetivo
+    velocidad_objetivo = 1.0
+    
+    evento = keys.events.get()
+    if evento and evento.pressed:
+        return FRENANDO
+    return ACELERANDO
+
+def cerebro_frenando():
+    global velocidad_objetivo
+    velocidad_objetivo = 0.0
+    
+    # Transición automática: si ya paramos, cambiar estado
+    if velocidad_actual <= 0.01:
+        return DETENIDO
+    return FRENANDO
+
+# Configuración
+sm = StateMachine(initial_state=DETENIDO)
+sm.add_state(DETENIDO, cerebro_detenido)
+sm.add_state(ACELERANDO, cerebro_acelerando)
+sm.add_state(FRENANDO, cerebro_frenando)
+
+print("--- Robot Modular Iniciado ---")
+
+while True:
+    # La máquina decide la intención (velocidad_objetivo)
+    sm.step()
+    
+    # ACTUAR: Simulación física 
+    if velocidad_actual < velocidad_objetivo:
+        velocidad_actual += TASA_ACC
+        if velocidad_actual > velocidad_objetivo: 
+            velocidad_actual = velocidad_objetivo
+            
+    elif velocidad_actual > velocidad_objetivo:
+        velocidad_actual -= TASA_FRENO
+        if velocidad_actual < velocidad_objetivo: 
+            velocidad_actual = velocidad_objetivo
+
+    ib.motor_1.throttle = velocidad_actual
+    ib.motor_2.throttle = velocidad_actual
+    
+    time.sleep(0.05)
+```
+
+## Conclusión: El Poder de los Estados
+
+Al finalizar, comprendí la verdadera naturaleza de una Máquina de Estados: es la estructura que impone orden sobre el tiempo y las entradas físicas. Pasé de tener un bucle reactivo a definir un sistema determinista basado en Estados (comportamientos fijos) y Transiciones (reglas de cambio). Esta metodología me permitió controlar procesos complejos —como tiempos de espera o inercia— asegurando que el microcontrolador siempre sepa exactamente en qué etapa se encuentra y qué debe ocurrir para avanzar a la siguiente.
