@@ -244,27 +244,50 @@ Con este ejemplo he logrado desacoplar la decisión de la ejecución. La Máquin
 
 # Implementación Formal: Uso de la Librería StateMachine
 
+Hasta ahora, hemos construido nuestras máquinas de estado utilizando una larga cadena de bloques if y elif dentro de un ciclo infinito. Esta técnica es válida y muy visual para empezar, pero tiene un defecto fundamental: mezcla la gestión del sistema con la lógica del comportamiento.
+
+A medida que nuestro sistema crece (imagina un robot con 10 o 20 estados distintos), ese bloque if/elif se convierte en una torre inestable. Si quieres cambiar algo en el estado 15, corres el riesgo de romper accidentalmente el estado 3. El código se vuelve difícil de leer, difícil de mantener y propenso a errores humanos.
+
+Para solucionar esto, cambiaremos la estrategia hacia un diseño modular. La filosofía es simple: Divide y vencerás.
+
+En lugar de tener toda la lógica amontonada en el ciclo principal, aislaremos cada estado en su propia función independiente.
+
+
 ### La Librería: StateMachine.py
+Primero, definimos la pequeña librería que vamos a utilizar. Esta pieza de código nos permite registrar nuestros estados y ejecutarlos paso a paso sin ensuciar el código principal.
 
 ```python
 
+# Tomas de Camino
+# Máquina de Estados
+
 class StateMachine:
     def __init__(self, initial_state):
+        # 1. Estado interno actual
         self.current_state = initial_state
+        
+        # 2. Diccionario estado -> función
         self.state_actions = {}
 
+    # 3. Método para agregar asociaciones estado-función
     def add_state(self, state, action):
         """
-        Asocia un nombre de estado con una función.
-        La función debe retornar el nombre del siguiente estado.
+        state: cualquier objeto hashable (str, int, enum)
+        action: función que implementa el comportamiento del estado
+                y retorna el próximo estado
         """
         self.state_actions[state] = action
 
     def step(self):
         """
-        Ejecuta la lógica del estado actual y actualiza el estado.
+        Ejecuta la función asociada al estado actual
+        y avanza al siguiente estado.
         """
-        if self.current_state in self.state_actions:
-            next_state = self.state_actions[self.current_state]()
-            self.current_state = next_state
+        if self.current_state not in self.state_actions:
+            return  # estado sin comportamiento definido
+
+        next_state = self.state_actions[self.current_state]()
+        self.current_state = next_state
 ```
+
+## 
