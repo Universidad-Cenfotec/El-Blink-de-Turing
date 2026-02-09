@@ -85,6 +85,7 @@ Este libro aspira a otra cosa. Quiere ser leído. Quiere provocar curiosidad, ge
 ---
 
 # Capítulos
+0. [Generalidades del IdeaBoard](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap%200.IdeaBaoard%20(ESP32))
 1. [El bit](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap1.%20Bits)
 2. [El Reloj](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%202.EL%20Reloj/README.md)
 3. [Máquinas de estados en el mundo físico](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap%203.Maquinas%20de%20Estado)
