@@ -102,7 +102,7 @@ while True:
 
 
 ## Reflexiones para el lector
--La invención de la dirección: Un sensor de luz o un potenciómetro no saben qué es "subir". Es el microcontrolador el que, al retener el valor_anterior, inventa la noción de dirección. La computación aquí es el acto de comparar dos instantes para generar un concepto nuevo: la tendencia.
+- La invención de la dirección: Un sensor de luz o un potenciómetro no saben qué es "subir". Es el microcontrolador el que, al retener el valor_anterior, inventa la noción de dirección. La computación aquí es el acto de comparar dos instantes para generar un concepto nuevo: la tendencia.
 
 - El sensor como cronómetro: Nota que si reduces el time.sleep(), la diferencia se vuelve más pequeña porque el mundo cambia menos entre lecturas. La percepción de la velocidad del entorno depende directamente de la velocidad de nuestro ciclo de lectura.
 
