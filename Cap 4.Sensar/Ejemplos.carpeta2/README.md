@@ -5,6 +5,8 @@
 En este script, transformamos una lectura analógica continua en una decisión discreta utilizando **fronteras dobles**. El sistema utiliza dos umbrales para evitar que el ruido del sensor provoque cambios erráticos (parpadeos) cuando la señal está cerca del límite. Es la base de la estabilidad en sistemas de control.
 
 ### Código: 01_histeresis.py
+(Este fio lo probó porque yo no tengo potenciómetro y fue un caso terrible en wokwi que no funcionó -atte:aylin)
+
 ```python
 import machine
 import time
