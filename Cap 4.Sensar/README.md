@@ -1,6 +1,6 @@
 # Sensar es Computar
 
-Para que las computadoras puedan responder ante nosotros y percibir su entorno, necesitan poder percibirlo. La forma de hacerlo es a través de sensores. Cualquier fenómeno físico que se pueda medir, de alguna manera se puede convertir a pulsos eléctricos y así poder ser sensado por una computadora.
+Para que las computadoras puedan responder ante nosotros y percibir su entorno, necesitan poder interpretarlo. La forma de hacerlo es a través de sensores. Cualquier fenómeno físico que se pueda medir, de alguna manera se puede convertir a pulsos eléctricos y así poder ser sensado por una computadora.
 
 Así, el teclado de la computadora y el mouse son sensores de acciones directas de las personas. Cada pulsación de una tecla se convierte en un pulso eléctrico que la computadora asocia con una tecla en particular, lo que permite registrar esa entrada, ya sea para escribir o para ejecutar alguna acción. Del mismo modo, el mouse percibe movimientos en un plano X-Y y los traslada a una representación en pantalla donde observamos el movimiento de una flecha.
 
