@@ -1,5 +1,5 @@
 
-# Ejemplos de capítulo 4: Sensar
+# Ejemplos del capítulo 4: Sensar
 
 ## Ejemplo 1: La Emergencia del Evento (Umbrales y Memoria)
 En este script, transformamos una lectura analógica continua en una decisión discreta. El sistema no reacciona a cada pequeña fluctuación del 
