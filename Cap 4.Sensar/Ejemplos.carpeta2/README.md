@@ -92,3 +92,107 @@ while True:
 - El sensor como cronómetro: Nota que si reduces el time.sleep(), la diferencia se vuelve más pequeña porque el mundo cambia menos entre lecturas. La percepción de la velocidad del entorno depende directamente de la velocidad de nuestro ciclo de lectura.
 
 - La historia mínima: Este sistema tiene una memoria de exactamente un paso. Es el nivel más básico de conciencia temporal: saber qué acaba de pasar para entender qué está pasando ahora.
+
+# Ejemplo 3: Validación Sensorial (Construyendo Certeza)
+En este ejemplo, aplico la idea de que "una sola lectura no es la realidad". Los sensores a veces mienten o detectan ecos falsos. Por eso, mi código no reacciona impulsivamente.
+
+Utilizo una Máquina de Estados (concepto anteriormente desarrollado) para comportarme como un juez: no dicto sentencia (encender la luz) hasta no haber acumulado suficiente evidencia. El tiempo y la repetición son mis herramientas para distinguir entre el "ruido" y un "evento real".
+
+### Código: 03_validacion_sensorial.py
+
+```python
+
+#Fio-Perez
+#Universidad Cenfotec
+
+import board
+from time import sleep
+from hcsr04 import HCSR04
+from ideaboard import IdeaBoard
+from StateMachine import StateMachine   
+
+# --- Configuración ---
+ib = IdeaBoard()
+sonar = HCSR04(board.IO26, board.IO25)
+
+# --- Memoria ---
+contador = 0
+META = 5   # Necesito 5 lecturas seguidas para "creer"
+
+# --- Estados ---
+
+def estado_vacio():
+    global contador
+    contador = 0  # Reinicio la cuenta, no hay nadie
+    
+    try:
+        dist = sonar.dist_cm()
+    except RuntimeError:
+        return "vacio"
+
+    print(f"[VACIO] Lectura: {dist:.1f}")
+
+    # Si veo algo cerca, paso a verificar si es real
+    if 0 < dist < 30:
+        return "verificando"
+        
+    return "vacio"
+
+
+def estado_verificando():
+    global contador
+    
+    try:
+        dist = sonar.dist_cm()
+    except RuntimeError:
+        return "vacio" # Si falla el sensor, vuelvo a empezar
+
+    # Si el objeto desaparece, fue una falsa alarma
+    if dist > 30:
+        return "vacio"
+
+    # Si sigue ahí, sumo un punto de confianza
+    contador += 1
+    print(f"[VERIFICANDO] Confianza: {contador}/{META}")
+
+    # Si llego a la meta, es un objeto real
+    if contador >= META:
+        return "confirmado"
+
+    return "verificando"
+
+
+def estado_confirmado():
+    # Ya estoy seguro, así que actúo
+    ib.pixel = (255, 0, 0)
+    
+    try:
+        dist = sonar.dist_cm()
+    except RuntimeError:
+        dist = 0
+
+    print(f"[CONFIRMADO] Objeto presente")
+
+    # Margen de seguridad: solo apago si se aleja claramente (>35)
+    if dist > 35:
+        ib.pixel = (0, 0, 0)
+        return "vacio"
+
+    return "confirmado"
+
+# --- Ejecución ---
+
+sm = StateMachine(initial_state="vacio")
+sm.add_state("vacio", estado_vacio)
+sm.add_state("verificando", estado_verificando)
+sm.add_state("confirmado", estado_confirmado)
+
+print("--- Validación Iniciada ---")
+
+while True:
+    sm.step()
+    sleep(0.1) # Cada ciclo es un paso en el tiempo
+```
+
+## Reflexiones para el lector:
+Con esto logro ver que sensar no es un acto instantáneo, sino un proceso. Al obligarme a verificar 5 veces antes de actuar, he creado un sistema que tiene "paciencia". He transformado una serie de lecturas ruidosas en una decisión sólida. Computar, en este caso, significa darle estabilidad al caos del mundo físico.
