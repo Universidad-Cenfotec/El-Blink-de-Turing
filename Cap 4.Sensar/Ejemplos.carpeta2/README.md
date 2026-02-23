@@ -8,49 +8,56 @@ En este script, transformamos una lectura analógica continua en una decisión d
 (Este fio lo probó porque yo no tengo potenciómetro y fue un caso terrible en wokwi que no funcionó -atte:aylin)
 
 ```python
-import machine
+import board
 import time
+import analogio
+import digitalio
 
-# Configuración de hardware nativo
-sensor = machine.ADC(machine.Pin(34))
-sensor.atten(machine.ADC.ATTN_11DB) # Rango 0-3.6V
-led = machine.Pin(2, machine.Pin.OUT)
+# 1. Configuración de Hardware al estilo CircuitPython
+# Usamos el pin IO34 para el sensor y el LED interno de la placa
+sensor = analogio.AnalogIn(board.IO34)
+led = digitalio.DigitalInOut(board.LED)
+led.direction = digitalio.Direction.OUTPUT
 
-# Fronteras (histéresis) - Escala ADC 0-4095
-THRESHOLD_HIGH = 3000  # Umbral para activar (Ascenso)
-THRESHOLD_LOW  = 1000  # Umbral para desactivar (Descenso)
+# 2. Fronteras (Histéresis) - Escala 0-65535
+# Convertimos los valores de MicroPython (0-4095) a 16 bits
+# 3000 -> aprox 48000 | 1000 -> aprox 16000
+THRESHOLD_HIGH = 48000  
+THRESHOLD_LOW  = 16000  
 
-# El sistema recuerda el pasado para entender el presente
+# Memoria del sistema
 estado_previo = False
 
+print("Sistema de Histéresis Iniciado...")
+
 while True:
-    # 1. Muestreo: Captura de un instante del mundo continuo
-    lectura_actual = sensor.read()
+    # A. Muestreo: Lectura en rango 0-65535
+    lectura_actual = sensor.value
     
-    # 2. Discretización con memoria (histéresis)
-    estado_actual = estado_previo  # por defecto, conservar estado
+    # B. Lógica de Histéresis (Discretización con memoria)
+    estado_actual = estado_previo  # Mantener estado por defecto
     
     if estado_previo:
+        # Si estaba encendido, solo se apaga si baja del umbral inferior
         if lectura_actual < THRESHOLD_LOW:
             estado_actual = False
     else:
+        # Si estaba apagado, solo se enciende si supera el umbral superior
         if lectura_actual > THRESHOLD_HIGH:
             estado_actual = True
     
-    # 3. Detección de Transición: Historia vs Presente
+    # C. Detección de Transición (Eventos)
     if estado_actual != estado_previo:
         if estado_actual:
             print(f"Evento: Umbral superado ({lectura_actual}) - Ascenso")
         else:
             print(f"Evento: Por debajo del umbral ({lectura_actual}) - Descenso")
     
-    # 4. Actualización de la memoria
+    # D. Actualización de salida y memoria
+    led.value = estado_actual
     estado_previo = estado_actual
     
-    # Visualización del estado lógico en el LED interno
-    led.value(estado_actual)
-    
-    # Ritmo de muestreo
+    # Pequeña pausa para estabilidad
     time.sleep(0.01)
 ```
 ## Ejemplo 2: La construcción de la memoria (Tendencia y Variación)
