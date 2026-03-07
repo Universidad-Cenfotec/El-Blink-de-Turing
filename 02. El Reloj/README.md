@@ -90,6 +90,14 @@ Conceptos que se aprenden con este proyecto
 ### Ejemplo de código en CircuitPython
 
 ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 import board
 from ideaboard import IdeaBoard
