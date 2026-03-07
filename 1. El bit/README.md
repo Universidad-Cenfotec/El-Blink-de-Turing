@@ -82,30 +82,13 @@ En ese sentido, trabajar con el ESP32 no es muy distinto a girar una manivela, d
 ---
 
 # Lecturas Sugeridas
+next_t = time.monotonic()
+prev_btn = True
 
-**[1]** A. A. Lovelace, “Notes by the Translator,” in *Sketch of the Analytical Engine Invented by Charles Babbage*, London, UK, 1843.
-
-**Por qué leerlo**
-Es el primer texto donde aparece claramente la idea de programa. Permite entender que la computación no nace con la electrónica, sino con la noción de manipulación simbólica.
-
-**[2]** G. Boole, *An Investigation of the Laws of Thought*. London, UK: Walton and Maberly, 1854.
-
-**Por qué leerlo**
-Es la raíz lógica de toda la computación digital. No es necesario leerlo completo, pero sí comprender la idea central de lógica como álgebra.
-
-**[3]** C. E. Shannon, “A Symbolic Analysis of Relay and Switching Circuits,” *Trans. AIEE*, vol. 57, pp. 713–723, 1938.
-
-**Por qué leerlo**
-Es el texto que conecta directamente lógica booleana con circuitos físicos. Aquí nace la computadora digital como posibilidad técnica real.
-
-**[4]** J. von Neumann, “First Draft of a Report on the EDVAC,” 1945.
-
-**Por qué leerlo**
-Introduce la arquitectura de programa almacenado. Permite entender por qué datos y programas son lo mismo dentro de la computadora.
-
-**[5]** M. Davis, *The Universal Computer: The Road from Leibniz to Turing*. New York, NY, USA: W. W. Norton & Company, 2000.
-
-**Por qué leerlo**
+while True:
+    now = time.monotonic()
+    if now < next_t:
+        time.sleep(0.0005)
         continue
 
     # Asegura paso discreto, si hay atraso se recupera sin acelerar de golpe
