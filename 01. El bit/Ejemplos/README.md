@@ -15,6 +15,14 @@ Para resolver este problema implemento **histéresis**: doto al sistema de una f
 **Código:** `01_histeresis.py`
 
 ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 import board
 from ideaboard import IdeaBoard
@@ -69,6 +77,14 @@ Aquí alterno manualmente esos dos estados tan rápido que tu ojo percibe un cam
 
 **Código:** `02_pwm_manual.py`
  ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 import math
 from ideaboard import IdeaBoard
@@ -115,6 +131,14 @@ En este código, obligo a esa realidad continua a dividirse en dos únicos estad
 **Código:** 03_bit_Ultrasónico.py
 
  ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import board
 import time
 from ideaboard import IdeaBoard
@@ -169,6 +193,14 @@ El microcontrolador traduce estos voltajes mediante el ADC en un valor crudo (0-
 **Código:** 04_bit_Infrarrojos.py
 
  ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import board
 from time import sleep
 from ideaboard import IdeaBoard
