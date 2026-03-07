@@ -87,9 +87,9 @@ Este libro aspira a otra cosa. Quiere ser leído. Quiere provocar curiosidad, ge
 # Capítulos
 00. [Generalidades del IdeaBoard](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/00.%20Generalidades%20del%20IdeaBoard)
 01. [El bit](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/01.%20El%20bit)
-02. [El Reloj](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%202.EL%20Reloj/README.md)
-03. [Máquinas de estados en el mundo físico](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap%203.Maquinas%20de%20Estado)
-04. [Sensar es computar](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap%204.Sensar)
+02. [El Reloj](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/02.%20El%20Reloj)
+03. [Máquinas de estados en el mundo físico](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/03.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico)
+04. [Sensar es computar](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/04.%20Sensar%20es%20computar)
 05. Actuar: del algoritmo al efecto físico
 06. Algoritmos clásicos en hardware
 07. La máquina de Turing en un microcontrolador
