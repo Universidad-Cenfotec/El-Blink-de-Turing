@@ -7,6 +7,14 @@ En este script, transformamos una lectura analógica continua en una decisión d
 ### Código: 01_histeresis.py
 
 ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import board
 import time
 import analogio
@@ -66,6 +74,14 @@ En este ejemplo, el sistema no solo mira el valor actual, sino que lo compara co
 ### Código: 02_memoria_tendencia.py
 
 ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import machine
 import time
 
@@ -123,8 +139,13 @@ Utilizo una Máquina de Estados (concepto anteriormente desarrollado) para compo
 
 ```python
 
-#Fio-Perez
-#Universidad Cenfotec
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
 
 import board
 from time import sleep
