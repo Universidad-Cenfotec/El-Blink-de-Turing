@@ -135,6 +135,14 @@ Para estudiantes, **no es necesario leerlos completos ni en orden histórico**. 
 Cópialo como `code.py`
 
 ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 import board
 from ideaboard import IdeaBoard
