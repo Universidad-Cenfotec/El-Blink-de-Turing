@@ -35,3 +35,131 @@ Con esto, la computadora pasó a entenderse como una máquina de estados discret
 ## Aparece el Bit
 
 El bit, abreviatura de binary digit, es la unidad mínima de información en este nuevo paradigma. No representa una cantidad, sino una distinción. Un antes y un después. Un sí o un no. Internamente, mediante transistores, la computadora almacena y transforma estos bits en unidades de tiempo bien definidas.
+
+A partir de bits se construyen números, símbolos, imágenes y sonidos. Ocho bits permiten representar 256 valores distintos. Dieciséis bits, 65 536. Con pocos bits se pueden representar números suficientemente grandes para toda la matemática práctica que conocemos. La potencia de la computación digital no proviene de la continuidad ni de la precisión infinita, sino de la combinación disciplinada de decisiones simples.
+
+La computación digital no nace de la abundancia, sino de la restricción. De aceptar un mundo físico imperfecto y diseñar sistemas que sobrevivan a él. El bit no es el origen de la computación, es la construcción del mundo desde su representación.
+
+Aquí tienes una **lista corta de lecturas indispensables**, pensada específicamente para **estudiantes**, no como erudición histórica sino como **soporte conceptual directo** para entender de dónde viene la computación discreta y por qué el bit existe. He priorizado textos legibles, fundacionales y con alto valor formativo.
+
+---
+
+# Del bit al microcontrolador
+
+## Computación discreta en el ESP32 y la IdeaBoard
+
+Todo lo que se ha dicho hasta ahora puede parecer abstracto o lejano, pero en realidad está ocurriendo, en este mismo momento, dentro del microcontrolador que tenemos en las manos. El **ESP32**, diseñado por Espressif Systems, no es una excepción a la historia de la computación discreta. Es su consecuencia directa.
+
+El ESP32 es, en esencia, una máquina de estados discretos gobernada por un reloj. Internamente no “mide” el mundo de forma continua ni “entiende” voltajes como magnitudes físicas. Todo lo que ocurre dentro del microcontrolador termina convertido en bits, procesado como decisiones, almacenado como estados y ejecutado en pasos de tiempo bien definidos.
+
+## El reloj
+
+El reloj del microcontrolador cumple un rol similar al de la manivela en las máquinas mecánicas. Cada pulso de reloj marca un paso de cómputo. No hay operaciones fuera del tiempo. Cada instrucción, cada lectura, cada escritura ocurre sincronizada con ese ritmo interno. El tiempo deja de ser una abstracción y se convierte en parte del mecanismo mismo de la computación.
+
+## Entradas digitales
+
+Cuando leemos una entrada digital en la IdeaBoard, no estamos midiendo un voltaje exacto. Estamos preguntando si el voltaje está por encima o por debajo de un umbral. El mundo físico, continuo y ruidoso, se reduce a una decisión. Verdadero o falso. 1 o 0. Aquí aparece el bit de manera explícita. La lógica de Boole se manifiesta como una condición eléctrica.
+
+## ADC y entradas analógicas
+
+Las entradas analógicas parecen, a primera vista, romper con esta lógica discreta. El ADC convierte un voltaje continuo en un número. Pero lo que realmente hace es **muestrear** el mundo. En instantes discretos de tiempo, el voltaje se cuantiza en uno de un número finito de valores posibles. No hay continuidad infinita. Hay tiempo discreto y niveles discretos. El ADC no elimina el bit. Lo utiliza de forma intensiva.
+
+## PWM
+
+El PWM es otro ejemplo poderoso de esta filosofía. No genera un voltaje analógico real. Genera una señal digital que alterna entre 0 y 1, pero controlando el tiempo que permanece en cada estado. De nuevo, la continuidad aparente emerge de la discreción. Es el mismo principio por el cual una sucesión rápida de pasos mecánicos puede parecer un movimiento suave.
+
+## De la lógica al movimiento
+
+Cuando un motor gira, un LED cambia de brillo o un servo se posiciona, no estamos viendo continuidad pura. Estamos viendo el resultado de decisiones binarias ejecutadas rápidamente. El microcontrolador no “siente” el mundo como nosotros. Lo discretiza, lo decide y actúa sobre él.
+
+## La IdeaBoard como máquina pedagógica
+
+La IdeaBoard no es solo una placa. Es una representación tangible de toda esta historia. Cada pin, cada sensor y cada actuador materializa la transición del engranaje al bit. Programar la IdeaBoard no es aprender sintaxis. Es aprender a pensar el mundo como una secuencia de estados, decisiones y tiempos.
+
+En ese sentido, trabajar con el ESP32 no es muy distinto a girar una manivela, diseñar una tabla lógica o escribir una ecuación. Es continuar una tradición. La computación discreta no es una limitación del hardware moderno. Es la forma en que hemos aprendido a hacer cálculo largo y confiable en un mundo físico imperfecto.
+
+
+---
+
+# Lecturas Sugeridas
+
+**[1]** A. A. Lovelace, “Notes by the Translator,” in *Sketch of the Analytical Engine Invented by Charles Babbage*, London, UK, 1843.
+
+**Por qué leerlo**
+Es el primer texto donde aparece claramente la idea de programa. Permite entender que la computación no nace con la electrónica, sino con la noción de manipulación simbólica.
+
+**[2]** G. Boole, *An Investigation of the Laws of Thought*. London, UK: Walton and Maberly, 1854.
+
+**Por qué leerlo**
+Es la raíz lógica de toda la computación digital. No es necesario leerlo completo, pero sí comprender la idea central de lógica como álgebra.
+
+**[3]** C. E. Shannon, “A Symbolic Analysis of Relay and Switching Circuits,” *Trans. AIEE*, vol. 57, pp. 713–723, 1938.
+
+**Por qué leerlo**
+Es el texto que conecta directamente lógica booleana con circuitos físicos. Aquí nace la computadora digital como posibilidad técnica real.
+
+**[4]** J. von Neumann, “First Draft of a Report on the EDVAC,” 1945.
+
+**Por qué leerlo**
+Introduce la arquitectura de programa almacenado. Permite entender por qué datos y programas son lo mismo dentro de la computadora.
+
+**[5]** M. Davis, *The Universal Computer: The Road from Leibniz to Turing*. New York, NY, USA: W. W. Norton & Company, 2000.
+
+**Por qué leerlo**
+        continue
+
+    # Asegura paso discreto, si hay atraso se recupera sin acelerar de golpe
+    while now >= next_t:
+        next_t += DT
+
+    # Lecturas
+    v = adc_filtered()
+    b = read_button_debounced()
+
+    # Evento de borde, botón soltado a presionado
+    if prev_btn and (not b):
+        toggle_mode()
+    prev_btn = b
+
+    # Umbral lógico derivado de lo analógico
+    bit_from_world = update_logic_from_adc(v)
+
+    # Selección de objetivo según modo
+    if mode == MODE_MANUAL:
+        # Pot controla velocidad, 0..65535 a -1..1
+        target_throttle = (v / 65535.0) * 2.0 - 1.0
+    else:
+        # Un pulso que depende del reloj interno
+        pulse_phase += (2.0 * 3.14159265) * (PULSE_HZ * DT)
+        if pulse_phase > (2.0 * 3.14159265):
+            pulse_phase -= (2.0 * 3.14159265)
+
+        # Pulso binario hecho con tiempo, discreto en decisiones
+        target_throttle = 0.8 if (pulse_phase < 3.14159265) else -0.8
+
+    # Rampa suave, control discreto
+    max_step = SLEW_PER_SEC * DT
+    diff = target_throttle - current_throttle
+    diff = clamp(diff, -max_step, max_step)
+    current_throttle += diff
+
+    # PWM a motor, internamente son conmutaciones
+    ib.motor_1.throttle = current_throttle
+
+    # NeoPixel como visualización de estado interno
+    # Verde cuando bit_from_world True
+    # Rojo cuando False
+    # Azul indica modo PULSE
+    if mode == MODE_PULSE:
+        ib.pixel = (0, 0, 30) if bit_from_world else (30, 0, 30)
+    else:
+        ib.pixel = (0, 30, 0) if bit_from_world else (30, 0, 0)
+```
+
+## Cómo leer este ejemplo con las ideas del capítulo
+
+* El reloj no es adorno, es el mecanismo que convierte la ejecución en una secuencia de pasos
+* El ADC convierte un fenómeno continuo en números discretos, además lo hace en instantes discretos
+* La histéresis muestra algo crucial, no basta un umbral, hay que diseñar robustez contra ruido
+* El PWM muestra continuidad emergente, no hay voltaje fino, hay tiempo repartido entre 0 y 1
+* La máquina de estados muestra que el comportamiento del sistema es una coreografía de decisiones.
