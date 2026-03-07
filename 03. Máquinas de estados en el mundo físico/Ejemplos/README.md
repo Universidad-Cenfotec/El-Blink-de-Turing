@@ -6,6 +6,14 @@ Este es el ejemplo fundamental. El tiempo fluye de manera continua e imparable, 
 Aquí, la Máquina de Estados actúa como un organizador temporal. Sin ella, tendría que paralizar el procesador con un comando sleep para generar una espera. Con ella, cambio la estrategia: puedo "vigilar" el tiempo activamente. El Estado es quien mira el reloj por mí y decide cuándo es el momento exacto de cerrar una etapa y abrir la siguiente.
 ### Código: 01_semaforo_temporal.py
 ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 from ideaboard import IdeaBoard
 # Inicialización
@@ -58,6 +66,15 @@ Si el estado es MODO_ALARMA, la regla es matemática (parpadear rápido).
 El botón funciona como un selector que me permite saltar de un reglamento a otro.
 ### Código: 02_selector_contexto.py
 ```python
+
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 import board
 import keypad
@@ -121,6 +138,14 @@ La realidad: El robot reduce la velocidad poco a poco (Proceso gradual).
 El estado protege a la mecánica de mis decisiones bruscas.
 ### Código: 03_cinetica_motor.py
 ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 import board
 import keypad
@@ -221,6 +246,14 @@ En la versión anterior, verificába el tiempo dentro del bucle principal. Ahora
  ### Código: 01_semaforo_sm.py
  
 ``` python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 from ideaboard import IdeaBoard
 from StateMachine import StateMachine
@@ -274,6 +307,14 @@ while True:
 Con este ejemplo demuestro se pueden cómo manejar entradas externas (el botón) dentro de las funciones de estado. Cada modo es tiene una lógica independiente. El estado estado_alarma contiene su propia lógica de parpadeo, totalmente aislada de la luz fija.
 ### Código: 02_contexto_sm.py
 ``` python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 import board
 import keypad
@@ -328,6 +369,14 @@ El Loop Principal (Cuerpo): Ejecuta la física. Ajusta gradualmente la velocidad
 Al usar la librería, busco encapsular las decisiones. El loop principal no toma decisiones, solo obedece las leyes de la física.
 ## Código: 03_inercia_sm.py
 ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 import board
 import keypad
