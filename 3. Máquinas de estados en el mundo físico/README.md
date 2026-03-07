@@ -28,7 +28,7 @@ Un ejemplo clásico, el semáforo.
 Un semáforo puede estar en verde, amarillo o rojo. El sistema inicia en rojo, se mantiene así por un tiempo, luego pasa a verde, se mantiene, y luego pasa a amarillo donde parpadea —encendiéndose y apagándose— un número determinado de veces, y finalmente pasa a rojo nuevamente. Después, el ciclo se repite.
 
 Vámoslo en el siguiente diagrama,
-<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig3.png?raw=true" width="400">
+<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/3.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig3.png?raw=true" width="400">
 
 Las reglas de su funcionamiento pueden describirse de la siguiente manera:
 
