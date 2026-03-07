@@ -86,7 +86,7 @@ Desde aquí se abre una idea aún más fuerte. Podemos pensar que un número no 
 
 En esta visión, no afirmamos la existencia de un número porque lo enunciamos, sino porque podemos describir un procedimiento que lo genera. La máquina no verifica propiedades al final; las encarna en su estructura. Construir números y reconocer sus propiedades se vuelve, así, un mismo acto.
 
-<img src="https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/blob/main/Cap%203.Maquinas%20de%20Estado/cap3fig4.png?raw=true" width="400">
+<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/3.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig4.png?raw=true" width="400">
 
 El autómata de la figura es un buen punto de partida. Este autómata reconoce —o, si se quiere, computa— los múltiplos de 3 escritos en binario. Tiene tres estados: $q_0$, $q_1$ y $q_2$. Intuitivamente, cada estado representa el **residuo módulo 3** del número que se ha leído hasta ese momento.
 
