@@ -1,3 +1,0 @@
-# Universalidad
-
-## En desarrollo 
