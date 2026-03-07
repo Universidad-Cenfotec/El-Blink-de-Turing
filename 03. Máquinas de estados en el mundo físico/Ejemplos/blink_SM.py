@@ -1,3 +1,11 @@
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 from ideaboard import IdeaBoard
 from StateMachine import StateMachine
