@@ -1,5 +1,10 @@
-# Tomas de Camino
-# Máquina de Estados
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
 
 class StateMachine:
     def __init__(self, initial_state):
@@ -28,3 +33,4 @@ class StateMachine:
 
         next_state = self.state_actions[self.current_state]()
         self.current_state = next_state
+
