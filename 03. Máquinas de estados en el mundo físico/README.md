@@ -6,14 +6,14 @@ Imagina que acabas de aprobar el examen práctico de licencia de conducir. El si
 
 Una vez que entrego los papeles en la ventanilla 1, te dan un nuevo documento y te indican que pase a la ventanilla 2, donde  toman la fotografía y registran la firma. Finalmente, piden que te sientes en la sala de espera; allí llamarán por el nombre para pasar a la ventanilla 3 y recoger el documento final.
 
-<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/3.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig1.jpeg?raw=true" width="400">
+<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/03.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig1.jpeg?raw=true" width="400">
 
 
 Cada una de estas ventanillas requiere que uno tenga cierta información y representa un fase, o me dicho **estado** en el que te encuentras dentro del proceso. Además, cada ventanilla (cada estado) solo puede ocurrir si antes estuviste en un estado anterior y se tiene la información necesaria para pasar a otra ventanilla (estado). Hay también un **estado inicial**, donde comienza todo el proceso.
 
 Visto de forma general, este procedimiento puede representarse de manera esquemática,
 
-<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/3.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig2.png?raw=true" width="400">
+<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/03.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig2.png?raw=true" width="400">
 
 A cada círculo lo llamo **nodo**, y representa un estado (una ventanilla, en este caso). Cada línea indica cómo se pasa de un nodo —o estado— a otro. Así, cuando llego a la oficina con los papeles del examen de manejo, comienzo en el estado 1. La flecha que sale del estado 1 y regresa al mismo estado se denomina *loop*, e indica que me mantengo en ese estado, simplemente esperando mi turno.
 
@@ -28,7 +28,7 @@ Un ejemplo clásico, el semáforo.
 Un semáforo puede estar en verde, amarillo o rojo. El sistema inicia en rojo, se mantiene así por un tiempo, luego pasa a verde, se mantiene, y luego pasa a amarillo donde parpadea —encendiéndose y apagándose— un número determinado de veces, y finalmente pasa a rojo nuevamente. Después, el ciclo se repite.
 
 Vámoslo en el siguiente diagrama,
-<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/3.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig3.png?raw=true" width="400">
+<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/03.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig3.png?raw=true" width="400">
 
 Las reglas de su funcionamiento pueden describirse de la siguiente manera:
 
@@ -86,7 +86,7 @@ Desde aquí se abre una idea aún más fuerte. Podemos pensar que un número no 
 
 En esta visión, no afirmamos la existencia de un número porque lo enunciamos, sino porque podemos describir un procedimiento que lo genera. La máquina no verifica propiedades al final; las encarna en su estructura. Construir números y reconocer sus propiedades se vuelve, así, un mismo acto.
 
-<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/3.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig4.png?raw=true" width="400">
+<img src="https://raw.githubusercontent.com/Universidad-Cenfotec/El-Blink-de-Turing/main/03.%20M%C3%A1quinas%20de%20estados%20en%20el%20mundo%20f%C3%ADsico/cap3fig4.png?raw=true" width="400">
 
 El autómata de la figura es un buen punto de partida. Este autómata reconoce —o, si se quiere, computa— los múltiplos de 3 escritos en binario. Tiene tres estados: $q_0$, $q_1$ y $q_2$. Intuitivamente, cada estado representa el **residuo módulo 3** del número que se ha leído hasta ese momento.
 
