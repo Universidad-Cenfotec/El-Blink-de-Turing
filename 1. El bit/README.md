@@ -82,6 +82,157 @@ En ese sentido, trabajar con el ESP32 no es muy distinto a girar una manivela, d
 ---
 
 # Lecturas Sugeridas
+
+**[1]** A. A. Lovelace, “Notes by the Translator,” in *Sketch of the Analytical Engine Invented by Charles Babbage*, London, UK, 1843.
+
+**Por qué leerlo**
+Es el primer texto donde aparece claramente la idea de programa. Permite entender que la computación no nace con la electrónica, sino con la noción de manipulación simbólica.
+
+**[2]** G. Boole, *An Investigation of the Laws of Thought*. London, UK: Walton and Maberly, 1854.
+
+**Por qué leerlo**
+Es la raíz lógica de toda la computación digital. No es necesario leerlo completo, pero sí comprender la idea central de lógica como álgebra.
+
+**[3]** C. E. Shannon, “A Symbolic Analysis of Relay and Switching Circuits,” *Trans. AIEE*, vol. 57, pp. 713–723, 1938.
+
+**Por qué leerlo**
+Es el texto que conecta directamente lógica booleana con circuitos físicos. Aquí nace la computadora digital como posibilidad técnica real.
+
+**[4]** J. von Neumann, “First Draft of a Report on the EDVAC,” 1945.
+
+**Por qué leerlo**
+Introduce la arquitectura de programa almacenado. Permite entender por qué datos y programas son lo mismo dentro de la computadora.
+
+**[5]** M. Davis, *The Universal Computer: The Road from Leibniz to Turing*. New York, NY, USA: W. W. Norton & Company, 2000.
+
+**Por qué leerlo**
+Da una visión integrada desde engranajes, lógica y matemática hasta computación moderna, ideal para estudiantes que necesitan contexto amplio.
+
+### Recomendación pedagógica
+
+Para estudiantes, **no es necesario leerlos completos ni en orden histórico**. Una ruta sugerida sería:
+
+1. Lovelace (idea de programa)
+2. Boole (lógica como cálculo)
+3. Shannon (lógica como circuito)
+4. von Neumann (organización de la máquina)
+
+
+# Posible ejemplo
+
+### Qué hace el programa
+
+* Corre un lazo de control a frecuencia fija, por ejemplo 200 Hz
+* Lee un potenciómetro por ADC
+* Filtra la lectura con promedio móvil, para domar ruido y mostrar el mundo continuo volviéndose estable al discretizarse
+* Convierte parte del rango del potenciómetro en una decisión booleana con histéresis, para evitar parpadeos por ruido alrededor del umbral
+* Usa un botón digital para alternar modos, con antirrebote
+* Controla un motor por PWM con rampa suave, evitando saltos bruscos
+* Usa el NeoPixel como osciloscopio pedagógico del estado interno
+
+## Código
+
+Cópialo como `code.py`
+
+```python
+import time
+import board
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+
+# Entradas
+pot = ib.AnalogIn(board.IO33)          # Potenciómetro o entrada analógica
+btn = ib.DigitalIn(board.IO27, ib.UP)  # Botón, asume pull-up interno
+
+# Parámetros de tiempo
+HZ = 200
+DT = 1.0 / HZ
+
+# Promedio móvil para ADC
+WINDOW = 16
+adc_buf = [0] * WINDOW
+adc_sum = 0
+adc_i = 0
+
+# Histéresis para umbral lógico desde ADC
+TH_HIGH = 42000
+TH_LOW  = 38000
+logic_state = False
+
+# Antirrebote botón
+debounced = True
+last_raw = True
+last_change = time.monotonic()
+DEBOUNCE_S = 0.03
+
+# Máquina de estados
+MODE_MANUAL = 0
+MODE_PULSE  = 1
+mode = MODE_MANUAL
+
+# Control PWM para motor
+current_throttle = 0.0
+target_throttle = 0.0
+SLEW_PER_SEC = 1.5  # rapidez máxima de cambio de throttle por segundo
+
+# Pulso en modo PULSE
+pulse_phase = 0.0
+PULSE_HZ = 0.5  # pulso lento para que se note, puedes subirlo
+
+def clamp(x, a, b):
+    if x < a:
+        return a
+    if x > b:
+        return b
+    return x
+
+def adc_filtered():
+    global adc_sum, adc_i
+    raw = pot.value  # 0..65535
+
+    adc_sum -= adc_buf[adc_i]
+    adc_buf[adc_i] = raw
+    adc_sum += raw
+
+    adc_i += 1
+    if adc_i >= WINDOW:
+        adc_i = 0
+
+    return adc_sum // WINDOW
+
+def update_logic_from_adc(v):
+    global logic_state
+    if logic_state:
+        if v < TH_LOW:
+            logic_state = False
+    else:
+        if v > TH_HIGH:
+            logic_state = True
+    return logic_state
+
+def read_button_debounced():
+    global debounced, last_raw, last_change
+    raw = btn.value  # con pull-up, False es presionado
+
+    now = time.monotonic()
+    if raw != last_raw:
+        last_raw = raw
+        last_change = now
+
+    if (now - last_change) >= DEBOUNCE_S:
+        debounced = raw
+
+    return debounced
+
+def toggle_mode():
+    global mode
+    if mode == MODE_MANUAL:
+        mode = MODE_PULSE
+    else:
+        mode = MODE_MANUAL
+
+# Reloj discreto, lazo a pasos fijos
 next_t = time.monotonic()
 prev_btn = True
 
@@ -146,3 +297,6 @@ while True:
 * La histéresis muestra algo crucial, no basta un umbral, hay que diseñar robustez contra ruido
 * El PWM muestra continuidad emergente, no hay voltaje fino, hay tiempo repartido entre 0 y 1
 * La máquina de estados muestra que el comportamiento del sistema es una coreografía de decisiones.
+
+
+  
