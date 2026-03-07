@@ -214,8 +214,14 @@ Para solucionar esto, cambiaré mi estrategia hacia un diseño modular bajo la f
 ### La Librería: StateMachine.py
 Primero, definimos la pequeña librería que vamos a utilizar. Esta pieza de código nos permite registrar nuestros estados y ejecutarlos paso a paso sin ensuciar el código principal.
 ```python
-# Tomas de Camino
-# Máquina de Estados
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 class StateMachine:
     def __init__(self, initial_state):
         # 1. Estado interno actual
