@@ -8,6 +8,14 @@ Aquí demostramos que la simultaneidad es una ilusión creada por la velocidad d
 ### Código: 01_intercalado.py 
 
 ```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 import board
 from ideaboard import IdeaBoard
@@ -49,6 +57,13 @@ En este código busco demostrar que lo que percibo como una intensidad estática
 ### Código:  02_latido_logico.py
 
 ``` python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
 
 import time
 import board
@@ -92,6 +107,14 @@ Al observar los motores acelerar, puedo ver en la consola la relación directa e
 ### Código: 03cronometro_reloj.py
 
 ``` python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
 import time
 from ideaboard import IdeaBoard
 
