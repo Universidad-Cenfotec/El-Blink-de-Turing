@@ -106,7 +106,7 @@ Este libro aspira a otra cosa. Quiere ser leído. Quiere provocar curiosidad, ge
 18. Protocolos como algoritmos sociales
 19. Límites computacionales prácticos
 20. Universalidad
-21. [Sistemas Inteligentes](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/Cap.%2021%20Sistemas%20Inteligentes)
+21. [Sistemas Inteligentes](https://github.com/Universidad-Cenfotec/El-Blink-de-Turing/tree/main/21.%20Sistemas%20inteligentes)
 
 ## ¿Porqué en GitHub?
 
