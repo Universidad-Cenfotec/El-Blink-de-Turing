@@ -1,3 +1,12 @@
 # Algoritmos clásicos en hardware
+# En desarrollo
+### Código: 00_nombre.py
 
-## En desarrollo
+```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Pérez López
+# Aylin Salazar Delgado
+# Gabriela Urbina Hernández
+# ----------------------------------------
