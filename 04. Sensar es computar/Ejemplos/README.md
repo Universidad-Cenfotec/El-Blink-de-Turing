@@ -10,8 +10,8 @@ En este script, transformamos una lectura analógica continua en una decisión d
 # ----------------------------------------
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
-# Fiorella Perez
-# Aylin Salas
+# Fiorella Perez López
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
