@@ -11,8 +11,8 @@ Aquí demostramos que la simultaneidad es una ilusión creada por la velocidad d
 # ----------------------------------------
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
-# Fiorella Perez
-# Aylin Salas
+# Fiorella Perez López
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
