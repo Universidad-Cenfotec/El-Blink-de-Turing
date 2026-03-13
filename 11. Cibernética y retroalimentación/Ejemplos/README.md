@@ -1,6 +1,6 @@
 
 
-**Código:** `01_histeresis.py`
+**Código:** `00_nombre.py`
 
 ```python
 # ----------------------------------------
