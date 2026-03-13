@@ -9,8 +9,8 @@ Aquí, la Máquina de Estados actúa como un organizador temporal. Sin ella, ten
 # ----------------------------------------
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
-# Fiorella Perez
-# Aylin Salas
+# Fiorella Perez López
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
