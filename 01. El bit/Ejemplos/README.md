@@ -18,8 +18,8 @@ Para resolver este problema implemento **histéresis**: doto al sistema de una f
 # ----------------------------------------
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
-# Fiorella Perez
-# Aylin Salas
+# Fiorella Perez López
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
