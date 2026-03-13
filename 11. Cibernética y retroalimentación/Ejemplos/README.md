@@ -7,7 +7,7 @@
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
 # Fiorella Perez
-# Aylin Salas
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 ```
