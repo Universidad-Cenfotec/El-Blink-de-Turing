@@ -235,3 +235,65 @@ while True:
 
     print("")
     sleep(0.5)
+```
+
+
+## Ejemplo 5: El Botón Fantasma (El Bit Capacitivo) 
+
+Un botón mecánico es una imposición física: o los metales hacen contacto, o no lo hacen. El circuito se cierra a la fuerza obligando a la realidad a ser binaria. Pero con este ejemplo quiero mostrarte cómo podemos extraer un bit de un fenómeno completamente invisible: un campo eléctrico.
+
+Los pines táctiles (capacitivos) generan un pequeño campo electromagnético a su alrededor. Cuando acercas tu dedo, tu cuerpo —compuesto de agua y sales, y por tanto, conductor— altera la capacitancia de ese campo. Esta alteración no es un interruptor de encendido y apagado; es una perturbación analógica que crece conforme te acercas.
+
+En este código, la librería lee esa magnitud física continua y aplica un umbral interno de manera silenciosa para entregarnos una decisión limpia. Si la perturbación es suficiente, el sistema colapsa esa lectura y declara un 1 (¡Tocado!). Si el campo está en calma, nos entrega un 0. El cero aquí no es la "nada", es información activa: certifica la ausencia de perturbación. Sin partes móviles, tu propio cuerpo se convierte en la variable que altera la realidad digital.
+
+**Código:** 05_bit_capacitivo.py
+
+```python
+
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez López
+# Aylin Salazar Delgado
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
+import board
+import touchio
+from time import sleep
+from ideaboard import IdeaBoard
+
+# Inicialización
+ib = IdeaBoard()
+
+# Configuración de los "Botones Fantasma"
+# Estos pines miden continuamente la alteración del campo eléctrico
+toque_1 = touchio.TouchIn(board.IO4)
+toque_2 = touchio.TouchIn(board.IO32)
+
+while True:
+    # 1. Lectura del estado capacitivo 
+    # La librería lee el valor analógico, aplica su propio umbral 
+    # y nos entrega la decisión binaria (True = 1, False = 0).
+    estado_t1 = toque_1.value  
+    estado_t2 = toque_2.value
+
+    # 2. Visualización de los estados binarios
+    if estado_t1:
+        # Decisión 1: Perturbación detectada en el primer pin
+        print("Campo alterado en IO4  -> Bit: 1")
+        ib.pixel = (0, 0, 255)   # Azul
+        
+    elif estado_t2:
+        # Decisión 1: Perturbación detectada en el segundo pin
+        print("Campo alterado en IO32 -> Bit: 1")
+        ib.pixel = (255, 255, 0) # Amarillo
+        
+    else:
+        # Decisión 0: El cero también es información (ausencia confirmada)
+        print("Campo en calma         -> Bit: 0")
+        ib.pixel = (0, 0, 0)     # Apagado
+
+    # Pausa para poder leer la consola sin que la información fluya demasiado rápido
+    sleep(0.2)
+```
