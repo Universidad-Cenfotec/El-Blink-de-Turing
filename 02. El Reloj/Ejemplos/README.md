@@ -16,6 +16,9 @@ Aquí demostramos que la simultaneidad es una ilusión creada por la velocidad d
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
+
+
+
 import time
 import board
 from ideaboard import IdeaBoard
