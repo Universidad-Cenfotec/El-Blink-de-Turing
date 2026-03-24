@@ -176,3 +176,137 @@ El sistema sostiene un único presente secuencial que, al acelerarse, se vuelve 
 - El tiempo es historia: Mientras que la velocidad sube y baja de forma cíclica, el "Tiempo Total" siempre avanza. Es la flecha del tiempo sobre un proceso repetitivo.
 
 - Inercia y frecuencia: Si cambias el time.sleep a un valor más alto, verás cómo la duración del ciclo aumenta y el movimiento de los motores se siente menos fluido.
+
+## Ejemplo 4: El servo y la fragmentación del tiempo
+
+**Código:** 04_servo_inercia.py
+
+En la programación tradicional suelo pensar que una orden matemática se ejecuta de manera instantánea. El mundo físico sin embargo tiene masa e inercia. Si le exijo al servo que salte de cero a ciento ochenta grados de inmediato estoy ignorando el tiempo mecánico que le toma al engranaje moverse.
+
+En este código rastreo el momento exacto en que el motor empieza a moverse y el momento en que llega a su destino. Como el potenciómetro es analógico y tiene ruido natural decido agregar un margen de seguridad. Así logro que mi sistema sepa claramente cuándo registrar el inicio y el final del trayecto. Al pedirte que gires la perilla de extremo a extremo mi intención es que la consola te revele cuántos segundos de ejecución necesité para fragmentar ese movimiento y hacerlo posible en el mundo real.
+
+```python
+
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+import board
+import time
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+servo = ib.Servo(board.IO4)
+pot = ib.AnalogIn(board.IO33)
+
+angulo_actual = 90
+angulo_objetivo = 90
+en_movimiento = False
+tiempo_inicio = time.monotonic()
+
+print("Inicio mi reloj mediador y espero interaccion")
+time.sleep(1)
+
+while True:
+    lectura = pot.value
+    nuevo_objetivo = int((lectura / 65535) * 180)
+
+    # Filtro el ruido fisico del potenciometro
+    if abs(nuevo_objetivo - angulo_objetivo) > 2:
+        angulo_objetivo = nuevo_objetivo
+
+    # Detecto el nacimiento del movimiento temporal
+    if angulo_actual != angulo_objetivo and not en_movimiento:
+        en_movimiento = True
+        tiempo_inicio = time.monotonic()
+        print("Inicio mi desplazamiento mecanico")
+
+    # Mi realidad fisica avanza paso a paso
+    if angulo_actual < angulo_objetivo:
+        angulo_actual += 1
+    elif angulo_actual > angulo_objetivo:
+        angulo_actual -= 1
+    else:
+        # Detecto la culminacion del proceso en el tiempo
+        if en_movimiento:
+            en_movimiento = False
+            duracion = time.monotonic() - tiempo_inicio
+            print("Destino alcanzado en segundos", round(duracion, 3))
+
+    servo.angle = angulo_actual
+
+    # El reloj que construyo dicta la fluidez del mundo fisico
+    time.sleep(0.015)
+```
+
+## Ejemplo 5: El botón y el tiempo maleable
+
+Si asumo que el bucle infinito es verdaderamente el reloj de mi programa entonces alterar la velocidad de ese ciclo debería alterar la realidad física del sistema.
+
+En este código programo el servo para que oscile de lado a lado incesantemente como un péndulo. Guardo una marca de tiempo cada vez que el mecanismo toca los extremos lógicos de cero y ciento ochenta grados. Al pedirte que presiones el botón BOOT te doy el poder de alterar el latido fundamental del sistema. Observarás en la consola cómo el mismo trayecto pasa de tomar unos pocos segundos a tomar muchísimo más tiempo. Con este experimento te demuestro de forma contundente que la velocidad de la máquina depende enteramente de la cadencia de mi ciclo interno y no de una propiedad física de los objetos.
+
+**Código:** 05_tiempo_maleable.py
+
+```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+import board
+import keypad
+import time
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+servo = ib.Servo(board.IO4)
+keys = keypad.Keys((board.IO0,), value_when_pressed=False, pull=True)
+
+angulo = 0
+direccion = 1
+ritmo_reloj = 0.01
+tiempo_extremo = time.monotonic()
+
+print("Presiona el boton BOOT para dilatar el tiempo de mi pendulo")
+time.sleep(1)
+
+while True:
+    angulo += direccion
+    
+    # Marco el tiempo al llegar al limite superior
+    if angulo >= 180:
+        direccion = -1
+        duracion = time.monotonic() - tiempo_extremo
+        print("Llegada a 180 grados en segundos", round(duracion, 3))
+        tiempo_extremo = time.monotonic()
+        
+    # Marco el tiempo al llegar al limite inferior
+    if angulo <= 0:
+        direccion = 1
+        duracion = time.monotonic() - tiempo_extremo
+        print("Llegada a 0 grados en segundos", round(duracion, 3))
+        tiempo_extremo = time.monotonic()
+
+    servo.angle = angulo
+
+    # El evento digital altera mi estructura del tiempo
+    event = keys.events.get()
+    if event and event.pressed:
+        if ritmo_reloj == 0.01:
+            ritmo_reloj = 0.08
+            ib.pixel = (255, 0, 0)
+            print("Mi reloj se ha vuelto denso y lento")
+        else:
+            ritmo_reloj = 0.01
+            ib.pixel = (0, 0, 255)
+            print("Mi reloj ha recuperado su fluidez")
+
+    # Mi reloj espera y define la duracion de este instante
+    time.sleep(ritmo_reloj)
+```
+
