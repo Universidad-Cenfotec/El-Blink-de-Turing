@@ -310,3 +310,76 @@ while True:
     time.sleep(ritmo_reloj)
 ```
 
+## Ejemplo 6: El tiempo como regulador y la multitarea cooperativa
+
+En este proyecto el reloj que construyo no solo cuenta ciclos mecánicos. Aquí diseño un reloj que coordina varias tareas simultáneas y que además se corrige a sí mismo. Mi idea es que el sistema adquiera un tiempo lógico propio construido sobre las vueltas del bucle pero que intente mantenerse estable a pesar de las variaciones en la carga de trabajo.
+
+El principio que utilizo es simple y elegante. El bucle infinito sigue siendo el único motor de mi sistema y hago que todo ocurra en estricta secuencia. Mi reloj interno avanza contando ciclos pero obligo al programa a medir cuánto tardó realmente cada vuelta en el mundo físico para ajustar el descanso del siguiente paso. Para escalar esta idea agrupo los segundos y convierto cada minuto en un ciclo mayor completo llevando la cuenta exacta de cuántos de estos ciclos de sesenta segundos han transcurrido.
+
+De esta forma logro que el reloj deje de ser un simple contador ciego y se convierta en un regulador inteligente del ritmo. Esto me permite desacoplar parcialmente el tiempo lógico del tiempo físico sin perder estabilidad demostrando que el ESP32 me brinda la libertad de construir nociones de tiempo distintas usando el mismo hardware.
+
+**Código:** 06_reloj_regulador.py
+
+```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salas
+# Gabriela Urbina Hernández
+# ----------------------------------------
+import time
+import board
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+pot = ib.AnalogIn(board.IO33)
+
+periodo_objetivo = 0.02
+ciclos_por_segundo = int(1 / periodo_objetivo)
+
+ciclo = 0
+segundo = 0
+minuto = 0
+
+print("Inicio mi reloj autoregulado")
+
+while True:
+    inicio = time.monotonic()
+
+    # Tarea uno evalua el mundo exterior
+    valor = pot.value
+
+    # Tarea dos manifiesta mi tiempo logico
+    if segundo % 2 == 0:
+        ib.pixel = (0, 10, 0)
+    else:
+        ib.pixel = (0, 0, 0)
+
+    # Avanzo mi reloj logico interno
+    ciclo += 1
+    if ciclo >= ciclos_por_segundo:
+        ciclo = 0
+        segundo += 1
+
+        # El minuto se convierte en nuestro contador de ciclos mayores
+        if segundo >= 60:
+            segundo = 0
+            minuto += 1
+            print("Ciclo mayor completado. Total de ciclos de un minuto", minuto)
+
+        # Imprimo la evidencia de mi construccion temporal
+        print("Ciclo Mayor (Minutos)", minuto, "Segundo", segundo, "Lectura ADC", valor)
+
+    # Correccion temporal activa
+    # Mido el peso de este ciclo y ajusto el descanso
+    duracion = time.monotonic() - inicio
+    espera = periodo_objetivo - duracion
+
+    if espera > 0:
+        time.sleep(espera)
+```
+
+
+
+
