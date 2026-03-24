@@ -5,7 +5,7 @@ He escrito estos scripts para materializar la idea del tiempo como una construcc
 ## Ejemplo 1: Multitarea por intercalado temporal
 Aquí demostramos que la simultaneidad es una ilusión creada por la velocidad del reloj. Dos procesos con ritmos distintos conviven en el mismo while True. No ocurren a la vez, pero ocurren tan cerca uno del otro que para nosotros son un solo comportamiento complejo.
 
-### Código: 01_intercalado.py 
+**Código:** 01_intercalado.py 
 
 ```python
 # ----------------------------------------
@@ -54,7 +54,7 @@ while True:
 En este código busco demostrar que lo que percibo como una intensidad estática es en realidad un flujo constante de cambios. Nada en mi programa permanece quieto. La luz del LED RGB "respira" porque obligo a un contador a avanzar y retroceder en sincronía con el reloj interno. Al agregar mensajes en la consola, hago visible el pulso numérico que sostiene la ilusión del brillo, transformando un fenómeno visual en una evidencia matemática. 
 
 
-### Código:  02_latido_logico.py
+**Código:**  02_latido_logico.py
 
 ``` python
 # ----------------------------------------
@@ -104,7 +104,7 @@ En este código busco enfrentar la teoría con la práctica. No solo le pido al 
 Al observar los motores acelerar, puedo ver en la consola la relación directa entre el tiempo entre ciclos (mi resolución) y el tiempo total transcurrido (mi historia). Si el tiempo entre ciclos varía, mi percepción del movimiento también lo hará.
 
 
-### Código: 03cronometro_reloj.py
+**Código:** 03cronometro_reloj.py
 
 ``` python
 # ----------------------------------------
