@@ -451,8 +451,9 @@ while True:
     time.sleep(0.05)
 ```
 
-Ejemplo 4 Adaptado: ¿ontrol Cinemático por Consigna y Rampa de Inercia
+# Ejemplo 4 Adaptado: Control Cinemático por Consigna y Rampa de Inercia
 Este ejemplo demuestra el desacoplamiento entre la Intención Lógica (qué queremos que pase) y la Respuesta Física (cómo reacciona el hardware ante la inercia).
+## Código: 04_control_cinematico_sm.py
 ```python
 # ----------------------------------------
 # Universidad Cenfotec
