@@ -78,7 +78,7 @@ En este ejemplo, el sistema no solo mira el valor actual, sino que lo compara co
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
 # Fiorella Perez
-# Aylin Salas
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
@@ -143,7 +143,7 @@ Utilizo una Máquina de Estados (concepto anteriormente desarrollado) para compo
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
 # Fiorella Perez
-# Aylin Salas
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
