@@ -71,7 +71,7 @@ El botón funciona como un selector que me permite saltar de un reglamento a otr
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
 # Fiorella Perez
-# Aylin Salas
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
@@ -142,7 +142,7 @@ El estado protege a la mecánica de mis decisiones bruscas.
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
 # Fiorella Perez
-# Aylin Salas
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
@@ -218,7 +218,7 @@ Primero, definimos la pequeña librería que vamos a utilizar. Esta pieza de có
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
 # Fiorella Perez
-# Aylin Salas
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
@@ -256,7 +256,7 @@ En la versión anterior, verificába el tiempo dentro del bucle principal. Ahora
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
 # Fiorella Perez
-# Aylin Salas
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
@@ -317,7 +317,7 @@ Con este ejemplo demuestro se pueden cómo manejar entradas externas (el botón)
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
 # Fiorella Perez
-# Aylin Salas
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
@@ -379,7 +379,7 @@ Al usar la librería, busco encapsular las decisiones. El loop principal no toma
 # Universidad Cenfotec
 # Ph. Tomás de Camino Beck
 # Fiorella Perez
-# Aylin Salas
+# Aylin Salazar Delgado
 # Gabriela Urbina Hernández
 # ----------------------------------------
 
@@ -450,5 +450,80 @@ while True:
     
     time.sleep(0.05)
 ```
+
+Ejemplo 4 Adaptado: ¿ontrol Cinemático por Consigna y Rampa de Inercia
+Este ejemplo demuestra el desacoplamiento entre la Intención Lógica (qué queremos que pase) y la Respuesta Física (cómo reacciona el hardware ante la inercia).
+```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Proyecto: Control Cinemático de Precisión
+# Autores: Ph. Tomás de Camino Beck, Fiorella Perez, 
+#          Aylin Salazar Delgado, Gabriela Urbina Hernández
+# ----------------------------------------
+
+import time
+import board
+import keypad
+from ideaboard import IdeaBoard
+
+# Asumimos que StateMachine ya está disponible
+
+#Configuración de Actuadores
+ib = IdeaBoard()
+ib.motor_1.throttle = 0.0
+ib.motor_2.throttle = 0.0
+user_input = keypad.Keys((board.IO0,), value_when_pressed=False, pull=True)
+
+#Capa Física: Consigna vs Realidad
+v_actual = 0.0      # Estado real
+v_consigna = 0.0    # Intención lógica (Setpoint)
+
+RAMPA_ASCENSO = 0.02  
+RAMPA_DESCENSO = 0.06 
+
+# Capa Lógica: Estados
+def modo_estacionario():
+    global v_consigna
+    v_consigna = 0.0
+    evento = user_input.events.get()
+    if evento and evento.pressed:
+        return "PROPULSION"
+    return "ESTACIONARIO"
+
+def modo_propulsion():
+    global v_consigna
+    v_consigna = 0.85 
+    evento = user_input.events.get()
+    if evento and evento.pressed:
+        return "INERCIA_RESIDUAL"
+    return "PROPULSION"
+
+def modo_inercia_residual():
+    global v_consigna
+    v_consigna = 0.0
+    if v_actual <= 0.001:
+        return "ESTACIONARIO"
+    return "INERCIA_RESIDUAL"
+
+# Orquestación
+controlador = StateMachine(initial_state="ESTACIONARIO")
+controlador.add_state("ESTACIONARIO", modo_estacionario)
+controlador.add_state("PROPULSION", modo_propulsion)
+controlador.add_state("INERCIA_RESIDUAL", modo_inercia_residual)
+
+while True:
+    controlador.step() # El cerebro decide el 'Deseo'
+    
+    # El cuerpo procesa la 'Realidad'
+    if v_actual < v_consigna:
+        v_actual += RAMPA_ASCENSO
+    elif v_actual > v_consigna:
+        v_actual -= RAMPA_DESCENSO
+    
+    ib.motor_1.throttle = v_actual
+    ib.motor_2.throttle = v_actual
+    time.sleep(0.02)
+```
+
 ## Conclusión: El Poder de los Estados
 Al finalizar, comprendí la verdadera naturaleza de una Máquina de Estados: es la estructura que impone orden sobre el tiempo y las entradas físicas. Pasé de tener un bucle reactivo a definir un sistema determinista basado en Estados (comportamientos fijos) y Transiciones (reglas de cambio). Esta metodología me permitió controlar procesos complejos, como tiempos de espera o inercia, asegurando que el microcontrolador siempre sepa exactamente en qué etapa se encuentra y qué debe ocurrir para avanzar a la siguiente.
