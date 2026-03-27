@@ -238,3 +238,57 @@ while True:
 
 ## Reflexiones para el lector:
 Con esto logro ver que sensar no es un acto instantáneo, sino un proceso. Al obligarme a verificar 5 veces antes de actuar, he creado un sistema que tiene "paciencia". He transformado una serie de lecturas ruidosas en una decisión sólida. Computar, en este caso, significa darle estabilidad al caos del mundo físico.
+
+
+# Ejemplo 4: Memoria táctil
+En este ejemplo, el sistema no solo mira si hay contacto o no, sino que compara la intensidad de la carga capacitiva actual con la del pasado inmediato. Aquí, el microcontrolador computa una "intención" de acercamiento: ¿el usuario está presionando más fuerte o está retirando su mano? Este código transforma una lectura eléctrica en una tendencia de proximidad física.
+
+### Código 04: memoria_tactil.py 
+```python
+# ----------------------------------------
+# Universidad Cenfotec - Capítulo 4: Sensar
+# Proyecto: Validación de Presencia Humana (Capacitancia)
+# Autores: Ph. Tomás de Camino Beck, Fiorella Perez, 
+# Aylin Salazar Delgado, Gabriela Urbina Hernández
+# ----------------------------------------
+
+import board
+import time
+import touchio
+from ideaboard import IdeaBoard
+
+ib = IdeaBoard()
+
+# 1. Usamos el pin IO27 como sensor de tacto al poner un cable ahí
+sensor_tacto = touchio.TouchIn(board.IO27)
+
+contador = 0
+META = 5 
+
+print("--- Sistema de Validación por Contacto Humano ---")
+print("Toca el cable en IO27 para iniciar la validación...")
+
+while True:
+    # Lógica de validación
+    if sensor_tacto.value:
+        contador += 1
+        ib.pixel = (0, 0, 150) # Azul: Verificando identidad...
+        print(f"[PROCESANDO] Evidencia de contacto: {contador}/{META}")
+        
+        if contador >= META:
+            ib.pixel = (0, 150, 0) # Verde: ¡USUARIO VALIDADO!
+            print(">>> ACCESO CONFIRMADO: Ser Humano Detectado <<<")
+    else:
+        # Si soltamos el cable, la confianza se pierde (Seguridad)
+        if contador > 0:
+            print("Contacto perdido - Reiniciando protocolos...")
+            contador = 0
+            ib.pixel = (0, 0, 0)
+
+    time.sleep(0.15)
+```
+# Reflexiones para el lector:
+- La paciencia algorítmica: Sensar no es un acto instantáneo, sino un proceso de acumulación. Al exigir 6 lecturas consecutivas antes de actuar, transformamos un impulso eléctrico efímero en una decisión sólida.
+- Estabilidad ante el caos: El código actúa como un filtro de ruido. La computación aquí se utiliza para darle estabilidad al mundo físico, evitando que la máquina reaccione a interferencias o "falsos positivos" del entorno.
+- La construcción de la certeza: La máquina no "sabe" que hay un humano presente; simplemente ha dejado de dudar. La certeza es el resultado de la persistencia del dato en el tiempo, convirtiendo el caos sensorial en una verdad lógica.
+
