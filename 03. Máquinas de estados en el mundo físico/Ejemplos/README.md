@@ -525,6 +525,191 @@ while True:
     ib.motor_2.throttle = v_actual
     time.sleep(0.02)
 ```
+# Ejemplo 5: El Sensor con Memoria (Evitando el ruido con Histéresis)
+En este ejemplo, usamos un sensor analógico en el pin de solo entrada IO34. Aplicamos histéresis definiendo que el sistema entre en alerta al superar los 20000, pero no se relaje hasta que el valor baje de 10000.
+
+## Código: 05_histeresis_sm.py
+```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salazar Delgado
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
+import time
+import board
+from ideaboard import IdeaBoard
+from StateMachine import StateMachine
+
+ib = IdeaBoard()
+sensor = ib.AnalogIn(board.IO34)
+
+# Estados
+NORMAL = "normal"
+ALERTA = "alerta"
+
+# Umbrales separados (Histéresis)
+UMBRAL_ALTO = 20000  # Para activar la alerta
+UMBRAL_BAJO = 10000  # Para volver a la normalidad
+
+def estado_normal():
+    ib.pixel = (0, 255, 0)  # Verde: Todo bien
+    
+    # Solo cambiamos si el valor supera el umbral alto
+    if sensor.value > UMBRAL_ALTO:
+        print("¡Nivel alto detectado! Pasando a ALERTA.")
+        return ALERTA
+    return NORMAL
+
+def estado_alerta():
+    ib.pixel = (255, 0, 0)  # Rojo: Peligro
+    
+    # Solo nos calmamos si el valor baja del umbral bajo
+    if sensor.value < UMBRAL_BAJO:
+        print("Nivel estabilizado. Pasando a NORMAL.")
+        return NORMAL
+    return ALERTA
+
+sm = StateMachine(initial_state=NORMAL)
+sm.add_state(NORMAL, estado_normal)
+sm.add_state(ALERTA, estado_alerta)
+
+print("--- Lector Analógico con Histéresis ---")
+while True:
+    sm.step()
+    time.sleep(0.05)
+```
+**Importante:** La lógica de la máquina de estados (el cerebro) se mantiene clara e intacta, mientras que los parámetros de los umbrales (los sentidos) se calibran a la necesidad del entorno físico. El estado actúa como un amortiguador de la realidad.
+
+# Ejemplo 6: La Barrera Automática (Servomotores y Secuencias)
+Mover un servomotor es una acción casi instantánea para el código, pero gestionar lo que sucede después de moverlo es donde es crucial no congelar el microcontrolador. Imagina la barrera de un parqueo: se presiona un botón, sube, espera 5 segundos y luego baja automáticamente. La Máquina de Estados nos permite secuenciar esto controlando el tiempo sin usar pausas bloqueantes.
+
+## Código: 06_barrera_servo_sm.py
+``` python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salazar Delgado
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
+import time
+import board
+import keypad
+from ideaboard import IdeaBoard
+from StateMachine import StateMachine
+
+ib = IdeaBoard()
+keys = keypad.Keys((board.IO0,), value_when_pressed=False, pull=True)
+
+# Asumimos un servo conectado en IO4
+servo = ib.Servo(board.IO4)
+
+# Estados
+CERRADO = "cerrado"
+ABIERTO = "abierto"
+
+# Variables de tiempo
+tiempo_apertura = 0.0
+
+def estado_cerrado():
+    global tiempo_apertura
+    servo.angle = 0  # Barrera abajo
+    ib.pixel = (255, 0, 0) # Luz roja
+    
+    evento = keys.events.get()
+    if evento and evento.pressed:
+        print("Botón presionado. Abriendo barrera...")
+        tiempo_apertura = time.monotonic()
+        return ABIERTO
+    return CERRADO
+
+def estado_abierto():
+    servo.angle = 90  # Barrera arriba
+    ib.pixel = (0, 255, 0) # Luz verde
+    
+    # El estado vigila el tiempo para cerrarse solo
+    if time.monotonic() - tiempo_apertura > 5.0:
+        print("Tiempo de cortesía finalizado. Cerrando...")
+        return CERRADO
+    return ABIERTO
+
+sm = StateMachine(initial_state=CERRADO)
+sm.add_state(CERRADO, estado_cerrado)
+sm.add_state(ABIERTO, estado_abierto)
+
+print("--- Sistema de Peaje Automático ---")
+while True:
+    sm.step()
+    time.sleep(0.05)
+```
+**Importante:** Este ejemplo ilustra la diferencia entre transiciones. Un estado puede tener una condición de salida basada en un evento externo (presionar el botón para abrir), mientras que otro tiene una condición de salida autónoma o temporal (cerrar después de 5 segundos).
+
+# Ejemplo 7: El Interruptor Capacitivo (Manejo de Transiciones Seguras)
+La IdeaBoard tiene pines táctiles (touch capacitivo). Leer este tipo de pines continuamente puede generar disparos múltiples si el usuario deja el dedo puesto una fracción de segundo de más. Queremos que un solo toque cambie el color del LED, obligando al usuario a quitar el dedo antes de registrar un nuevo toque.
+Aquí la Máquina de Estados divide la interacción en dos fases estables: el toque activo y la liberación.
+
+## Código: 07_touch_toggle_sm.py
+```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salazar Delgado
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
+import time
+import board
+import touchio
+from ideaboard import IdeaBoard
+from StateMachine import StateMachine
+
+ib = IdeaBoard()
+touch_pin = touchio.TouchIn(board.IO32)
+
+# Estados
+ESPERANDO_TOQUE = "esperando"
+ESPERANDO_LIBERACION = "liberando"
+
+# Variable para alternar colores
+color_estado = False
+
+def estado_esperando():
+    global color_estado
+    
+    if touch_pin.value:
+        # Alternamos el color solo en el instante inicial del toque
+        color_estado = not color_estado
+        if color_estado:
+            ib.pixel = (0, 0, 255)  # Azul
+        else:
+            ib.pixel = (255, 0, 255)  # Magenta
+            
+        print("¡Toque detectado!")
+        return ESPERANDO_LIBERACION
+    return ESPERANDO_TOQUE
+
+def estado_liberando():
+    # Nos quedamos atascados aquí intencionalmente hasta que no haya toque
+    if not touch_pin.value:
+        print("Dedo liberado. Listo para otro toque.")
+        return ESPERANDO_TOQUE
+    return ESPERANDO_LIBERACION
+
+sm = StateMachine(initial_state=ESPERANDO_TOQUE)
+sm.add_state(ESPERANDO_TOQUE, estado_esperando)
+sm.add_state(ESPERANDO_LIBERACION, estado_liberando)
+
+print("--- Interruptor Táctil Seguro ---")
+while True:
+    sm.step()
+    time.sleep(0.05)
+```
+**Importante:** El estado ESPERANDO_LIBERACION actúa como un candado físico. Protege nuestra lógica de ejecutarse cientos de veces por segundo, obligando a que se complete el ciclo natural del hardware (tocar y soltar) antes de continuar.
 
 ## Conclusión: El Poder de los Estados
 Al finalizar, comprendí la verdadera naturaleza de una Máquina de Estados: es la estructura que impone orden sobre el tiempo y las entradas físicas. Pasé de tener un bucle reactivo a definir un sistema determinista basado en Estados (comportamientos fijos) y Transiciones (reglas de cambio). Esta metodología me permitió controlar procesos complejos, como tiempos de espera o inercia, asegurando que el microcontrolador siempre sepa exactamente en qué etapa se encuentra y qué debe ocurrir para avanzar a la siguiente.
