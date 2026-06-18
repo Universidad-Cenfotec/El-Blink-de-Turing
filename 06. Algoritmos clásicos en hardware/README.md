@@ -94,14 +94,14 @@ Al final de este recorrido, no quiero tratar los algoritmos como piezas de museo
 
 ## Preguntas generadoras de proyectos (o retos)
 
-Construya una máquina que recuerde un evento.
-Diseñe un sistema que cuente sin utilizar software.
-Implemente una operación matemática usando únicamente lógica digital.
-Cree un dispositivo capaz de tomar una decisión binaria.
-Construya un mecanismo físico que ejecute una secuencia de instrucciones.
-Diseñe un lenguaje mínimo para controlar un dispositivo.
-Replique una función de un microcontrolador utilizando componentes discretos.
-Descubra cuál es el conjunto mínimo de componentes para construir una computadora.
+- Construya una máquina que recuerde un evento.
+- Diseñe un sistema que cuente sin utilizar software.
+- Implemente una operación matemática usando únicamente lógica digital.
+- Cree un dispositivo capaz de tomar una decisión binaria.
+- Construya un mecanismo físico que ejecute una secuencia de instrucciones.
+- Diseñe un lenguaje mínimo para controlar un dispositivo.
+- Replique una función de un microcontrolador utilizando componentes discretos.
+- Descubra cuál es el conjunto mínimo de componentes para construir una computadora.
 
 En ese contexto, los algoritmos clásicos recuperan su potencia. La búsqueda lineal deja de ser una lista recorrida y se convierte en una pregunta sobre ignorancia. El ordenamiento deja de ser intercambio de elementos y se convierte en una teoría de la organización. Los bucles dejan de ser sintaxis y se convierten en comportamiento. Los filtros dejan de ser fórmulas y se convierten en criterios para separar mundo y ruido. El control deja de ser ecuación y se convierte en acción responsable.
 
