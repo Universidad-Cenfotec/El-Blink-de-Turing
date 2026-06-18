@@ -92,7 +92,7 @@ Por eso termino entendiendo los algoritmos clásicos de otra manera. No son piez
 
 Al final de este recorrido, no quiero tratar los algoritmos como piezas de museo. Prefiero ponerlos frente a problemas donde una receta no alcance: sensores que mienten un poco, motores que obedecen tarde, memorias que se llenan, datos que crecen, señales que se confunden, decisiones que deben tomarse con información incompleta.
 
-Preguntas generadoras de proyectos (o retos)
+## Preguntas generadoras de proyectos (o retos)
 
 Construya una máquina que recuerde un evento.
 Diseñe un sistema que cuente sin utilizar software.
