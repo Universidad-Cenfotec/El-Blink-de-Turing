@@ -92,6 +92,17 @@ Por eso termino entendiendo los algoritmos clásicos de otra manera. No son piez
 
 Al final de este recorrido, no quiero tratar los algoritmos como piezas de museo. Prefiero ponerlos frente a problemas donde una receta no alcance: sensores que mienten un poco, motores que obedecen tarde, memorias que se llenan, datos que crecen, señales que se confunden, decisiones que deben tomarse con información incompleta.
 
+Preguntas generadoras de proyectos (o retos)
+
+Construya una máquina que recuerde un evento.
+Diseñe un sistema que cuente sin utilizar software.
+Implemente una operación matemática usando únicamente lógica digital.
+Cree un dispositivo capaz de tomar una decisión binaria.
+Construya un mecanismo físico que ejecute una secuencia de instrucciones.
+Diseñe un lenguaje mínimo para controlar un dispositivo.
+Replique una función de un microcontrolador utilizando componentes discretos.
+Descubra cuál es el conjunto mínimo de componentes para construir una computadora.
+
 En ese contexto, los algoritmos clásicos recuperan su potencia. La búsqueda lineal deja de ser una lista recorrida y se convierte en una pregunta sobre ignorancia. El ordenamiento deja de ser intercambio de elementos y se convierte en una teoría de la organización. Los bucles dejan de ser sintaxis y se convierten en comportamiento. Los filtros dejan de ser fórmulas y se convierten en criterios para separar mundo y ruido. El control deja de ser ecuación y se convierte en acción responsable.
 
 Aprender computación con microcontroladores no consiste simplemente en hacer que algo funcione. Para mí, consiste en descubrir qué tuve que suponer para que funcionara, qué quedó fuera, qué costo tuvo, qué memoria necesitó, cuánto tiempo tomó y qué tipo de mundo fue capaz de reconocer. Allí, en esa incomodidad fértil, los algoritmos dejan de ser respuestas y vuelven a ser preguntas.
