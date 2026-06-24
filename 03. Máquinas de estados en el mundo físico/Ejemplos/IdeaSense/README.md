@@ -1,5 +1,4 @@
-# Ejemplo 1: Memoria Visual y Eventos (IdeaBoard + IdeaSense)
-
+# Ejemplo 1: Memoria Visual y Eventos 
 Al conectar la placa **IdeaSense** a nuestra **IdeaBoard**, multiplicamos nuestras formas de interactuar con el mundo físico. Ahora contamos con tres botones dedicados y una matriz de LEDs de 5x5. Nuestro primer impulso al programar podría ser crear un sistema puramente reactivo: *si mantenemos presionado el botón A, se dibuja la letra A; si lo soltamos, se borra*.
 
 Sin embargo, mediante el pensamiento computacional podemos ir más allá de estos reflejos básicos. Nos preguntamos: ¿qué ocurre si queremos que el sistema *recuerde* nuestra selección y la muestre durante un tiempo específico sin necesidad de mantener el botón presionado? En este escenario, la Máquina de Estados actúa como intermediaria. Los botones de la IdeaSense funcionan como detonadores que modifican el "modo" del sistema. Una vez que entramos en un estado determinado, la placa dibuja la letra correspondiente en la matriz y controla el tiempo de manera autónoma, ignorando las entradas de otros botones hasta finalizar su tarea.
