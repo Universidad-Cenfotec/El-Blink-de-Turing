@@ -219,5 +219,115 @@ while True:
 ```
 
 > **Importante:** Nota cómo el estado `ESPERANDO_LIBERACION` sigue actuando como nuestro candado de seguridad, protegiendo tanto la lógica matemática como la visualización. Si no tuviéramos esta máquina de estados, el dibujo en la matriz parpadearía frenéticamente entre el **"Check"** y la **"X"** mientras el dedo del usuario rozara el pin capacitivo.
+Ejemplo 3: El Detector de Actividad (Movimiento vs Reposo)
+Detectar si algo se está moviendo en el mundo real es engañoso. Primero, porque la gravedad de la Tierra confunde al acelerómetro (si la placa está inclinada, el sensor lee una fuerza constante y cree que se está moviendo aunque esté quieta). Segundo, porque el movimiento humano no es matemáticamente perfecto; si agitas la placa, hay microsegundos de pausa al cambiar de dirección.
 
+Para solucionar esto, nuestra Máquina de Estados hace dos cosas: primero, calcula el Delta (la diferencia entre la lectura actual y la anterior) para ignorar la gravedad y detectar solo el cambio real. Segundo, actúa como un supervisor paciente: el estado MOVIENDOSE exige que pasen 2 segundos completos de inactividad antes de convencerse de que el movimiento terminó y volver al estado QUIETO.
+
+Código: 03_ideasense_actividad_sm.py
+
+Python
+# ----------------------------------------
+# Universidad Cenfotec
+# Proyecto: Detector de Actividad IdeaSense
+# Autores: Ph. Tomás de Camino Beck, Fiorella Perez, 
+#          Aylin Salazar Delgado, Gabriela Urbina Hernández
+# ----------------------------------------
+
+import time
+from ideaboard import IdeaBoard
+from ideasense import IdeaSense
+from StateMachine import StateMachine
+
+# 1. Inicialización
+ib = IdeaBoard()
+idea = IdeaSense()
+
+# 2. Abstracción visual para la matriz
+DIBUJO_REPOSO = [(2,2)]  # Un simple punto central (Durmiendo)
+DIBUJO_ACTIVO_A = [(1,1), (2,1), (3,1), (1,3), (2,3), (3,3), (1,2), (3,2)]  # Cuadro
+DIBUJO_ACTIVO_B = [(0,0), (4,0), (0,4), (4,4), (2,2)]  # Puntos en las esquinas
+
+# 3. Estados y Variables
+QUIETO = "quieto"
+MOVIENDOSE = "moviendose"
+
+# Ajusta este valor (ej. 0.5 a 1.5) para hacerlo más o menos sensible.
+UMBRAL_MOVIMIENTO = 1.5
+ultimo_movimiento_detectado = 0.0
+
+# Guardamos la primera lectura para tener un punto de comparación
+last_ax, last_ay, last_az = idea.accel
+
+def dibujar_en_matriz(coordenadas):
+    idea.matrix.fill(0)
+    for x, y in coordenadas:
+        idea.matrix[x, y] = 1
+    idea.matrix.show()
+
+def hay_movimiento():
+    """Evalúa si la placa cambió de velocidad, ignorando la gravedad estática"""
+    global last_ax, last_ay, last_az
+    
+    ax, ay, az = idea.accel
+    
+    # Calculamos cuánto cambió la aceleración en cada eje
+    cambio_x = abs(ax - last_ax)
+    cambio_y = abs(ay - last_ay)
+    cambio_z = abs(az - last_az)
+    
+    # Actualizamos la memoria para la siguiente vuelta
+    last_ax, last_ay, last_az = ax, ay, az
+    
+    # Sumamos los cambios. Si la placa está quieta, el cambio será casi 0.
+    cambio_total = cambio_x + cambio_y + cambio_z
+    return cambio_total > UMBRAL_MOVIMIENTO
+
+# 4. Funciones de Estado
+def estado_quieto():
+    global ultimo_movimiento_detectado
+    
+    ib.pixel = (0, 0, 255)  # Azul tenue: Reposo
+    dibujar_en_matriz(DIBUJO_REPOSO)
+    
+    if hay_movimiento():
+        print("¡Movimiento detectado! Despertando...")
+        ultimo_movimiento_detectado = time.monotonic()
+        return MOVIENDOSE
+        
+    return QUIETO
+
+def estado_moviendose():
+    global ultimo_movimiento_detectado
+    
+    ib.pixel = (255, 100, 0)  # Naranja: Activo/Alerta
+    
+    # Animación de actividad alternando dibujos
+    if int(time.monotonic() * 8) % 2 == 0:
+        dibujar_en_matriz(DIBUJO_ACTIVO_A)
+    else:
+        dibujar_en_matriz(DIBUJO_ACTIVO_B)
+        
+    if hay_movimiento():
+        ultimo_movimiento_detectado = time.monotonic()
+        
+    # Condición de salida: ¿Han pasado 2 segundos sin picos de movimiento?
+    tiempo_sin_moverse = time.monotonic() - ultimo_movimiento_detectado
+    if tiempo_sin_moverse > 2.0:
+        print("El sistema se ha calmado. Volviendo a reposo.")
+        return QUIETO
+        
+    return MOVIENDOSE
+
+# 5. Orquestación
+sm = StateMachine(initial_state=QUIETO)
+sm.add_state(QUIETO, estado_quieto)
+sm.add_state(MOVIENDOSE, estado_moviendose)
+
+print("--- Monitor de Actividad Iniciado ---")
+while True:
+    sm.step()
+    time.sleep(0.05)
+    
+Importante: Este patrón de diseño aísla las lecturas ruidosas del mundo físico. Al medir el cambio (Delta) filtramos la gravedad terrestre, y al usar un temporizador de "enfriamiento" evitamos que el sistema parpadee erráticamente entre estados mientras se mueve la placa. Si notas que está muy sensible, simplemente sube el valor de UMBRAL_MOVIMIENTO.
 
