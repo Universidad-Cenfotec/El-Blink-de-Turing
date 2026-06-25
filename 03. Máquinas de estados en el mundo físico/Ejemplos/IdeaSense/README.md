@@ -124,4 +124,100 @@ while True:
     time.sleep(0.01)
 ```
 
+
+
+
+## Ejemplo 2: El Interruptor Capacitivo Visual 
+
+La IdeaBoard tiene pines táctiles (touch capacitivo). Leer este tipo de pines continuamente puede generar disparos múltiples si el usuario deja el dedo puesto una fracción de segundo de más. En este ejemplo, la Máquina de Estados divide la interacción en dos fases estables: el toque activo y la liberación.
+
+La diferencia aquí es que utilizaremos la placa **IdeaSense** como nuestro lienzo. Cada vez que el toque es válido y seguro, la matriz de 5x5 cambiará su dibujo, reflejando el estado lógico interno del sistema.
+
+### Código: `02_ideasense_touch_sm.py`
+
+```python
+# ----------------------------------------
+# Universidad Cenfotec
+# Ph. Tomás de Camino Beck
+# Fiorella Perez
+# Aylin Salazar Delgado
+# Gabriela Urbina Hernández
+# ----------------------------------------
+
+import time
+import board
+import touchio
+from ideaboard import IdeaBoard
+from ideasense import IdeaSense
+from StateMachine import StateMachine
+
+# 1. Inicialización de Hardware
+ib = IdeaBoard()
+idea = IdeaSense()
+touch_pin = touchio.TouchIn(board.IO32)
+
+# 2. Abstracción visual para la matriz
+DIBUJO_CHECK = [(0,3), (1,4), (2,3), (3,2), (4,1)]
+DIBUJO_EQUIS = [(0,0), (1,1), (2,2), (3,3), (4,4),
+                (0,4), (1,3), (3,1), (4,0)]
+
+def dibujar_en_matriz(coordenadas):
+    idea.matrix.fill(0)
+    for x, y in coordenadas:
+        idea.matrix[x, y] = 1
+    idea.matrix.show()
+
+# 3. Estados
+ESPERANDO_TOQUE = "esperando"
+ESPERANDO_LIBERACION = "liberando"
+
+# Variable para alternar el estado lógico
+estado_toggle = False
+
+# Estado visual inicial
+dibujar_en_matriz(DIBUJO_EQUIS)
+ib.pixel = (255, 0, 255)  # Magenta
+
+# 4. Funciones de Estado
+def estado_esperando():
+    global estado_toggle
+
+    if touch_pin.value:
+        # Alternamos el estado lógico solo en el instante inicial del toque
+        estado_toggle = not estado_toggle
+
+        # Reflejamos el cambio tanto en el LED como en la matriz
+        if estado_toggle:
+            ib.pixel = (0, 0, 255)  # Azul
+            dibujar_en_matriz(DIBUJO_CHECK)
+        else:
+            ib.pixel = (255, 0, 255)  # Magenta
+            dibujar_en_matriz(DIBUJO_EQUIS)
+
+        print("¡Toque detectado! Matriz actualizada.")
+        return ESPERANDO_LIBERACION
+
+    return ESPERANDO_TOQUE
+
+def estado_liberando():
+    # Nos quedamos atascados aquí intencionalmente hasta que no haya toque
+    if not touch_pin.value:
+        print("Dedo liberado. Listo para otro toque.")
+        return ESPERANDO_TOQUE
+
+    return ESPERANDO_LIBERACION
+
+# 5. Orquestación
+sm = StateMachine(initial_state=ESPERANDO_TOQUE)
+sm.add_state(ESPERANDO_TOQUE, estado_esperando)
+sm.add_state(ESPERANDO_LIBERACION, estado_liberando)
+
+print("--- Interruptor Táctil Seguro con Matriz IdeaSense ---")
+while True:
+    sm.step()
+    time.sleep(0.05)
+```
+
+> **Importante:** Nota cómo el estado `ESPERANDO_LIBERACION` sigue actuando como nuestro candado de seguridad, protegiendo tanto la lógica matemática como la visualización. Si no tuviéramos esta máquina de estados, el dibujo en la matriz parpadearía frenéticamente entre el **"Check"** y la **"X"** mientras el dedo del usuario rozara el pin capacitivo.
+
 > **Importante:** Al observar este código, podemos notar que la carga cognitiva se reduce drásticamente. Hemos encapsulado el *cómo se dibuja* dentro de la función `dibujar_en_matriz()`. Esto nos permite hacer que las funciones de estado se concentren exclusivamente en el *cuándo* y el *por qué*. Cada estado evalúa, decide y realiza transiciones, mientras que la función de dibujo simplemente ejecuta la acción solicitada. De esta manera, reforzamos la filosofía central del capítulo: desacoplar la intención lógica de la acción física.
