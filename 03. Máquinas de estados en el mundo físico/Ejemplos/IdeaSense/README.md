@@ -224,9 +224,9 @@ Detectar si algo se está moviendo en el mundo real es engañoso. Primero, porqu
 
 Para solucionar esto, nuestra Máquina de Estados hace dos cosas: primero, calcula el Delta (la diferencia entre la lectura actual y la anterior) para ignorar la gravedad y detectar solo el cambio real. Segundo, actúa como un supervisor paciente: el estado MOVIENDOSE exige que pasen 2 segundos completos de inactividad antes de convencerse de que el movimiento terminó y volver al estado QUIETO.
 
-Código: 03_ideasense_actividad_sm.py
+ ### Código: `03_ideasense_actividad_sm.py`
 
-Python
+```python
 # ----------------------------------------
 # Universidad Cenfotec
 # Proyecto: Detector de Actividad IdeaSense
@@ -328,6 +328,7 @@ print("--- Monitor de Actividad Iniciado ---")
 while True:
     sm.step()
     time.sleep(0.05)
+```
     
-Importante: Este patrón de diseño aísla las lecturas ruidosas del mundo físico. Al medir el cambio (Delta) filtramos la gravedad terrestre, y al usar un temporizador de "enfriamiento" evitamos que el sistema parpadee erráticamente entre estados mientras se mueve la placa. Si notas que está muy sensible, simplemente sube el valor de UMBRAL_MOVIMIENTO.
+> **Importante:** Este patrón de diseño aísla las lecturas ruidosas del mundo físico. Al medir el cambio (Delta) filtramos la gravedad terrestre, y al usar un temporizador de "enfriamiento" evitamos que el sistema parpadee erráticamente entre estados mientras se mueve la placa. Si notas que está muy sensible, simplemente sube el valor de UMBRAL_MOVIMIENTO.
 
