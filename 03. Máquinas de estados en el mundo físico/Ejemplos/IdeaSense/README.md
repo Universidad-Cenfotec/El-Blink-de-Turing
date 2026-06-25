@@ -124,7 +124,7 @@ while True:
     time.sleep(0.01)
 ```
 
-
+> **Importante:** Al observar este código, podemos notar que la carga cognitiva se reduce drásticamente. Hemos encapsulado el *cómo se dibuja* dentro de la función `dibujar_en_matriz()`. Esto nos permite hacer que las funciones de estado se concentren exclusivamente en el *cuándo* y el *por qué*. Cada estado evalúa, decide y realiza transiciones, mientras que la función de dibujo simplemente ejecuta la acción solicitada. De esta manera, reforzamos la filosofía central del capítulo: desacoplar la intención lógica de la acción física.
 
 
 ## Ejemplo 2: El Interruptor Capacitivo Visual 
@@ -220,4 +220,4 @@ while True:
 
 > **Importante:** Nota cómo el estado `ESPERANDO_LIBERACION` sigue actuando como nuestro candado de seguridad, protegiendo tanto la lógica matemática como la visualización. Si no tuviéramos esta máquina de estados, el dibujo en la matriz parpadearía frenéticamente entre el **"Check"** y la **"X"** mientras el dedo del usuario rozara el pin capacitivo.
 
-> **Importante:** Al observar este código, podemos notar que la carga cognitiva se reduce drásticamente. Hemos encapsulado el *cómo se dibuja* dentro de la función `dibujar_en_matriz()`. Esto nos permite hacer que las funciones de estado se concentren exclusivamente en el *cuándo* y el *por qué*. Cada estado evalúa, decide y realiza transiciones, mientras que la función de dibujo simplemente ejecuta la acción solicitada. De esta manera, reforzamos la filosofía central del capítulo: desacoplar la intención lógica de la acción física.
+
