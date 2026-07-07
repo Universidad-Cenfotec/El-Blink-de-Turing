@@ -1,5 +1,5 @@
 
-# Ejemplos del capítulo 4: Sensar
+# Ejemplos del capítulo 4: Sensar es computar
 
 ## Ejemplo 1: La Emergencia del Evento (Histéresis y Memoria)
 En este script, transformamos una lectura analógica continua en una decisión discreta utilizando **fronteras dobles**. El sistema utiliza dos umbrales para evitar que el ruido del sensor provoque cambios erráticos (parpadeos) cuando la señal está cerca del límite. Es la base de la estabilidad en sistemas de control.
