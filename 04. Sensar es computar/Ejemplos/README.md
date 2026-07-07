@@ -269,7 +269,12 @@ while True:
 ```
 
 ## Reflexiones para el lector:
-Al obligar al sistema a verificar 5 veces antes de actuar, se crea un comportamiento que puede interpretarse como una forma de "paciencia algorítmica".
+
+- **La paciencia algorítmica:** Sensar no es un acto instantáneo, sino un proceso de acumulación de evidencia. Al exigir varias lecturas consecutivas antes de actuar, el sistema transforma una señal momentánea en una decisión más confiable.
+
+- **La estabilidad ante el ruido:** El código funciona como un filtro que evita respuestas impulsivas frente a lecturas incorrectas o interferencias del entorno. La computación permite darle estabilidad al mundo físico al establecer condiciones antes de tomar una acción.
+
+- **La construcción de la certeza:** La máquina no "sabe" que un objeto está presente; simplemente aumenta su nivel de confianza al observar que la información se mantiene constante durante cierto tiempo. La certeza aparece como resultado de la repetición y persistencia de los datos.
 
 
 # Ejemplo 4: Memoria táctil
