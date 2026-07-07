@@ -25,39 +25,53 @@ import board
 from ideaboard import IdeaBoard
 from adafruit_lsm6ds.lsm6ds3trc import LSM6DS3TRC
 
-# Inicialización
+# 1. Inicialización de la materia
+# Preparamos la tarjeta, el bus de comunicación y el sensor giroscópico
 ib = IdeaBoard()
 i2c = board.I2C()
 sensor = LSM6DS3TRC(i2c, 0x6b)
 
 def calibrar_drift(sensor, segundos=2):
     print(f"Recordando el pasado por {segundos} segundos para limpiar el ruido...")
+    
+    # Variables de memoria: construirán la historia de lecturas
     suma = 0
     muestras = 0
+    
+    # Registramos el instante en que inicia el proceso
     t0 = time.monotonic()
     
-    # El bucle construye la historia
+    # El bucle mantiene atrapada a la máquina leyendo la realidad
+    # hasta que el tiempo establecido se agote.
     while time.monotonic() - t0 < segundos:
+        # Extraemos la velocidad angular en el eje Z (giro horizontal)
         data = sensor.gyro[2]
         
-        # Evita promediar saltos que son errores evidentes de hardware
+        # Filtro de anomalías: 
+        # Si el valor es demasiado alto, asumimos que fue un pico de ruido 
+        # o un golpe físico, por lo que lo ignoramos y no entra en la memoria.
         if abs(data) < 0.008:
             suma += data
             muestras += 1
             
+        # Pequeña pausa para no saturar el bus de comunicación I2C
         time.sleep(0.005)
         
+    # El promedio final es nuestra "verdad" calculada sobre el error del sensor
     drift = suma / muestras
     print(f"Drift calculado: {drift:.4f} rad/s")
     return drift
 
 # --- EJECUCIÓN PRINCIPAL ---
-ib.pixel = (255, 0, 0) # Rojo: El robot está "pensando/recordando"
 
+# Encendemos el LED en rojo puro indicando que la máquina está "ciega" y pensando
+ib.pixel = (255, 0, 0) 
+
+# Ejecutamos la calibración por 5 segundos antes de permitir cualquier movimiento
 drift_real = calibrar_drift(sensor, 5)
 
-ib.pixel = (0, 255, 0) # Verde: Ya tiene una historia limpia, listo para actuar
-
+# LED en verde: la máquina ahora conoce su propia física y está lista
+ib.pixel = (0, 255, 0) 
 print("Calibración terminada. El algoritmo ahora conoce su propia física.")
 ```
 
@@ -112,103 +126,80 @@ from ideaboard import IdeaBoard
 from adafruit_lsm6ds.lsm6ds3trc import LSM6DS3TRC
 
 ib = IdeaBoard()
-
 i2c = board.I2C()
-
 sensor = LSM6DS3TRC(i2c, 0x6b)
 
+# Constante para traducir los radianes del sensor a grados comprensibles
 RAD_A_GRADOS = 180 / math.pi
 
-
 def calibrar_drift(sensor, segundos=2):
-
     print(f"Recordando el pasado por {segundos} segundos para limpiar el ruido...")
-
     suma = 0
     muestras = 0
     t0 = time.monotonic()
-
     while time.monotonic() - t0 < segundos:
-
         data = sensor.gyro[2]
-
         if abs(data) < 0.008:
-
             suma += data
             muestras += 1
-
         time.sleep(0.005)
-
+        
     drift = suma / muestras
-
     print(f"Drift calculado: {drift:.4f} rad/s")
-
     return drift
 
-
 def girar_grados(sensor, grados, drift, velocidad=0.25):
-
+    # Determinamos si el motor gira hacia la izquierda o derecha
     sentido = 1 if grados > 0 else -1
-
-    grados = abs(grados) - 2
-
+    
+    # Restamos 2 grados para compensar la inercia del robot (frenado imperfecto)
+    grados = abs(grados) - 2 
     acumulado = 0
-
+    
+    # Marca de tiempo inicial antes de empezar a movernos
     t_anterior = time.monotonic()
 
-
+    # Arrancamos aplicando fuerza bruta inicial a los motores (uno adelante, otro atrás)
     ib.motor_1.throttle = velocidad * sentido
     ib.motor_2.throttle = -velocidad * sentido
 
-
+    # El bucle se mantiene vivo mientras no hayamos alcanzado el ángulo deseado
     while acumulado < grados:
-
+        # 1. El tiempo como engranaje (dt)
         t_actual = time.monotonic()
-
         dt = t_actual - t_anterior
-
         t_anterior = t_actual
 
-
+        # 2. Integración: Velocidad angular compensada multiplicada por el tiempo transcurrido
         vel_angular = sensor.gyro[2] - drift
-
         delta_grados = vel_angular * dt * RAD_A_GRADOS
-
+        
+        # Sumamos el pequeño desplazamiento de este milisegundo al total
         acumulado += abs(delta_grados)
 
-
+        # 3. Anticipación al futuro
+        # Si ya completamos más de la mitad del giro, reducimos la velocidad.
+        # Esto evita el "overshoot" causado por la inercia del chasis pesado.
         if grados - acumulado <= grados / 2:
-
             ib.motor_1.throttle = 0.15 * sentido
-
             ib.motor_2.throttle = -0.15 * sentido
-
 
         time.sleep(0.005)
 
-
+    # El objetivo se cumplió: cortamos la energía por completo
     ib.motor_1.throttle = 0
-
     ib.motor_2.throttle = 0
 
-
-
 # --- EJECUCIÓN PRINCIPAL ---
-
-ib.pixel = (255, 255, 0)
-
+ib.pixel = (255, 255, 0) # Amarillo (calibrando)
 drift = calibrar_drift(sensor, 2)
-
-ib.pixel = (0, 0, 255)
-
+ib.pixel = (0, 0, 255)   # Azul (listo para actuar)
 
 print("Iniciando giro exacto de 90 grados...")
-
 girar_grados(sensor, 90, drift)
-
 print("Acción física terminada.")
 
-ib.pixel = (0, 0, 0)
+ib.pixel = (0, 0, 0) # Apagamos el LED al terminar
 ```
 
 ## Reflexiones para el lector
@@ -256,94 +247,93 @@ from ideaboard import IdeaBoard
 from adafruit_lsm6ds.lsm6ds3trc import LSM6DS3TRC
 
 ib = IdeaBoard()
-
 i2c = board.I2C()
-
 sensor = LSM6DS3TRC(i2c, 0x6b)
 
-
 def calibrar_drift(sensor, segundos=2):
-
+    print(f"Recordando el pasado por {segundos} segundos para limpiar el ruido...")
     suma = 0
     muestras = 0
-
     t0 = time.monotonic()
-
     while time.monotonic() - t0 < segundos:
-
         data = sensor.gyro[2]
-
         if abs(data) < 0.008:
-
             suma += data
             muestras += 1
-
         time.sleep(0.005)
+        
+    drift = suma / muestras
+    print(f"Drift calculado: {drift:.4f} rad/s")
+    return drift
 
-    return suma / muestras
-
-
-
+# Función con variables predeterminadas del PID (Proporcional, Integral, Derivativa)
 def straight_move(velocidad, duracion, drift, Kp=0.15, Ki=0.8, Kd=0.05):
-
     t0 = time.monotonic()
-
     velocidad_base = abs(velocidad)
-
     direccion = 1 if velocidad > 0 else -1
 
-
+    # Memorias para los componentes del PID
     error_anterior = 0
-
     error_integral = 0
+    t_anterior = time.monotonic()
 
-
+    # El lazo cerrado: mantenemos el control durante el tiempo especificado
     while time.monotonic() - t0 < duracion:
+        t_actual = time.monotonic()
+        
+        # En esta implementación fijamos el dt en 1 para estabilizar los cálculos 
+        # matemáticos de las ganancias Kp, Ki y Kd en tiempo real.
+        dt = 1 
+        t_anterior = t_actual
 
-        dt = 1
-
-
+        # 1. Medir error (La realidad): 
+        # Si el robot va perfectamente recto, sensor.gyro[2] menos el drift debería ser 0.
+        # Cualquier valor distinto es un error físico que el robot está cometiendo.
         error = sensor.gyro[2] - drift
 
-
+        # 2. Recordar e inferir:
+        # Integral: Acumulamos los errores pasados. Ayuda a vencer fricciones constantes.
         error_integral += error * dt
-
+        # Derivativa: Calculamos la velocidad del error. Ayuda a anticipar y suavizar correcciones rápidas.
         error_derivativo = (error - error_anterior) / dt
 
+        # 3. Negociar la corrección (El cálculo):
+        # Convertimos los errores matemáticos en una fuerza de corrección aplicable.
+        correccion = (Kp * error) + (Ki * error_integral) + (Kd * error_derivativo)
+        
+        # Evitamos la sobrecorrección. El motor no puede arreglar un problema
+        # instantáneamente, restringimos el impacto al 30% de la fuerza.
+        correccion = max(-0.3, min(0.3, correccion)) 
 
-        correccion = (
+        # 4. Actuar sobre la materia:
+        # Aplicamos la velocidad base y le sumamos/restamos la compensación a cada motor.
+        v1 = max(-1.0, min(1.0, velocidad_base * direccion + correccion))
+        v2 = max(-1.0, min(1.0, velocidad_base * direccion - correccion))
 
-            Kp * error +
-
-            Ki * error_integral +
-
-            Kd * error_derivativo
-
-        )
-
-
-        correccion = max(-0.3, min(0.3, correccion))
-
-
-        v1 = velocidad_base * direccion + correccion
-
-        v2 = velocidad_base * direccion - correccion
-
-
+        # Enviamos la energía a las ruedas
         ib.motor_1.throttle = v1
-
         ib.motor_2.throttle = v2
 
-
+        # Guardamos el error actual para usarlo como pasado en el siguiente ciclo
         error_anterior = error
-
-
+        
+        # Pequeña pausa para no colapsar la lectura del I2C
         time.sleep(0.01)
 
-
+    # Detenemos la máquina al agotar la duración
     ib.motor_1.throttle = 0
-
     ib.motor_2.throttle = 0
+
+# --- EJECUCIÓN PRINCIPAL ---
+ib.pixel = (255, 0, 255) # Magenta (calibrando)
+drift = calibrar_drift(sensor, 2)
+ib.pixel = (0, 255, 255) # Cian (listo)
+
+print("Avanzando recto por 3 segundos. El algoritmo corrige la fricción en tiempo real.")
+straight_move(0.5, 3, drift)
+print("Movimiento terminado.")
+
+ib.pixel = (0, 0, 0)
 ```
 
 ## Reflexiones para el lector
