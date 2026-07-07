@@ -1,20 +1,30 @@
 # Cuando el comportamiento tiene memoria
-Hasta ahora he utilizado las Máquinas de Estados para organizar la ejecución de mis programas. Sin embargo, su verdadero potencial aparece cuando las entiendo como un mecanismo para construir comportamientos que evolucionan con el tiempo. Gracias a ellas, puedo hacer que un sistema recuerde información, espere el momento adecuado para actuar y tome decisiones según su estado interno, en lugar de responder únicamente a la entrada del momento.
 
-La tarjeta **IdeaSense** resulta especialmente adecuada para explorar esta idea. Sus botones, la matriz de LEDs y sus sensores me permiten desarrollar sistemas que no solo reaccionan a los estímulos del entorno, sino que también conservan información y representan visualmente su estado interno.
+Hasta ahora he utilizado las Máquinas de Estados para organizar la ejecución de mis programas. Sin embargo, su verdadero potencial aparece cuando las entiendo como un mecanismo para construir comportamientos que evolucionan con el tiempo.
 
-En los siguientes ejemplos aplicaré este principio de tres maneras diferentes. Primero construiré un sistema capaz de recordar una selección realizada por el usuario. Después utilizaré una Máquina de Estados para convertir un sensor táctil en un interruptor confiable, evitando múltiples activaciones accidentales. Finalmente, emplearé el acelerómetro para distinguir entre movimiento y reposo, filtrando el ruido propio del mundo físico.
+Gracias a ellas, puedo hacer que un sistema recuerde información, espere el momento adecuado para actuar y tome decisiones según su estado interno, en lugar de responder únicamente a la entrada que recibe en un instante determinado.
 
-En todos los casos ocurre la misma idea fundamental: el comportamiento del sistema ya no depende únicamente de la entrada actual, sino también del estado en el que se encuentra. Esa pequeña diferencia transforma un programa reactivo en un sistema capaz de tomar decisiones de forma mucho más organizada.
+La tarjeta **IdeaSense** resulta especialmente adecuada para explorar esta idea. Sus botones, la matriz de LEDs y sus sensores permiten desarrollar sistemas que no solo reaccionan a los estímulos del entorno, sino que también conservan información y representan visualmente su estado interno.
+
+En los siguientes ejemplos aplicaré este principio de tres maneras diferentes. Primero construiré un sistema capaz de recordar una selección realizada por el usuario. Después utilizaré una Máquina de Estados para convertir un sensor táctil en un interruptor confiable, evitando múltiples activaciones accidentales. Finalmente, emplearé el acelerómetro para distinguir entre movimiento y reposo, filtrando las variaciones propias del mundo físico.
+
+En todos los casos aparece la misma idea fundamental: el comportamiento del sistema ya no depende únicamente de la entrada actual, sino también del estado en el que se encuentra. Esta pequeña diferencia transforma un programa puramente reactivo en un sistema capaz de tomar decisiones de una manera mucho más organizada.
 
 # Ejemplo 1: Memoria Visual y Eventos
 
-Al conectar la placa **IdeaSense** a mi **IdeaBoard**, multiplico mis formas de interactuar con el mundo físico. Ahora cuento con tres botones dedicados y una matriz de LEDs de 5×5. Mi primer impulso al programar podría ser crear un sistema puramente reactivo: *si mantengo presionado el botón A, se dibuja la letra A; si lo suelto, se borra.*
+Al conectar la placa **IdeaSense** a mi **IdeaBoard**, aumento las posibilidades de interacción con el mundo físico. Ahora cuento con tres botones dedicados y una matriz de LEDs de 5×5.
 
-Sin embargo, mediante el pensamiento computacional puedo ir más allá de estos reflejos básicos. Me pregunto: ¿qué ocurre si quiero que el sistema **recuerde** mi selección y la muestre durante un tiempo específico sin necesidad de mantener el botón presionado?
+Mi primer impulso al programar podría ser crear un sistema puramente reactivo:
 
-En este escenario, interpreto las pulsaciones de los botones como eventos que provocan transiciones entre distintos estados. Una vez que ocurre una transición, la placa dibuja la letra correspondiente en la matriz y controla el tiempo de manera autónoma. Mientras permanece en ese estado, el programa deja de evaluar nuevas pulsaciones hasta completar la acción. El comportamiento deja de depender del botón presionado y pasa a depender del estado interno del sistema.
+> Si mantengo presionado el botón A, se dibuja la letra A; si lo suelto, se borra.
 
+Sin embargo, mediante el pensamiento computacional puedo ir más allá de estos reflejos básicos. Me planteo una pregunta diferente:
+
+**¿Qué ocurre si quiero que el sistema recuerde mi selección y la muestre durante un tiempo específico sin necesidad de mantener el botón presionado?**
+
+En este escenario, interpreto las pulsaciones de los botones como eventos que provocan transiciones entre distintos estados. Cuando ocurre una transición, la placa cambia su comportamiento: dibuja la letra correspondiente en la matriz y controla el tiempo necesario antes de regresar al estado inicial.
+
+Mientras permanece dentro de un estado determinado, el programa mantiene ese comportamiento independientemente de que el botón continúe presionado. La acción deja de depender únicamente de la entrada física inmediata y pasa a depender de la información almacenada dentro de la Máquina de Estados.
 
 ## Código: `01_buttons_sm.py`
 
@@ -137,16 +147,26 @@ while True:
     time.sleep(0.01)
 ```
 
-> **Importante:** Al observar este código, puedo notar que la carga cognitiva se reduce drásticamente. He encapsulado el *cómo se dibuja* dentro de la función `dibujar_en_matriz()`. Esto permite hacer que las funciones de estado se concentren exclusivamente en el *cuándo* y el *por qué*. Cada estado evalúa, decide y realiza transiciones, mientras que la función de dibujo simplemente ejecuta la acción solicitada. De esta manera, reforzo la filosofía central del capítulo: desacoplar la intención lógica de la acción física.
+> **Importante:** Al observar este código, puedo notar que la carga cognitiva se reduce considerablemente. La función `dibujar_en_matriz()` encapsula la lógica necesaria para representar una imagen en la matriz de LEDs.
 
+> De esta forma, las funciones de estado pueden concentrarse en responder preguntas más importantes: **cuándo debe ocurrir una acción y por qué debe ocurrir**. Cada estado evalúa las condiciones necesarias, decide si debe permanecer activo o realizar una transición, mientras que la función de dibujo únicamente ejecuta la representación visual solicitada.
+
+> Este diseño refuerza una idea central del capítulo: separar la intención lógica de la implementación física permite crear programas más claros, mantenibles y fáciles de ampliar.
 
 # Ejemplo 2: El Interruptor Capacitivo Visual
 
-En el ejemplo anterior utilicé la Máquina de Estados para recordar una selección durante un tiempo determinado. Ahora aplicaré la misma idea con un propósito diferente: garantizar que una única interacción física produzca una sola activación lógica.
+En el ejemplo anterior utilicé la Máquina de Estados para recordar una selección durante un tiempo determinado. Ahora aplicaré el mismo concepto con un propósito diferente: garantizar que una única interacción física produzca una sola activación lógica.
 
-La **IdeaBoard** dispone de pines táctiles capacitivos. Si leo continuamente uno de estos pines, una misma pulsación puede generar múltiples activaciones mientras el usuario mantiene el dedo apoyado. Para evitarlo, dividiré la interacción en dos fases claramente diferenciadas: la detección del toque y la espera hasta que el usuario retire el dedo.
+La **IdeaBoard** dispone de pines táctiles capacitivos capaces de detectar la presencia de un dedo mediante cambios en la capacitancia eléctrica. Sin embargo, si leo continuamente este sensor sin una estrategia de control, una misma pulsación puede generar múltiples activaciones mientras el usuario mantiene el dedo colocado.
 
-La placa **IdeaSense** actuará como mi lienzo. Cada vez que el sistema detecte un toque válido, la matriz de LEDs cambiará su dibujo para representar el nuevo estado lógico.
+Para solucionar este problema, dividiré la interacción en dos fases claramente diferenciadas:
+
+1. **Detección del toque:** el sistema espera hasta identificar una nueva interacción.
+2. **Espera de liberación:** el sistema permanece bloqueado hasta que el usuario retire el dedo, permitiendo una nueva activación únicamente después de liberar el sensor.
+
+La **IdeaSense** funcionará como un elemento visual que representa el estado actual del sistema. Cada vez que se detecte un toque válido, la matriz de LEDs cambiará su dibujo mostrando la nueva condición lógica.
+
+De esta manera, la Máquina de Estados funciona como un filtro de eventos físicos. En lugar de reaccionar repetidamente ante una señal mantenida, interpreta una interacción completa: presionar → procesar → liberar.
 
 ## Código: `02_ideasense_touch_sm.py`
 
@@ -233,19 +253,26 @@ while True:
     time.sleep(0.05)
 ```
 
-> **Importante:** El estado `ESPERANDO_LIBERACION` sigue actuando como mi candado de seguridad, protegiendo tanto la lógica matemática como la visualización. Si no tuviéra esta máquina de estados, el dibujo en la matriz parpadearía frenéticamente entre el **"Check"** y la **"X"** mientras el dedo del usuario rozara el pin capacitivo.
+> **Importante:** El estado `ESPERANDO_LIBERACION` funciona como un mecanismo de protección. Su función es evitar que una misma pulsación física sea interpretada como múltiples eventos lógicos.
 
+> Sin esta Máquina de Estados, mientras el usuario mantuviera el dedo sobre el sensor, el programa podría ejecutar repetidamente la acción de cambio, provocando comportamientos inestables como cambios rápidos entre el **Check** y la **X**.
+
+> Este ejemplo muestra cómo una Máquina de Estados puede transformar una señal física continua en un evento digital limpio y controlado. La interacción humana deja de depender únicamente de la lectura instantánea del sensor y pasa a tener una secuencia definida de comportamiento.
 
 # Ejemplo 3: El Detector de Actividad (Movimiento vs. Reposo)
 
-Para mí resulta evidente distinguir entre una placa inmóvil y otra que está siendo agitada. Un acelerómetro, en cambio, únicamente entrega mediciones de aceleración. Soy yo quien debe interpretar esos datos y decidir cuándo representan un movimiento real y cuándo corresponden a la gravedad o a pequeñas variaciones propias del sensor.
+Para una persona resulta sencillo distinguir entre una placa inmóvil y otra que está siendo agitada. Sin embargo, un acelerómetro no entrega directamente información como "la placa se está moviendo" o "la placa está quieta". El sensor únicamente proporciona valores de aceleración en diferentes ejes, y es el programa quien debe interpretar esos datos.
 
-Para resolver este problema utilizaré dos estrategias complementarias. Primero calcularé el **Delta**, es decir, la diferencia entre la lectura actual y la anterior. Como la gravedad permanece prácticamente constante mientras la placa está quieta, este cálculo me permite concentrarme en los cambios producidos por el movimiento. Después incorporaré un temporizador que exige dos segundos completos sin detectar actividad antes de regresar al estado **QUIETO**.
+Cuando la placa permanece en reposo, el acelerómetro continúa midiendo la aceleración producida por la gravedad terrestre. Por esta razón, una lectura constante no necesariamente representa movimiento. Para detectar actividad real debo observar los cambios que ocurren entre mediciones consecutivas.
 
-De esta forma, evitaré cambiar continuamente entre ambos estados debido a pequeñas vibraciones o breves pausas durante el movimiento, produciendo un comportamiento mucho más estable.
+Para resolver este problema utilizaré dos estrategias complementarias:
 
+1. **Cálculo del Delta:** comparo la lectura actual con la lectura anterior para identificar cambios significativos en la aceleración.
+2. **Temporizador de estabilidad:** después de detectar movimiento, el sistema exige permanecer durante dos segundos sin cambios importantes antes de regresar al estado **QUIETO**.
 
- ### Código: `03_ideasense_actividad_sm.py`
+De esta manera, pequeñas variaciones del sensor o vibraciones momentáneas no provocan cambios constantes entre estados. El sistema obtiene un comportamiento más estable y cercano a una interpretación humana de movimiento y reposo.
+
+## Código: `03_ideasense_actividad_sm.py`
 
 ```python
 # ----------------------------------------
@@ -350,6 +377,35 @@ while True:
     sm.step()
     time.sleep(0.05)
 ```
-    
-> **Importante:** Este patrón de diseño aísla las lecturas ruidosas del mundo físico. Al medir el cambio (Delta) filtramos la gravedad terrestre, y al usar un temporizador de "enfriamiento" evitamos que el sistema parpadee erráticamente entre estados mientras se mueve la placa. Si notas que está muy sensible, simplemente sube el valor de UMBRAL_MOVIMIENTO.
 
+> **Importante:** Este patrón de diseño permite separar las lecturas del mundo físico de las decisiones del programa.
+
+> Al calcular el cambio entre mediciones consecutivas (**Delta**) se obtiene una referencia más útil para detectar actividad, ya que se presta atención a las variaciones producidas por el movimiento y no únicamente al valor absoluto del acelerómetro.
+
+> Además, el temporizador de estabilidad evita que el sistema cambie inmediatamente a reposo ante una pequeña pausa. Esto genera una respuesta más natural: la placa debe permanecer realmente tranquila durante un período definido antes de considerarse nuevamente inactiva.
+
+# Reflexión final: De programas reactivos a sistemas con comportamiento
+
+Los tres ejemplos muestran una misma idea aplicada en diferentes situaciones:
+
+- En el primer ejemplo, la Máquina de Estados permitió que el sistema **recordara una decisión del usuario** y mantuviera una representación visual durante un tiempo determinado.
+- En el segundo ejemplo, permitió transformar una señal física continua en un **evento digital controlado**, evitando activaciones repetidas.
+- En el tercero, permitió interpretar información del entorno y construir una respuesta más inteligente frente a datos imperfectos provenientes de un sensor.
+
+La importancia de las Máquinas de Estados no está únicamente en cambiar entre funciones. Su verdadero valor aparece cuando permiten representar la memoria interna de un sistema.
+
+Un programa tradicional responde únicamente a la pregunta:
+
+> ¿Qué está ocurriendo ahora?
+
+Un sistema basado en estados también puede responder:
+
+> ¿Qué ocurrió antes?  
+> ¿Qué estoy esperando?  
+> ¿Qué condición necesito cumplir para cambiar mi comportamiento?
+
+Esta capacidad de conservar contexto es la base de muchos sistemas modernos: robots, dispositivos inteligentes, interfaces interactivas y sistemas embebidos.
+
+La **IdeaSense** permite observar esta transición de una manera tangible. Los botones generan eventos, los sensores aportan información del mundo real y la matriz de LEDs permite visualizar el estado interno del sistema.
+
+Cuando un programa comienza a tener memoria, deja de ser una simple colección de instrucciones y empieza a comportarse como un sistema capaz de percibir, decidir y actuar.
