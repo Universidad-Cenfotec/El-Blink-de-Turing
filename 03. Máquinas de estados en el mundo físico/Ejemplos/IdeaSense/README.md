@@ -1,8 +1,14 @@
+# Cuando el sistema aprende a recordar
+
+Hasta ahora hemos utilizado las máquinas de estados para organizar el comportamiento de actuadores y responder a estímulos del entorno. Sin embargo, su verdadero poder aparece cuando dejamos de pensar en ellas como una simple técnica de programación y comenzamos a verlas como un mecanismo para construir memoria y comportamiento.
+
+La tarjeta IdeaSense resulta especialmente adecuada para explorar esta idea porque incorpora tres botones, una matriz LED de 5×5 y diversos sensores inerciales. Gracias a esta combinación, un programa ya no necesita limitarse a reaccionar instantáneamente ante una entrada. Puede conservar información sobre lo que ocurrió hace unos instantes, decidir cuándo aceptar nuevas acciones, ignorar eventos repetidos y representar visualmente el estado interno del sistema.
+
+En los siguientes ejemplos veremos cómo una Máquina de Estados permite desacoplar las entradas físicas de las acciones visibles. Los botones dejan de ser simples interruptores para convertirse en eventos que modifican el comportamiento del programa; el sensor táctil deja de producir múltiples activaciones accidentales para transformarse en un interruptor confiable; y el acelerómetro deja de entregar únicamente números para convertirse en un detector de actividad capaz de distinguir entre movimiento real y reposo.
 
 # Ejemplo 1: Memoria Visual y Eventos 
-Al conectar la placa **IdeaSense** a nuestra **IdeaBoard**, multiplicamos nuestras formas de interactuar con el mundo físico. Ahora contamos con tres botones dedicados y una matriz de LEDs de 5x5. Nuestro primer impulso al programar podría ser crear un sistema puramente reactivo: *si mantenemos presionado el botón A, se dibuja la letra A; si lo soltamos, se borra*.
 
-Sin embargo, mediante el pensamiento computacional podemos ir más allá de estos reflejos básicos. Nos preguntamos: ¿qué ocurre si queremos que el sistema *recuerde* nuestra selección y la muestre durante un tiempo específico sin necesidad de mantener el botón presionado? En este escenario, la Máquina de Estados actúa como intermediaria. Los botones de la IdeaSense funcionan como detonadores que modifican el "modo" del sistema. Una vez que entramos en un estado determinado, la placa dibuja la letra correspondiente en la matriz y controla el tiempo de manera autónoma, ignorando las entradas de otros botones hasta finalizar su tarea.
+Mediante el pensamiento computacional podemos ir más allá de reflejos básicos. Nos preguntamos: ¿qué ocurre si queremos que el sistema *recuerde* nuestra selección y la muestre durante un tiempo específico sin necesidad de mantener el botón presionado? En este escenario, la Máquina de Estados actúa como intermediaria. Los botones de la IdeaSense funcionan como detonadores que modifican el "modo" del sistema. Una vez que entramos en un estado determinado, la placa dibuja la letra correspondiente en la matriz y controla el tiempo de manera autónoma, ignorando las entradas de otros botones hasta finalizar su tarea.
 
 ## Código: `01_buttons_sm.py`
 
