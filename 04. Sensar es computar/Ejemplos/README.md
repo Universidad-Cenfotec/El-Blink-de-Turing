@@ -319,7 +319,9 @@ while True:
     time.sleep(0.15)
 ```
 # Reflexiones para el lector:
-- La paciencia algorítmica: Sensar no es un acto instantáneo, sino un proceso de acumulación. Al exigir 6 lecturas consecutivas antes de actuar, transformamos un impulso eléctrico efímero en una decisión sólida.
-- Estabilidad ante el caos: El código actúa como un filtro de ruido. La computación aquí se utiliza para darle estabilidad al mundo físico, evitando que la máquina reaccione a interferencias o "falsos positivos" del entorno.
-- La construcción de la certeza: La máquina no "sabe" que hay un humano presente; simplemente ha dejado de dudar. La certeza es el resultado de la persistencia del dato en el tiempo, convirtiendo el caos sensorial en una verdad lógica.
 
+- **La paciencia algorítmica:** Sensar no es un acto instantáneo, sino un proceso de acumulación. Al exigir varias lecturas consecutivas antes de actuar, el sistema transforma un impulso eléctrico efímero en una decisión sólida.
+
+- **Estabilidad ante el caos:** El código actúa como un filtro de ruido. La computación permite darle estabilidad al mundo físico, evitando que la máquina reaccione ante interferencias o "falsos positivos" del entorno.
+
+- **La construcción de la certeza:** La máquina no "sabe" que hay un humano presente; simplemente deja de dudar después de acumular suficiente evidencia. La certeza aparece como resultado de la persistencia del dato en el tiempo, convirtiendo el caos sensorial en una decisión lógica.
