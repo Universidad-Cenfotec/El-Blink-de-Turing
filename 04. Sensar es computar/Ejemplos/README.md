@@ -1,5 +1,21 @@
-
 # Ejemplos del capítulo 4: Sensar es computar
+
+Hasta ahora hemos visto que un sensor no es simplemente un dispositivo que entrega datos del mundo físico. Una lectura aislada de luz, distancia, movimiento o contacto no tiene significado por sí misma. Es el proceso de interpretación realizado por el microcontrolador el que transforma una señal cambiante en información útil.
+
+Sensar es computar porque la máquina debe comparar, recordar, filtrar y tomar decisiones. Entre la realidad física y la acción del sistema existe una capa de procesamiento donde los datos adquieren contexto. Un valor analógico deja de ser únicamente un número cuando el programa lo relaciona con el pasado, establece límites, detecta cambios o acumula evidencia antes de actuar.
+
+En este capítulo exploraremos diferentes formas en las que un sistema puede construir una percepción más estable del entorno. Veremos cómo una simple lectura puede convertirse en un evento mediante histéresis, cómo una memoria mínima permite descubrir tendencias, cómo la repetición genera confianza y cómo la interacción humana puede validarse mediante la acumulación de información en el tiempo.
+
+Los siguientes ejemplos muestran una idea fundamental: **un sensor no interpreta el mundo; la computación crea esa interpretación**. La inteligencia del sistema no está únicamente en el hardware que mide, sino en los algoritmos que organizan esas mediciones y les dan significado.
+
+Cada ejemplo representa un nivel diferente de procesamiento:
+
+- **Histéresis y memoria:** transformar una señal continua en una decisión estable evitando reacciones impulsivas ante el ruido.
+- **Tendencia y variación:** comparar el presente con el pasado para construir una noción de dirección y cambio.
+- **Validación sensorial:** utilizar tiempo y repetición para separar eventos reales de lecturas falsas.
+- **Memoria táctil:** convertir una interacción física momentánea en una decisión basada en confianza acumulada.
+
+La percepción de una máquina no aparece de una única lectura, sino de una historia de observaciones. En este sentido, computar significa darle memoria al presente para poder interpretar el futuro.
 
 ## Ejemplo 1: La Emergencia del Evento (Histéresis y Memoria)
 En este script, transformamos una lectura analógica continua en una decisión discreta utilizando **fronteras dobles**. El sistema utiliza dos umbrales para evitar que el ruido del sensor provoque cambios erráticos (parpadeos) cuando la señal está cerca del límite. Es la base de la estabilidad en sistemas de control.
