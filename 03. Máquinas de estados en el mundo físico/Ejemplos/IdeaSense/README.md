@@ -1,20 +1,20 @@
 # Cuando el comportamiento tiene memoria
 
-Hasta ahora hemos utilizado las Máquinas de Estados para organizar la ejecución de un programa y controlar el flujo entre distintas acciones. Sin embargo, su verdadero potencial aparece cuando dejamos de pensar en ellas únicamente como una técnica de programación y comenzamos a entenderlas como un mecanismo para construir comportamiento.
+Hasta ahora hemos utilizado las Máquinas de Estados para organizar la ejecución de un programa. Sin embargo, su verdadero potencial aparece cuando las entendemos como un mecanismo para construir comportamientos que evolucionan en el tiempo. Gracias a ellas, un sistema puede recordar información, esperar el momento adecuado para actuar y tomar decisiones según su estado interno, en lugar de responder únicamente a la entrada del momento.
 
-La tarjeta IdeaSense resulta especialmente adecuada para explorar esta idea. Sus botones, la matriz LED y sus sensores permiten desarrollar sistemas que no solo reaccionan a los estímulos del entorno, sino que también conservan información, esperan el momento adecuado para actuar y representan visualmente su estado interno.
+La tarjeta IdeaSense resulta especialmente adecuada para explorar esta idea. Sus botones, la matriz de LEDs y sus sensores permiten desarrollar sistemas que no solo reaccionan a los estímulos del entorno, sino que también conservan información y representan visualmente su estado interno.
 
-En los siguientes ejemplos veremos tres aplicaciones diferentes de este principio. Primero construiremos un sistema capaz de recordar una selección realizada por el usuario. Después utilizaremos una Máquina de Estados para convertir un sensor táctil en un interruptor confiable, evitando múltiples activaciones accidentales. Finalmente, emplearemos el acelerómetro para distinguir entre movimiento y reposo, filtrando el ruido propio del mundo físico.
+En los siguientes ejemplos veremos tres aplicaciones de este principio. Primero construiremos un sistema capaz de recordar una selección realizada por el usuario. Después utilizaremos una Máquina de Estados para convertir un sensor táctil en un interruptor confiable, evitando múltiples activaciones accidentales. Finalmente, emplearemos el acelerómetro para distinguir entre movimiento y reposo, filtrando el ruido propio del mundo físico.
 
-En todos los casos ocurre la misma idea fundamental: el comportamiento del sistema ya no depende únicamente de la entrada actual, sino también del estado en el que se encuentra. Esa pequeña diferencia transforma un programa reactivo en un sistema capaz de tomar decisiones mucho más organizadas.
+En todos los casos ocurre la misma idea fundamental: el comportamiento del sistema ya no depende únicamente de la entrada actual, sino también del estado en el que se encuentra. Esa pequeña diferencia transforma un programa reactivo en un sistema capaz de tomar decisiones de forma mucho más organizada.
 
 # Ejemplo 1: Memoria Visual y Eventos 
 
-Al conectar la placa **IdeaSense** a nuestra **IdeaBoard**, multiplicamos nuestras formas de interactuar con el mundo físico. Ahora contamos con tres botones dedicados y una matriz de LEDs de 5×5. Nuestro primer impulso al programar podría ser crear un sistema puramente reactivo: *si mantenemos presionado el botón A, se dibuja la letra A; si lo soltamos, se borra.*
+Al conectar la placa IdeaSense a nuestra IdeaBoard, multiplicamos nuestras formas de interactuar con el mundo físico. Ahora contamos con tres botones dedicados y una matriz de LEDs de 5×5. Nuestro primer impulso al programar podría ser crear un sistema puramente reactivo: si mantenemos presionado el botón A, se dibuja la letra A; si lo soltamos, se borra.
 
-Sin embargo, mediante el pensamiento computacional podemos ir más allá de estos reflejos básicos. Nos preguntamos: ¿qué ocurre si queremos que el sistema **recuerde** nuestra selección y la muestre durante un tiempo específico sin necesidad de mantener el botón presionado?
+Sin embargo, mediante el pensamiento computacional podemos ir más allá de estos reflejos básicos. Nos preguntamos: ¿qué ocurre si queremos que el sistema recuerde nuestra selección y la muestre durante un tiempo específico sin necesidad de mantener el botón presionado?
 
-En este escenario, la Máquina de Estados actúa como intermediaria. Los botones de la IdeaSense funcionan como eventos que modifican el modo de funcionamiento del sistema. Una vez que se produce una transición, la placa dibuja la letra correspondiente en la matriz y controla el tiempo de manera autónoma, ignorando las entradas de los demás botones hasta finalizar la tarea. El comportamiento deja de depender del botón presionado y pasa a depender del estado interno del programa.
+En este escenario, las pulsaciones de los botones son interpretadas por la Máquina de Estados como eventos que provocan transiciones entre distintos estados. Una vez que ocurre una transición, la placa dibuja la letra correspondiente en la matriz y controla el tiempo de manera autónoma. Mientras permanece en ese estado, el programa deja de evaluar nuevas pulsaciones hasta completar la acción. El comportamiento deja de depender del botón presionado y pasa a depender del estado interno del sistema.
 
 ## Código: `01_buttons_sm.py`
 
@@ -142,9 +142,11 @@ while True:
 
 ## Ejemplo 2: El Interruptor Capacitivo Visual 
 
-La IdeaBoard tiene pines táctiles (touch capacitivo). Leer este tipo de pines continuamente puede generar disparos múltiples si el usuario deja el dedo puesto una fracción de segundo de más. En este ejemplo, la Máquina de Estados divide la interacción en dos fases estables: el toque activo y la liberación.
+En el ejemplo anterior, la Máquina de Estados se utilizó para recordar una selección durante un tiempo determinado. Ahora aplicaremos la misma idea con un propósito diferente: garantizar que una única interacción física produzca una sola activación lógica.
 
-La diferencia aquí es que utilizaremos la placa **IdeaSense** como nuestro lienzo. Cada vez que el toque es válido y seguro, la matriz de 5x5 cambiará su dibujo, reflejando el estado lógico interno del sistema.
+La **IdeaBoard** dispone de pines táctiles capacitivos. Si leemos continuamente uno de estos pines, una misma pulsación puede generar múltiples activaciones mientras el usuario mantiene el dedo apoyado. Para evitarlo, la Máquina de Estados divide la interacción en dos fases claramente diferenciadas: la detección del toque y la espera hasta que el usuario retire el dedo.
+
+La placa **IdeaSense** actuará como nuestro lienzo. Cada vez que el sistema detecte un toque válido, la matriz de LEDs cambiará su dibujo para representar el nuevo estado lógico.
 
 ### Código: `02_ideasense_touch_sm.py`
 
@@ -232,17 +234,15 @@ while True:
 ```
 
 > **Importante:** Nota cómo el estado `ESPERANDO_LIBERACION` sigue actuando como nuestro candado de seguridad, protegiendo tanto la lógica matemática como la visualización. Si no tuviéramos esta máquina de estados, el dibujo en la matriz parpadearía frenéticamente entre el **"Check"** y la **"X"** mientras el dedo del usuario rozara el pin capacitivo.
-Ejemplo 3: El Detector de Actividad (Movimiento vs Reposo)
-Detectar si algo se está moviendo en el mundo real es engañoso. Primero, porque la gravedad de la Tierra confunde al acelerómetro (si la placa está inclinada, el sensor lee una fuerza constante y cree que se está moviendo aunque esté quieta). Segundo, porque el movimiento humano no es matemáticamente perfecto; si agitas la placa, hay microsegundos de pausa al cambiar de dirección.
 
-Para solucionar esto, nuestra Máquina de Estados hace dos cosas: primero, calcula el Delta (la diferencia entre la lectura actual y la anterior) para ignorar la gravedad y detectar solo el cambio real. Segundo, actúa como un supervisor paciente: el estado MOVIENDOSE exige que pasen 2 segundos completos de inactividad antes de convencerse de que el movimiento terminó y volver al estado QUIETO.
+
 # Ejemplo 3: El Detector de Actividad (Movimiento vs. Reposo)
 
-Para una persona resulta evidente distinguir entre una placa inmóvil y otra que está siendo agitada. Un acelerómetro, en cambio, únicamente entrega mediciones de aceleración. Es responsabilidad del algoritmo interpretar esos datos y decidir cuándo representan un movimiento real y cuándo son simplemente consecuencia de la gravedad o de pequeñas variaciones propias del sensor.
+Para mí resulta evidente distinguir entre una placa inmóvil y otra que está siendo agitada. Un acelerómetro, en cambio, únicamente entrega valores de aceleración; no sabe si la placa está quieta, inclinada o en movimiento. Por esta razón, debo interpretar las mediciones y determinar cuándo representan una actividad real y cuándo son simplemente variaciones normales del sensor o efectos constantes como la gravedad.
 
-Para resolver este problema, nuestra Máquina de Estados utiliza dos estrategias complementarias. Primero calcula el **Delta**, es decir, la diferencia entre la lectura actual y la anterior, para ignorar la aceleración constante producida por la gravedad y concentrarse únicamente en los cambios reales. Después incorpora un temporizador que exige dos segundos completos sin detectar movimiento antes de regresar al estado **QUIETO**.
+Para resolver este problema utilizaré dos estrategias complementarias. Primero compararé las lecturas actuales del acelerómetro con las lecturas anteriores para identificar cambios significativos. Si los valores permanecen prácticamente iguales, interpretaré que la placa se encuentra en reposo; si presentan variaciones importantes, consideraré que existe movimiento. Después incorporaré un temporizador que exige dos segundos completos sin detectar actividad antes de regresar al estado **QUIETO**.
 
-De esta forma, el sistema evita cambiar constantemente entre ambos estados debido a pequeñas vibraciones o pausas momentáneas durante el movimiento, produciendo un comportamiento mucho más estable.
+De esta forma, evitaré que el sistema cambie continuamente entre ambos estados debido a pequeñas vibraciones o pausas momentáneas durante el movimiento, logrando un comportamiento más estable y cercano a una interacción real.
 
 
  ### Código: `03_ideasense_actividad_sm.py`
