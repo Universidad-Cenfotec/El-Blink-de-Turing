@@ -1,4 +1,4 @@
-# Ejemplos del capítulo: Actuar es Computar
+# Ejemplos del capítulo 5: Actuar es Computar
 
 Después de comprender que un programa puede producir cambios reales sobre el mundo, surge una pregunta natural: ¿cómo ocurre esa transformación? Un microcontrolador no mueve un motor ni enciende un LED por sí solo. Lo que hace es ejecutar, una tras otra, millones de instrucciones que organizan el flujo de energía hacia distintos dispositivos. Cada decisión lógica termina convirtiéndose en una acción física.
 
