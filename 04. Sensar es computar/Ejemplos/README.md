@@ -1,24 +1,31 @@
 # Ejemplos del capítulo 4: Sensar es computar
 
-Hasta ahora hemos visto que un sensor no es simplemente un dispositivo que entrega datos del mundo físico. Una lectura aislada de luz, distancia, movimiento o contacto no tiene significado por sí misma. Es el proceso de interpretación realizado por el microcontrolador el que transforma una señal cambiante en información útil.
+Hasta ahora he visto que un sensor no es simplemente un dispositivo que entrega datos del mundo físico. Una lectura aislada de luz, distancia, movimiento o contacto solamente representa un valor, pero no contiene una interpretación. Es mediante la computación que puedo transformar esas señales en información con significado.
 
-Sensar es computar porque la máquina debe comparar, recordar, filtrar y tomar decisiones. Entre la realidad física y la acción del sistema existe una capa de procesamiento donde los datos adquieren contexto. Un valor analógico deja de ser únicamente un número cuando el programa lo relaciona con el pasado, establece límites, detecta cambios o acumula evidencia antes de actuar.
+Cuando programo un sistema embebido, no me limito a leer datos; construyo una forma de percepción. Mi código compara valores, recuerda estados anteriores, identifica cambios, filtra errores y decide cuándo una situación es suficientemente importante como para generar una respuesta. Entre lo que ocurre en el mundo físico y la acción de la máquina existe un proceso de interpretación donde los datos comienzan a tener contexto.
 
-En este capítulo exploraremos diferentes formas en las que un sistema puede construir una percepción más estable del entorno. Veremos cómo una simple lectura puede convertirse en un evento mediante histéresis, cómo una memoria mínima permite descubrir tendencias, cómo la repetición genera confianza y cómo la interacción humana puede validarse mediante la acumulación de información en el tiempo.
+En este capítulo exploro diferentes maneras en las que un sistema puede construir una percepción más estable del entorno. A través de estos ejemplos muestro cómo una señal continua puede convertirse en un evento, cómo una memoria mínima permite reconocer tendencias, cómo la repetición puede generar confianza y cómo una interacción humana puede validarse mediante la acumulación de evidencia en el tiempo.
 
-Los siguientes ejemplos muestran una idea fundamental: **un sensor no interpreta el mundo; la computación crea esa interpretación**. La inteligencia del sistema no está únicamente en el hardware que mide, sino en los algoritmos que organizan esas mediciones y les dan significado.
+Estos ejemplos me permiten entender una idea fundamental: **un sensor no comprende el mundo; soy yo quien, mediante la programación, construyo esa comprensión**. El hardware únicamente captura señales, pero es el algoritmo el que decide qué significan y cómo debe responder el sistema.
 
-Cada ejemplo representa un nivel diferente de procesamiento:
+A lo largo de los siguientes ejemplos desarrollo cuatro formas de darle significado a una lectura:
 
-- **Histéresis y memoria:** transformar una señal continua en una decisión estable evitando reacciones impulsivas ante el ruido.
-- **Tendencia y variación:** comparar el presente con el pasado para construir una noción de dirección y cambio.
-- **Validación sensorial:** utilizar tiempo y repetición para separar eventos reales de lecturas falsas.
-- **Memoria táctil:** convertir una interacción física momentánea en una decisión basada en confianza acumulada.
+- **Histéresis y memoria:** utilizo fronteras dobles para transformar una señal cambiante en una decisión estable, evitando que el ruido provoque respuestas erráticas.
+- **Tendencia y variación:** comparo el presente con el pasado inmediato para crear una noción de dirección, permitiendo que el sistema identifique si algo está aumentando o disminuyendo.
+- **Validación sensorial:** incorporo tiempo y repetición para diferenciar entre una lectura accidental y un evento real, creando un sistema capaz de esperar antes de actuar.
+- **Memoria táctil:** convierto una interacción física momentánea en una decisión basada en evidencia acumulada, demostrando cómo una máquina puede construir confianza.
 
-La percepción de una máquina no aparece de una única lectura, sino de una historia de observaciones. En este sentido, computar significa darle memoria al presente para poder interpretar el futuro.
+Estos ejercicios muestran que sensar no es un acto instantáneo, sino un proceso donde la información adquiere valor a través del tiempo. La percepción de una máquina surge de la capacidad de recordar, comparar y decidir. En este sentido, **computar es darle memoria al presente para poder interpretar lo que está ocurriendo y responder de manera inteligente**.
+
 
 ## Ejemplo 1: La Emergencia del Evento (Histéresis y Memoria)
-En este script, transformamos una lectura analógica continua en una decisión discreta utilizando **fronteras dobles**. El sistema utiliza dos umbrales para evitar que el ruido del sensor provoque cambios erráticos (parpadeos) cuando la señal está cerca del límite. Es la base de la estabilidad en sistemas de control.
+
+En este ejemplo transformo una lectura analógica continua en una decisión discreta utilizando **fronteras dobles**. Mi objetivo es evitar que el ruido natural del sensor provoque cambios erráticos cuando la señal se encuentra cerca de un límite.
+
+Para lograrlo, implemento dos umbrales diferentes: uno para activar el sistema y otro para desactivarlo. Esta separación crea una zona de estabilidad donde la máquina mantiene su estado anterior en lugar de reaccionar inmediatamente ante pequeñas variaciones.
+
+Aquí puedo observar cómo aparece la memoria dentro de un sistema aparentemente simple. El microcontrolador no solo pregunta "¿cuál es el valor actual?", sino que también recuerda "¿qué estaba ocurriendo antes?". Esa pequeña memoria permite construir comportamientos más confiables y es una de las bases fundamentales de los sistemas de control.
+
 
 ### Código: 01_histeresis.py
 
@@ -83,9 +90,14 @@ while True:
     # Pequeña pausa para estabilidad
     time.sleep(0.01)
 ```
+
 ## Ejemplo 2: La construcción de la memoria (Tendencia y Variación)
 
-En este ejemplo, el sistema no solo mira el valor actual, sino que lo compara con el pasado inmediato para entender la dirección del cambio. Aquí, el microcontrolador computa una intención del entorno: ¿está subiendo o está bajando? Este código transforma una lectura aislada en una tendencia (una derivada simple).
+En este ejemplo exploro cómo una máquina puede obtener información nueva al comparar el presente con el pasado inmediato. Un sensor solamente entrega valores, pero al almacenar una lectura anterior puedo calcular una diferencia y construir una idea que originalmente no existía en el dato: la dirección del cambio.
+
+El microcontrolador no sabe naturalmente qué significa subir o bajar. Soy yo, mediante la lógica del programa, quien creo esa interpretación al comparar dos momentos diferentes. Una simple resta entre el valor actual y el valor anterior se convierte en una forma básica de percepción temporal.
+
+Este ejemplo muestra que incluso una memoria mínima puede cambiar completamente el comportamiento de un sistema. Conservar solamente una lectura anterior es suficiente para que la máquina pueda reconocer tendencias y responder a la dinámica del entorno.{
 
 ### Código: 02_memoria_tendencia.py
 
@@ -138,18 +150,21 @@ while True:
     time.sleep(0.1)
 ```
 
-
 ## Reflexiones para el lector
-- La invención de la dirección: Un sensor de luz o un potenciómetro no saben qué es "subir". Es el microcontrolador el que, al retener el valor_anterior, inventa la noción de dirección. La computación aquí es el acto de comparar dos instantes para generar un concepto nuevo: la tendencia.
 
-- El sensor como cronómetro: Nota que si reduces el time.sleep(), la diferencia se vuelve más pequeña porque el mundo cambia menos entre lecturas. La percepción de la velocidad del entorno depende directamente de la velocidad de nuestro ciclo de lectura.
+- **La invención de la dirección:** Un sensor de luz o un potenciómetro no saben qué significa "subir". Es el microcontrolador, al conservar el valor_anterior y compararlo con la lectura actual, quien construye la noción de dirección. La computación aquí consiste en comparar dos instantes para crear un concepto nuevo: la tendencia.
 
-- La historia mínima: Este sistema tiene una memoria de exactamente un paso. Es el nivel más básico de conciencia temporal: saber qué acaba de pasar para entender qué está pasando ahora.
+- **El sensor como cronómetro:** Al modificar el tiempo entre lecturas, también modifico la percepción del cambio. Si reduzco el `time.sleep()`, la diferencia entre muestras será menor porque el entorno tiene menos tiempo para cambiar. La manera en que percibo la velocidad depende directamente del ritmo con el que observo.
 
+- **La historia mínima:** Este sistema posee una memoria de exactamente un paso. Aunque parece pequeña, representa un nivel fundamental de percepción temporal: recordar qué acaba de ocurrir para interpretar correctamente lo que está ocurriendo ahora.
+- 
 # Ejemplo 3: Validación Sensorial (Construyendo Certeza)
-En este ejemplo, aplico la idea de que "una sola lectura no es la realidad". Los sensores a veces mienten o detectan ecos falsos. Por eso, mi código no reacciona impulsivamente.
 
-Utilizo una Máquina de Estados (concepto anteriormente desarrollado) para comportarme como un juez: no dicto sentencia (encender la luz) hasta no haber acumulado suficiente evidencia. El tiempo y la repetición son mis herramientas para distinguir entre el "ruido" y un "evento real".
+En este ejemplo aplico una idea fundamental: **una sola lectura no representa necesariamente la realidad**. Los sensores pueden producir errores, interferencias o lecturas inesperadas, por lo que una reacción inmediata puede generar decisiones equivocadas.
+
+Para solucionar esto utilizo una Máquina de Estados que funciona como un proceso de evaluación. El sistema no toma una decisión definitiva después de una única medición, sino que espera acumular suficiente evidencia antes de actuar.
+
+De esta manera, incorporo una forma de paciencia dentro del programa. El tiempo y la repetición se convierten en herramientas para separar el ruido de un evento verdadero. La máquina no obtiene certeza porque "comprenda" el entorno, sino porque verifica que la información se mantiene consistente.
 
 ### Código: 03_validacion_sensorial.py
 
