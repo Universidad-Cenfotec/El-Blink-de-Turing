@@ -1,3 +1,5 @@
+# Maquinas de estado en el IdeaSense
+
 # Ejemplo 1: Memoria Visual y Eventos 
 Al conectar la placa **IdeaSense** a nuestra **IdeaBoard**, multiplicamos nuestras formas de interactuar con el mundo físico. Ahora contamos con tres botones dedicados y una matriz de LEDs de 5x5. Nuestro primer impulso al programar podría ser crear un sistema puramente reactivo: *si mantenemos presionado el botón A, se dibuja la letra A; si lo soltamos, se borra*.
 
