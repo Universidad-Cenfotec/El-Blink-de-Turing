@@ -151,13 +151,13 @@ while True:
     time.sleep(0.1)
 ```
 
-## Reflexiones para el lector
+## Reflexiones para el lector:
 
-- **La invención de la dirección:** Un sensor de luz o un potenciómetro no saben qué significa "subir". Es el microcontrolador, al conservar el valor_anterior y compararlo con la lectura actual, quien construye la noción de dirección. La computación aquí consiste en comparar dos instantes para crear un concepto nuevo: la tendencia.
+- **La construcción de la dirección:** Un sensor únicamente entrega valores; no sabe si algo está subiendo o bajando. Al comparar la lectura actual con la lectura anterior, el sistema construye una interpretación del cambio y transforma una simple diferencia numérica en una noción de tendencia.
 
-- **El sensor como cronómetro:** Al modificar el tiempo entre lecturas, también modifico la percepción del cambio. Si reduzco el `time.sleep()`, la diferencia entre muestras será menor porque el entorno tiene menos tiempo para cambiar. La manera en que percibo la velocidad depende directamente del ritmo con el que observo.
+- **El tiempo como parte de la percepción:** La velocidad con la que realizo las lecturas modifica la forma en que interpreto el entorno. Si cambio el intervalo del `time.sleep()`, también cambia la magnitud de la diferencia entre mediciones. La percepción del movimiento depende del ritmo con el que observo y proceso los datos.
 
-- **La historia mínima:** Este sistema posee una memoria de exactamente un paso. Aunque parece pequeña, representa un nivel fundamental de percepción temporal: recordar qué acaba de ocurrir para interpretar correctamente lo que está ocurriendo ahora.
+- **La memoria mínima como origen del comportamiento:** Guardar solamente un valor anterior parece una acción sencilla, pero representa una de las formas más básicas de memoria computacional. Al conservar información del pasado inmediato, el sistema puede comparar, interpretar cambios y construir una percepción temporal que no existe en una lectura aislada.
 - 
 ## Ejemplo 3: Validación Sensorial (Construyendo Certeza)
 
