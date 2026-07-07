@@ -93,11 +93,12 @@ while True:
 
 ## Ejemplo 2: La construcción de la memoria (Tendencia y Variación)
 
-Este ejemplo muestra que incluso una memoria mínima puede cambiar completamente el comportamiento de un sistema. Conservar solamente una lectura anterior es suficiente para que la máquina pueda reconocer tendencias y responder a la dinámica del entorno.
+En este ejemplo exploro cómo una máquina puede obtener información nueva al comparar el presente con el pasado inmediato. Un sensor solamente entrega valores, pero al almacenar una lectura anterior puedo calcular una diferencia y construir una idea que originalmente no existía en el dato: la dirección del cambio.
 
 El microcontrolador no sabe naturalmente qué significa subir o bajar. Soy yo, mediante la lógica del programa, quien creo esa interpretación al comparar dos momentos diferentes. Una simple resta entre el valor actual y el valor anterior se convierte en una forma básica de percepción temporal.
 
-Este ejemplo muestra que incluso una memoria mínima puede cambiar completamente el comportamiento de un sistema. Conservar solamente una lectura anterior es suficiente para que la máquina pueda reconocer tendencias y responder a la dinámica del entorno.{
+Este ejemplo muestra que incluso una memoria mínima puede cambiar completamente el comportamiento de un sistema. Conservar solamente una lectura anterior es suficiente para que la máquina pueda reconocer tendencias y responder a la dinámica del entorno.
+
 
 ### Código: 02_memoria_tendencia.py
 
