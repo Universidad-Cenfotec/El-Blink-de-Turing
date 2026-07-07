@@ -93,7 +93,7 @@ while True:
 
 ## Ejemplo 2: La construcción de la memoria (Tendencia y Variación)
 
-En este ejemplo exploro cómo una máquina puede obtener información nueva al comparar el presente con el pasado inmediato. Un sensor solamente entrega valores, pero al almacenar una lectura anterior puedo calcular una diferencia y construir una idea que originalmente no existía en el dato: la dirección del cambio.
+Este ejemplo muestra que incluso una memoria mínima puede cambiar completamente el comportamiento de un sistema. Conservar solamente una lectura anterior es suficiente para que la máquina pueda reconocer tendencias y responder a la dinámica del entorno.
 
 El microcontrolador no sabe naturalmente qué significa subir o bajar. Soy yo, mediante la lógica del programa, quien creo esa interpretación al comparar dos momentos diferentes. Una simple resta entre el valor actual y el valor anterior se convierte en una forma básica de percepción temporal.
 
@@ -158,7 +158,7 @@ while True:
 
 - **La historia mínima:** Este sistema posee una memoria de exactamente un paso. Aunque parece pequeña, representa un nivel fundamental de percepción temporal: recordar qué acaba de ocurrir para interpretar correctamente lo que está ocurriendo ahora.
 - 
-# Ejemplo 3: Validación Sensorial (Construyendo Certeza)
+## Ejemplo 3: Validación Sensorial (Construyendo Certeza)
 
 En este ejemplo aplico una idea fundamental: **una sola lectura no representa necesariamente la realidad**. Los sensores pueden producir errores, interferencias o lecturas inesperadas, por lo que una reacción inmediata puede generar decisiones equivocadas.
 
@@ -268,7 +268,7 @@ while True:
 ```
 
 ## Reflexiones para el lector:
-Con esto logro ver que sensar no es un acto instantáneo, sino un proceso. Al obligarme a verificar 5 veces antes de actuar, he creado un sistema que tiene "paciencia". He transformado una serie de lecturas ruidosas en una decisión sólida. Computar, en este caso, significa darle estabilidad al caos del mundo físico.
+Al obligar al sistema a verificar 5 veces antes de actuar, se crea un comportamiento que puede interpretarse como una forma de "paciencia algorítmica".
 
 
 # Ejemplo 4: Memoria táctil
