@@ -9,7 +9,7 @@ La primera barrera con la que me encuentro al intentar mover el robot no es lóg
 
 Por eso, me veo obligado a cambiar mi noción de variable. Aquí no uso la memoria como una simple caja para guardar un valor, sino como un proceso. Construyo un algoritmo que detiene al robot, recolecta cientos de muestras de su estado inerte y descarta anomalías. Promediar esos valores es mi forma de construir una historia; una historia que le permite a la máquina conocer su propio error antes de intentar moverse.
 
-## Python
+
 
 ```python
 # ----------------------------------------
@@ -95,7 +95,6 @@ y lo utilizo para integrar la velocidad angular.
 
 El tiempo se vuelve mi herramienta para rastrear el recorrido real de la materia en el espacio, permitiéndole a la máquina anticipar su llegada y frenar a tiempo.
 
-## Python
 
 ```python
 # ----------------------------------------
@@ -241,8 +240,6 @@ Ya no le dicto una orden cerrada a la máquina; establezco una conversación con
 El algoritmo mide la desviación actual usando el giroscopio, recuerda el error acumulado y calcula una compensación que se suma o resta a la fuerza de las ruedas en tiempo real.
 
 La matemática aquí no emite un resultado final; sostiene un comportamiento.
-
-## Python
 
 ```python
 # ----------------------------------------
