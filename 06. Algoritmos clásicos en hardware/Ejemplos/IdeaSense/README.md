@@ -1,4 +1,4 @@
-Algoritmos clásicos para interpretar el mundo físico
+# Algoritmos clásicos para interpretar el mundo físico
 
 Después de explorar cómo los algoritmos clásicos permiten comprender la relación entre memoria, tiempo, decisión y control, el siguiente paso consiste en observar cómo estas ideas toman forma sobre hardware real. Al pasar del Sumobot a la IdeaSense, el problema cambia de naturaleza. Ya no intento mover la materia mediante motores, sino interpretar los fenómenos físicos que los sensores capturan continuamente.
 
